@@ -9,7 +9,8 @@ contract owned {
 
     }
 
-    function owned() public {
+   function owned() public {
+//    Constructor owned() public {
         owner = msg.sender;
     }
 }

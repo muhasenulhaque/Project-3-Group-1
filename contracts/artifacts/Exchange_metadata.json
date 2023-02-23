@@ -669,10 +669,10 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0x5adcd947d61190d6afc384f14494cfd5875679786bcb059cea58f91d6d0a9311",
+			"keccak256": "0x673aaa824b4aa6885298eab35bd24844f30a7ec1df177841c52d51f86ae4fa5c",
 			"urls": [
-				"bzz-raw://d91c25ab36a7698af9ef420521ead7734cf5093665de7784dd37fab1694dec8e",
-				"dweb:/ipfs/QmZYAKfVTuJEwekcminM4WxiyzJ6obLfBmcNZJaccP2Wef"
+				"bzz-raw://79bde20e03d6e8dbfdce5dd1f7997f30ec51c7aa42dff91ecd4481558a9f8e00",
+				"dweb:/ipfs/QmdtZWaYP2Dt2DnyzsMitEBzVPnN5ExbyCs21FSeNqYGJG"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {

@@ -1,11 +1,28 @@
 pragma solidity ^0.5.0;
 
+// Adding SafeMath Library to improve security
+// @NOTE: This only works in Remix. Alternatively, paste the contents of SafeMath.sol directly here above ArcadeToken. You should use version 2.5.
+
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
 
 import "./owned.sol";
 import "./FixedSupplyToken.sol";
 
 
 contract Exchange is owned {
+
+// Using SafeMath Library for improved security
+    using SafeMath for uint;
+    using SafeMath for uint8;
+
+/*
+EXAMPLE CODE
+
+    function transfer(address recipient, uint value) public {
+        balances[msg.sender] = balances[msg.sender].sub(value);
+        balances[recipient] = balances[recipient].add(value);
+    }
+*/
 
     ///////////////////////
     // GENERAL STRUCTURE //
@@ -98,15 +115,15 @@ contract Exchange is owned {
     // DEPOSIT AND WITHDRAWAL ETHER //
     //////////////////////////////////
     function depositEther() public payable {
-        require(balanceEthForAddress[msg.sender] + msg.value >= balanceEthForAddress[msg.sender]);
-        balanceEthForAddress[msg.sender] += msg.value;
+        require(balanceEthForAddress[msg.sender].add(msg.value) >= balanceEthForAddress[msg.sender]);
+        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].add(msg.value);
         emit DepositForEthReceived(msg.sender, msg.value, now);
     }
 
     function withdrawEther(uint amountInWei) public {
-        require(balanceEthForAddress[msg.sender] - amountInWei >= 0);
-        require(balanceEthForAddress[msg.sender] - amountInWei <= balanceEthForAddress[msg.sender]);
-        balanceEthForAddress[msg.sender] -= amountInWei;
+        require(balanceEthForAddress[msg.sender].sub(amountInWei) >= 0);
+        require(balanceEthForAddress[msg.sender].sub(amountInWei) <= balanceEthForAddress[msg.sender]);
+        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(amountInWei);
         msg.sender.transfer(amountInWei);
         emit WithdrawalEth(msg.sender, amountInWei, now);
     }
@@ -124,8 +141,8 @@ contract Exchange is owned {
     //Added 'memory' to function declaration
     function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner {
         require(!hasToken(symbolName));
-        require(tokenIndex + 1 > tokenIndex);
-        tokenIndex++;
+        require(tokenIndex.add(1) > tokenIndex);
+        tokenIndex = tokenIndex.add(1);
 
         tokens[tokenIndex].symbolName = symbolName;
         tokens[tokenIndex].tokenContract = erc20TokenAddress;

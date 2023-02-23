@@ -222,10 +222,10 @@
 	},
 	"sources": {
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0xed75e29825540a11c216201bfb14a6890d88f10c5e2fa416261583d460ad4597",
+			"keccak256": "0xf2279ca48db63767cfb1874f45569070b5a2580a7c1ee473ec89d53d185a0bc8",
 			"urls": [
-				"bzz-raw://c23e2d57643b5bb71ca2d4bb9432513cdd8f9091f8e74fb7872d228e9302e1ab",
-				"dweb:/ipfs/QmVmLXLrcQNjNr7ASNb7J2oGpEo5ZPF7cAEAEQqyecAvg1"
+				"bzz-raw://1246f0e9af154c8d1ce85132aaec8d16869b669e318913378332c78fa2987497",
+				"dweb:/ipfs/QmVP8ztDH5vwdointrDTFGfnD1ZbsThkokpcyKCPjsHg9W"
 			]
 		}
 	},

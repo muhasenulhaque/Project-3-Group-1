@@ -93,10 +93,10 @@
 	},
 	"sources": {
 		"contracts/Migrations.sol": {
-			"keccak256": "0xd5b807fe6ab8d217636241161f5fef2155e7ff098503fd06cf80c2bc346bbbea",
+			"keccak256": "0xcd4851940132a6464f94ea04caab75038704e3871c7d55347b0c705ab0d8bd3c",
 			"urls": [
-				"bzz-raw://283884ff7b9eba85639ded760238347118bc3f5b0445eb98c146d9da1cb285ae",
-				"dweb:/ipfs/QmQXRWS9UdwfbVfp9fHhDDChRaTcks5ohuMoqRtECMEgh7"
+				"bzz-raw://c18f50f4a036f2d89861715b0838c915336a1be892510c5dd64cdd12b09d6630",
+				"dweb:/ipfs/QmVoYdptp9Qiv7aGp8pZa9wzFhMeVLb5pcqkp3amRaHhc1"
 			]
 		}
 	},

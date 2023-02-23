@@ -1,43 +1,11 @@
-pragma solidity ^0.5.0;
-//
-//      Project-3-Group-1
-//      *****************
-//
-//      Group Membere:  Xu (Flora) Zhao
-//                      Md Muhasenul Haque
-//                      Samuel Nayacakalou
-//
-//      Date:           March 2023
-//
-//      Original Code:  https://github.com/tomw1808/distributed_exchange_truffle_class_3
-//
+pragma solidity ^0.4.21;
 
-
-// Adding SafeMath Library to improve security
-// @NOTE: This only works in Remix. Alternatively, paste the contents of SafeMath.sol directly here above ArcadeToken. You should use version 2.5.
-
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
 
 import "./owned.sol";
 import "./FixedSupplyToken.sol";
 
 
 contract Exchange is owned {
-
-//      Project-3-Group-1
-//      *****************
-// Using SafeMath Library for improved security
-    using SafeMath for uint;
- //   using SafeMath for uint;
-
-/*
-EXAMPLE CODE
-
-    function transfer(address recipient, uint value) public {
-        balances[msg.sender] = balances[msg.sender].sub(value);
-        balances[recipient] = balances[recipient].add(value);
-    }
-*/
 
     ///////////////////////
     // GENERAL STRUCTURE //
@@ -82,13 +50,13 @@ EXAMPLE CODE
 
 
     //we support a max of 255 tokens...
-    mapping (uint => Token) tokens;
-    uint tokenIndex;
+    mapping (uint8 => Token) tokens;
+    uint8 tokenIndex;
 
     //////////////
     // BALANCES //
     //////////////
-    mapping (address => mapping (uint => uint)) tokenBalanceForAddress;
+    mapping (address => mapping (uint8 => uint)) tokenBalanceForAddress;
 
     mapping (address => uint) balanceEthForAddress;
 
@@ -130,15 +98,15 @@ EXAMPLE CODE
     // DEPOSIT AND WITHDRAWAL ETHER //
     //////////////////////////////////
     function depositEther() public payable {
-        require(balanceEthForAddress[msg.sender].add(msg.value) >= balanceEthForAddress[msg.sender]);
-        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].add(msg.value);
+        require(balanceEthForAddress[msg.sender] + msg.value >= balanceEthForAddress[msg.sender]);
+        balanceEthForAddress[msg.sender] += msg.value;
         emit DepositForEthReceived(msg.sender, msg.value, now);
     }
 
     function withdrawEther(uint amountInWei) public {
-        require(balanceEthForAddress[msg.sender].sub(amountInWei) >= 0);
-        require(balanceEthForAddress[msg.sender].sub(amountInWei) <= balanceEthForAddress[msg.sender]);
-        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(amountInWei);
+        require(balanceEthForAddress[msg.sender] - amountInWei >= 0);
+        require(balanceEthForAddress[msg.sender] - amountInWei <= balanceEthForAddress[msg.sender]);
+        balanceEthForAddress[msg.sender] -= amountInWei;
         msg.sender.transfer(amountInWei);
         emit WithdrawalEth(msg.sender, amountInWei, now);
     }
@@ -152,38 +120,27 @@ EXAMPLE CODE
     // TOKEN MANAGEMENT //
     //////////////////////
 
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner {
+    function addToken(string symbolName, address erc20TokenAddress) public onlyowner {
         require(!hasToken(symbolName));
-        require(tokenIndex.add(1) > tokenIndex);
-        tokenIndex = tokenIndex.add(1);
+        require(tokenIndex + 1 > tokenIndex);
+        tokenIndex++;
 
         tokens[tokenIndex].symbolName = symbolName;
         tokens[tokenIndex].tokenContract = erc20TokenAddress;
         emit TokenAddedToSystem(tokenIndex, symbolName, now);
     }
 
-    //      Project-3-Group-1
-    //      *****************    
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function hasToken(string memory symbolName) view public returns (bool) {
-        uint index = getSymbolIndex(symbolName);
+    function hasToken(string symbolName) view public returns (bool) {
+        uint8 index = getSymbolIndex(symbolName);
         if (index == 0) {
             return false;
         }
         return true;
     }
 
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function getSymbolIndex(string memory symbolName) internal view returns (uint) {
-        for (uint i = 1; i <= tokenIndex; i++) {
+
+    function getSymbolIndex(string symbolName) internal view returns (uint8) {
+        for (uint8 i = 1; i <= tokenIndex; i++) {
             if (stringsEqual(tokens[i].symbolName, symbolName)) {
                 return i;
             }
@@ -191,12 +148,9 @@ EXAMPLE CODE
         return 0;
     }
 
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function getSymbolIndexOrThrow(string memory symbolName) public view returns (uint) {
-        uint index = getSymbolIndex(symbolName);
+
+    function getSymbolIndexOrThrow(string symbolName) public view returns (uint8) {
+        uint8 index = getSymbolIndex(symbolName);
         require(index > 0);
         return index;
     }
@@ -210,29 +164,20 @@ EXAMPLE CODE
     //////////////////////////////////
     // DEPOSIT AND WITHDRAWAL TOKEN //
     //////////////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function depositToken(string memory symbolName, uint amount) public {
-        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+    function depositToken(string symbolName, uint amount) public {
+        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         require(tokens[symbolNameIndex].tokenContract != address(0));
 
         ERC20Interface token = ERC20Interface(tokens[symbolNameIndex].tokenContract);
 
         require(token.transferFrom(msg.sender, address(this), amount) == true);
         require(tokenBalanceForAddress[msg.sender][symbolNameIndex] + amount >= tokenBalanceForAddress[msg.sender][symbolNameIndex]);
-        tokenBalanceForAddress[msg.sender][symbolNameIndex] = tokenBalanceForAddress[msg.sender][symbolNameIndex].add(amount);
+        tokenBalanceForAddress[msg.sender][symbolNameIndex] += amount;
         emit DepositForTokenReceived(msg.sender, symbolNameIndex, amount, now);
     }
 
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function withdrawToken(string memory symbolName, uint amount) public {
-        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+    function withdrawToken(string symbolName, uint amount) public {
+        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         require(tokens[symbolNameIndex].tokenContract != address(0));
 
         ERC20Interface token = ERC20Interface(tokens[symbolNameIndex].tokenContract);
@@ -240,18 +185,13 @@ EXAMPLE CODE
         require(tokenBalanceForAddress[msg.sender][symbolNameIndex] - amount >= 0);
         require(tokenBalanceForAddress[msg.sender][symbolNameIndex] - amount <= tokenBalanceForAddress[msg.sender][symbolNameIndex]);
 
-        tokenBalanceForAddress[msg.sender][symbolNameIndex] = tokenBalanceForAddress[msg.sender][symbolNameIndex].sub(amount);
+        tokenBalanceForAddress[msg.sender][symbolNameIndex] -= amount;
         require(token.transfer(msg.sender, amount) == true);
         emit WithdrawalToken(msg.sender, symbolNameIndex, amount, now);
     }
 
-    
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function getBalance(string memory symbolName) view public returns (uint) {
-        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+    function getBalance(string symbolName) view public returns (uint) {
+        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         return tokenBalanceForAddress[msg.sender][symbolNameIndex];
     }
 
@@ -260,14 +200,8 @@ EXAMPLE CODE
     /////////////////////////////
     // ORDER BOOK - BID ORDERS //
     /////////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    //Added 'memory to return datatype
-    function getBuyOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
-        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+    function getBuyOrderBook(string symbolName) view public returns (uint[], uint[]) {
+        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint[] memory arrPricesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
         uint[] memory arrVolumesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
 
@@ -281,8 +215,8 @@ EXAMPLE CODE
 
                 offers_key = tokens[tokenNameIndex].buyBook[whilePrice].offers_key;
                 while (offers_key <= tokens[tokenNameIndex].buyBook[whilePrice].offers_length) {
-                    volumeAtPrice = volumeAtPrice.add(tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount);
-                    offers_key = offers_key.add(1);
+                    volumeAtPrice += tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount;
+                    offers_key++;
                 }
 
                 arrVolumesBuy[counter] = volumeAtPrice;
@@ -294,7 +228,7 @@ EXAMPLE CODE
                 else {
                     whilePrice = tokens[tokenNameIndex].buyBook[whilePrice].higherPrice;
                 }
-                counter = counter.add(1);
+                counter++;
 
             }
         }
@@ -307,14 +241,8 @@ EXAMPLE CODE
     /////////////////////////////
     // ORDER BOOK - ASK ORDERS //
     /////////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    //Added 'memory to return datatype
-    function getSellOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
-        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+    function getSellOrderBook(string symbolName) view public returns (uint[], uint[]) {
+        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint[] memory arrPricesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
         uint[] memory arrVolumesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
         uint sellWhilePrice = tokens[tokenNameIndex].curSellPrice;
@@ -327,8 +255,8 @@ EXAMPLE CODE
 
                 sell_offers_key = tokens[tokenNameIndex].sellBook[sellWhilePrice].offers_key;
                 while (sell_offers_key <= tokens[tokenNameIndex].sellBook[sellWhilePrice].offers_length) {
-                    sellVolumeAtPrice = sellVolumeAtPrice.add(tokens[tokenNameIndex].sellBook[sellWhilePrice].offers[sell_offers_key].amount);
-                    sell_offers_key = sell_offers_key.add(1);
+                    sellVolumeAtPrice += tokens[tokenNameIndex].sellBook[sellWhilePrice].offers[sell_offers_key].amount;
+                    sell_offers_key++;
                 }
 
                 arrVolumesSell[sellCounter] = sellVolumeAtPrice;
@@ -340,7 +268,7 @@ EXAMPLE CODE
                 else {
                     sellWhilePrice = tokens[tokenNameIndex].sellBook[sellWhilePrice].higherPrice;
                 }
-                sellCounter = sellCounter.add(1);
+                sellCounter++;
 
             }
         }
@@ -356,28 +284,23 @@ EXAMPLE CODE
     ////////////////////////////
     // NEW ORDER - BID ORDER //
     ///////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
-        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+    function buyToken(string symbolName, uint priceInWei, uint amount) public {
+        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint total_amount_ether_necessary = 0;
 
         if (tokens[tokenNameIndex].amountSellPrices == 0 || tokens[tokenNameIndex].curSellPrice > priceInWei) {
             //if we have enough ether, we can buy that:
-            total_amount_ether_necessary = amount.mul(priceInWei);
+            total_amount_ether_necessary = amount * priceInWei;
 
             //overflow check
             require(total_amount_ether_necessary >= amount);
             require(total_amount_ether_necessary >= priceInWei);
             require(balanceEthForAddress[msg.sender] >= total_amount_ether_necessary);
-            require(balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary) >= 0);
-            require(balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary) <= balanceEthForAddress[msg.sender]);
+            require(balanceEthForAddress[msg.sender] - total_amount_ether_necessary >= 0);
+            require(balanceEthForAddress[msg.sender] - total_amount_ether_necessary <= balanceEthForAddress[msg.sender]);
 
             //first deduct the amount of ether from our balance
-            balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary);
+            balanceEthForAddress[msg.sender] -= total_amount_ether_necessary;
 
             //limit order: we don't have enough offers to fulfill the amount
 
@@ -410,21 +333,21 @@ EXAMPLE CODE
                     //1) one person offers not enough volume to fulfill the market order - we use it up completely and move on to the next person who offers the symbolName
                     //2) else: we make use of parts of what a person is offering - lower his amount, fulfill out order.
                     if (volumeAtPriceFromAddress <= amountNecessary) {
-                        total_amount_ether_available = volumeAtPriceFromAddress.mul(whilePrice);
+                        total_amount_ether_available = volumeAtPriceFromAddress * whilePrice;
 
                         require(balanceEthForAddress[msg.sender] >= total_amount_ether_available);
                         require(balanceEthForAddress[msg.sender] - total_amount_ether_available <= balanceEthForAddress[msg.sender]);
                         //first deduct the amount of ether from our balance
-                        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(total_amount_ether_available);
+                        balanceEthForAddress[msg.sender] -= total_amount_ether_available;
 
                         require(tokenBalanceForAddress[msg.sender][tokenNameIndex] + volumeAtPriceFromAddress >= tokenBalanceForAddress[msg.sender][tokenNameIndex]);
                         require(balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] + total_amount_ether_available >= balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who]);
                         //overflow check
                         //this guy offers less or equal the volume that we ask for, so we use it up completely.
-                        tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].add(volumeAtPriceFromAddress);
+                        tokenBalanceForAddress[msg.sender][tokenNameIndex] += volumeAtPriceFromAddress;
                         tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount = 0;
-                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] = balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who].add(total_amount_ether_available);
-                        tokens[tokenNameIndex].sellBook[whilePrice].offers_key = tokens[tokenNameIndex].sellBook[whilePrice].offers_key.add(1);
+                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] += total_amount_ether_available;
+                        tokens[tokenNameIndex].sellBook[whilePrice].offers_key++;
 
                         emit SellOrderFulfilled(tokenNameIndex, volumeAtPriceFromAddress, whilePrice, offers_key);
 
@@ -433,18 +356,18 @@ EXAMPLE CODE
                     else {
                         require(tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount > amountNecessary);//sanity
 
-                        total_amount_ether_necessary = amountNecessary.mul(whilePrice);
+                        total_amount_ether_necessary = amountNecessary * whilePrice;
                         require(balanceEthForAddress[msg.sender] - total_amount_ether_necessary <= balanceEthForAddress[msg.sender]);
 
                         //first deduct the amount of ether from our balance
-                        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary);
+                        balanceEthForAddress[msg.sender] -= total_amount_ether_necessary;
 
                         require(balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] + total_amount_ether_necessary >= balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who]);
                         //overflow check
                         //this guy offers more than we ask for. We reduce his stack, add the tokens to us and the ether to him.
-                        tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount = tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount.sub(amountNecessary);
-                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] = balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who].add(total_amount_ether_necessary);
-                        tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].add(amountNecessary);
+                        tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount -= amountNecessary;
+                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] += total_amount_ether_necessary;
+                        tokenBalanceForAddress[msg.sender][tokenNameIndex] += amountNecessary;
 
                         amountNecessary = 0;
                         //we have fulfilled our order
@@ -487,7 +410,7 @@ EXAMPLE CODE
     ///////////////////////////
     // BID LIMIT ORDER LOGIC //
     ///////////////////////////
-    function addBuyOffer(uint _tokenIndex, uint priceInWei, uint amount, address who) internal {
+    function addBuyOffer(uint8 _tokenIndex, uint priceInWei, uint amount, address who) internal {
         tokens[_tokenIndex].buyBook[priceInWei].offers_length++;
         tokens[_tokenIndex].buyBook[priceInWei].offers[tokens[_tokenIndex].buyBook[priceInWei].offers_length] = Offer(amount, who);
 
@@ -495,7 +418,7 @@ EXAMPLE CODE
         if (tokens[_tokenIndex].buyBook[priceInWei].offers_length == 1) {
             tokens[_tokenIndex].buyBook[priceInWei].offers_key = 1;
             //we have a new buy order - increase the counter, so we can set the getOrderBook array later
-            tokens[_tokenIndex].amountBuyPrices = tokens[_tokenIndex].amountBuyPrices.add(1);
+            tokens[_tokenIndex].amountBuyPrices++;
 
 
             //lowerPrice and higherPrice have to be set
@@ -559,14 +482,8 @@ EXAMPLE CODE
     ////////////////////////////
     // NEW ORDER - ASK ORDER //
     ///////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    //Added 'memory to return datatype
-    function sellToken(string memory symbolName, uint priceInWei, uint amount) public {
-        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+    function sellToken(string symbolName, uint priceInWei, uint amount) public {
+        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint total_amount_ether_necessary = 0;
         uint total_amount_ether_available = 0;
 
@@ -574,17 +491,17 @@ EXAMPLE CODE
         if (tokens[tokenNameIndex].amountBuyPrices == 0 || tokens[tokenNameIndex].curBuyPrice < priceInWei) {
 
             //if we have enough ether, we can buy that:
-            total_amount_ether_necessary = amount.mul(priceInWei);
+            total_amount_ether_necessary = amount * priceInWei;
 
             //overflow check
             require(total_amount_ether_necessary >= amount);
             require(total_amount_ether_necessary >= priceInWei);
             require(tokenBalanceForAddress[msg.sender][tokenNameIndex] >= amount);
-            require(tokenBalanceForAddress[msg.sender][tokenNameIndex].sub(amount) >= 0);
-            require(balanceEthForAddress[msg.sender].add(total_amount_ether_necessary) >= balanceEthForAddress[msg.sender]);
+            require(tokenBalanceForAddress[msg.sender][tokenNameIndex] - amount >= 0);
+            require(balanceEthForAddress[msg.sender] + total_amount_ether_necessary >= balanceEthForAddress[msg.sender]);
 
             //actually subtract the amount of tokens to change it then
-            tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].add(amount);
+            tokenBalanceForAddress[msg.sender][tokenNameIndex] -= amount;
 
             //limit order: we don't have enough offers to fulfill the amount
 
@@ -619,49 +536,49 @@ EXAMPLE CODE
                     //1) one person offers not enough volume to fulfill the market order - we use it up completely and move on to the next person who offers the symbolName
                     //2) else: we make use of parts of what a person is offering - lower his amount, fulfill out order.
                     if (volumeAtPriceFromAddress <= amountNecessary) {
-                        total_amount_ether_available = volumeAtPriceFromAddress.mul(whilePrice);
+                        total_amount_ether_available = volumeAtPriceFromAddress * whilePrice;
 
 
                         //overflow check
                         require(tokenBalanceForAddress[msg.sender][tokenNameIndex] >= volumeAtPriceFromAddress);
                         //actually subtract the amount of tokens to change it then
-                        tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].sub(volumeAtPriceFromAddress);
+                        tokenBalanceForAddress[msg.sender][tokenNameIndex] -= volumeAtPriceFromAddress;
 
                         //overflow check
-                        require(tokenBalanceForAddress[msg.sender][tokenNameIndex].sub(volumeAtPriceFromAddress) >= 0);
-                        require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex].add(volumeAtPriceFromAddress) >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
-                        require(balanceEthForAddress[msg.sender].add(total_amount_ether_available) >= balanceEthForAddress[msg.sender]);
+                        require(tokenBalanceForAddress[msg.sender][tokenNameIndex] - volumeAtPriceFromAddress >= 0);
+                        require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] + volumeAtPriceFromAddress >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
+                        require(balanceEthForAddress[msg.sender] + total_amount_ether_available >= balanceEthForAddress[msg.sender]);
 
                         //this guy offers less or equal the volume that we ask for, so we use it up completely.
-                        tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] = tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex].add(volumeAtPriceFromAddress);
+                        tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] += volumeAtPriceFromAddress;
                         tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount = 0;
-                        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].add(total_amount_ether_available);
-                        tokens[tokenNameIndex].buyBook[whilePrice].offers_key = tokens[tokenNameIndex].buyBook[whilePrice].offers_key.add(1);
+                        balanceEthForAddress[msg.sender] += total_amount_ether_available;
+                        tokens[tokenNameIndex].buyBook[whilePrice].offers_key++;
                         emit SellOrderFulfilled(tokenNameIndex, volumeAtPriceFromAddress, whilePrice, offers_key);
 
 
-                        amountNecessary = amountNecessary.sub(volumeAtPriceFromAddress);
+                        amountNecessary -= volumeAtPriceFromAddress;
                     }
                     else {
-                        require(volumeAtPriceFromAddress.sub(amountNecessary) > 0);
+                        require(volumeAtPriceFromAddress - amountNecessary > 0);
                         //just for sanity
-                        total_amount_ether_necessary = amountNecessary.mul(whilePrice);
+                        total_amount_ether_necessary = amountNecessary * whilePrice;
                         //we take the rest of the outstanding amount
 
                         //overflow check
                         require(tokenBalanceForAddress[msg.sender][tokenNameIndex] >= amountNecessary);
                         //actually subtract the amount of tokens to change it then
-                        tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].sub(amountNecessary);
+                        tokenBalanceForAddress[msg.sender][tokenNameIndex] -= amountNecessary;
 
                         //overflow check
                         require(tokenBalanceForAddress[msg.sender][tokenNameIndex] >= amountNecessary);
-                        require(balanceEthForAddress[msg.sender].add(total_amount_ether_necessary) >= balanceEthForAddress[msg.sender]);
-                        require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex].add(amountNecessary) >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
+                        require(balanceEthForAddress[msg.sender] + total_amount_ether_necessary >= balanceEthForAddress[msg.sender]);
+                        require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] + amountNecessary >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
 
                         //this guy offers more than we ask for. We reduce his stack, add the eth to us and the symbolName to him.
-                        tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount = tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount.sub(amountNecessary);
-                        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].add(total_amount_ether_necessary);
-                        tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] = tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex].add(amountNecessary);
+                        tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount -= amountNecessary;
+                        balanceEthForAddress[msg.sender] += total_amount_ether_necessary;
+                        tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] += amountNecessary;
 
                         emit SellOrderFulfilled(tokenNameIndex, amountNecessary, whilePrice, offers_key);
 
@@ -675,7 +592,7 @@ EXAMPLE CODE
                     tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount == 0
                     ) {
 
-                        tokens[tokenNameIndex].amountBuyPrices = tokens[tokenNameIndex].amountBuyPrices.sub(1);
+                        tokens[tokenNameIndex].amountBuyPrices--;
                         //we have one price offer less here...
                         //next whilePrice
                         if (whilePrice == tokens[tokenNameIndex].buyBook[whilePrice].lowerPrice || tokens[tokenNameIndex].buyBook[whilePrice].lowerPrice == 0) {
@@ -687,7 +604,7 @@ EXAMPLE CODE
                             tokens[tokenNameIndex].buyBook[tokens[tokenNameIndex].buyBook[whilePrice].lowerPrice].higherPrice = tokens[tokenNameIndex].curBuyPrice;
                         }
                     }
-                    offers_key = offers_key.add(1);
+                    offers_key++;
                 }
 
                 //we set the curSellPrice again, since when the volume is used up for a lowest price the curSellPrice is set there...
@@ -707,7 +624,7 @@ EXAMPLE CODE
     ///////////////////////////
     // ASK LIMIT ORDER LOGIC //
     ///////////////////////////
-    function addSellOffer(uint _tokenIndex, uint priceInWei, uint amount, address who) internal {
+    function addSellOffer(uint8 _tokenIndex, uint priceInWei, uint amount, address who) internal {
         tokens[_tokenIndex].sellBook[priceInWei].offers_length++;
         tokens[_tokenIndex].sellBook[priceInWei].offers[tokens[_tokenIndex].sellBook[priceInWei].offers_length] = Offer(amount, who);
 
@@ -715,7 +632,7 @@ EXAMPLE CODE
         if (tokens[_tokenIndex].sellBook[priceInWei].offers_length == 1) {
             tokens[_tokenIndex].sellBook[priceInWei].offers_key = 1;
             //we have a new sell order - increase the counter, so we can set the getOrderBook array later
-            tokens[_tokenIndex].amountSellPrices = tokens[_tokenIndex].amountSellPrices.add(1);
+            tokens[_tokenIndex].amountSellPrices++;
 
             //lowerPrice and higherPrice have to be set
             uint curSellPrice = tokens[_tokenIndex].curSellPrice;
@@ -778,22 +695,16 @@ EXAMPLE CODE
     //////////////////////////////
     // CANCEL LIMIT ORDER LOGIC //
     //////////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    //Added 'memory to return datatype
-    function cancelOrder(string memory symbolName, bool isSellOrder, uint priceInWei, uint offerKey) public {
-        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+    function cancelOrder(string symbolName, bool isSellOrder, uint priceInWei, uint offerKey) public {
+        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         if (isSellOrder) {
             require(tokens[symbolNameIndex].sellBook[priceInWei].offers[offerKey].who == msg.sender);
 
             uint tokensAmount = tokens[symbolNameIndex].sellBook[priceInWei].offers[offerKey].amount;
-            require(tokenBalanceForAddress[msg.sender][symbolNameIndex].add(tokensAmount) >= tokenBalanceForAddress[msg.sender][symbolNameIndex]);
+            require(tokenBalanceForAddress[msg.sender][symbolNameIndex] + tokensAmount >= tokenBalanceForAddress[msg.sender][symbolNameIndex]);
 
 
-            tokenBalanceForAddress[msg.sender][symbolNameIndex] = tokenBalanceForAddress[msg.sender][symbolNameIndex].add(tokensAmount);
+            tokenBalanceForAddress[msg.sender][symbolNameIndex] += tokensAmount;
             tokens[symbolNameIndex].sellBook[priceInWei].offers[offerKey].amount = 0;
             emit SellOrderCanceled(symbolNameIndex, priceInWei, offerKey);
 
@@ -801,9 +712,9 @@ EXAMPLE CODE
         else {
             require(tokens[symbolNameIndex].buyBook[priceInWei].offers[offerKey].who == msg.sender);
             uint etherToRefund = tokens[symbolNameIndex].buyBook[priceInWei].offers[offerKey].amount * priceInWei;
-            require(balanceEthForAddress[msg.sender].add(etherToRefund) >= balanceEthForAddress[msg.sender]);
+            require(balanceEthForAddress[msg.sender] + etherToRefund >= balanceEthForAddress[msg.sender]);
 
-            balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].add(etherToRefund);
+            balanceEthForAddress[msg.sender] += etherToRefund;
             tokens[symbolNameIndex].buyBook[priceInWei].offers[offerKey].amount = 0;
             emit BuyOrderCanceled(symbolNameIndex, priceInWei, offerKey);
         }
@@ -817,18 +728,8 @@ EXAMPLE CODE
     ////////////////////////////////
     // STRING COMPARISON FUNCTION //
     ////////////////////////////////
-
-    //      Project-3-Group-1
-    //      *****************
-    /// FIXED: what does "Warning: This function only accepts a single "bytes" argument. Please use "abi.encodePacked(...)" mean
-    //https://ethereum.stackexchange.com/questions/50592/what-does-warning-this-function-only-accepts-a-single-bytes-argument-please
-
-    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
-    //Added 'memory' to function declaration
-    //Added 'memory to return datatype
-
-    function stringsEqual(string memory _a, string memory _b) internal pure returns (bool) {
-        return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b)); // FIXED line of code
+    function stringsEqual(string _a, string _b) internal pure returns (bool) {
+        return keccak256(_a) == keccak256(_b);
     }
 
 

@@ -13,7 +13,7 @@ contract Exchange is owned {
 
 // Using SafeMath Library for improved security
     using SafeMath for uint;
-    using SafeMath for uint8;
+ //   using SafeMath for uint;
 
 /*
 EXAMPLE CODE
@@ -67,13 +67,13 @@ EXAMPLE CODE
 
 
     //we support a max of 255 tokens...
-    mapping (uint8 => Token) tokens;
-    uint8 tokenIndex;
+    mapping (uint => Token) tokens;
+    uint tokenIndex;
 
     //////////////
     // BALANCES //
     //////////////
-    mapping (address => mapping (uint8 => uint)) tokenBalanceForAddress;
+    mapping (address => mapping (uint => uint)) tokenBalanceForAddress;
 
     mapping (address => uint) balanceEthForAddress;
 
@@ -152,7 +152,7 @@ EXAMPLE CODE
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
     function hasToken(string memory symbolName) view public returns (bool) {
-        uint8 index = getSymbolIndex(symbolName);
+        uint index = getSymbolIndex(symbolName);
         if (index == 0) {
             return false;
         }
@@ -162,8 +162,8 @@ EXAMPLE CODE
 
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
-    function getSymbolIndex(string memory symbolName) internal view returns (uint8) {
-        for (uint8 i = 1; i <= tokenIndex; i++) {
+    function getSymbolIndex(string memory symbolName) internal view returns (uint) {
+        for (uint i = 1; i <= tokenIndex; i++) {
             if (stringsEqual(tokens[i].symbolName, symbolName)) {
                 return i;
             }
@@ -174,8 +174,8 @@ EXAMPLE CODE
 
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
-    function getSymbolIndexOrThrow(string memory symbolName) public view returns (uint8) {
-        uint8 index = getSymbolIndex(symbolName);
+    function getSymbolIndexOrThrow(string memory symbolName) public view returns (uint) {
+        uint index = getSymbolIndex(symbolName);
         require(index > 0);
         return index;
     }
@@ -193,7 +193,7 @@ EXAMPLE CODE
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
     function depositToken(string memory symbolName, uint amount) public {
-        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         require(tokens[symbolNameIndex].tokenContract != address(0));
 
         ERC20Interface token = ERC20Interface(tokens[symbolNameIndex].tokenContract);
@@ -207,7 +207,7 @@ EXAMPLE CODE
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
     function withdrawToken(string memory symbolName, uint amount) public {
-        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         require(tokens[symbolNameIndex].tokenContract != address(0));
 
         ERC20Interface token = ERC20Interface(tokens[symbolNameIndex].tokenContract);
@@ -223,7 +223,7 @@ EXAMPLE CODE
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
     function getBalance(string memory symbolName) view public returns (uint) {
-        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         return tokenBalanceForAddress[msg.sender][symbolNameIndex];
     }
 
@@ -237,7 +237,7 @@ EXAMPLE CODE
     //Added 'memory' to function declaration
     //Added 'memory to return datatype
     function getBuyOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
-        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint[] memory arrPricesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
         uint[] memory arrVolumesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
 
@@ -282,7 +282,7 @@ EXAMPLE CODE
     //Added 'memory' to function declaration
     //Added 'memory to return datatype
     function getSellOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
-        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint[] memory arrPricesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
         uint[] memory arrVolumesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
         uint sellWhilePrice = tokens[tokenNameIndex].curSellPrice;
@@ -328,7 +328,7 @@ EXAMPLE CODE
     // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
     //Added 'memory' to function declaration
     function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
-        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint total_amount_ether_necessary = 0;
 
         if (tokens[tokenNameIndex].amountSellPrices == 0 || tokens[tokenNameIndex].curSellPrice > priceInWei) {
@@ -453,7 +453,7 @@ EXAMPLE CODE
     ///////////////////////////
     // BID LIMIT ORDER LOGIC //
     ///////////////////////////
-    function addBuyOffer(uint8 _tokenIndex, uint priceInWei, uint amount, address who) internal {
+    function addBuyOffer(uint _tokenIndex, uint priceInWei, uint amount, address who) internal {
         tokens[_tokenIndex].buyBook[priceInWei].offers_length++;
         tokens[_tokenIndex].buyBook[priceInWei].offers[tokens[_tokenIndex].buyBook[priceInWei].offers_length] = Offer(amount, who);
 
@@ -530,7 +530,7 @@ EXAMPLE CODE
     //Added 'memory' to function declaration
     //Added 'memory to return datatype
     function sellToken(string memory symbolName, uint priceInWei, uint amount) public {
-        uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint total_amount_ether_necessary = 0;
         uint total_amount_ether_available = 0;
 
@@ -671,7 +671,7 @@ EXAMPLE CODE
     ///////////////////////////
     // ASK LIMIT ORDER LOGIC //
     ///////////////////////////
-    function addSellOffer(uint8 _tokenIndex, uint priceInWei, uint amount, address who) internal {
+    function addSellOffer(uint _tokenIndex, uint priceInWei, uint amount, address who) internal {
         tokens[_tokenIndex].sellBook[priceInWei].offers_length++;
         tokens[_tokenIndex].sellBook[priceInWei].offers[tokens[_tokenIndex].sellBook[priceInWei].offers_length] = Offer(amount, who);
 
@@ -747,7 +747,7 @@ EXAMPLE CODE
     //Added 'memory' to function declaration
     //Added 'memory to return datatype
     function cancelOrder(string memory symbolName, bool isSellOrder, uint priceInWei, uint offerKey) public {
-        uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
+        uint symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         if (isSellOrder) {
             require(tokens[symbolNameIndex].sellBook[priceInWei].offers[offerKey].who == msg.sender);
 

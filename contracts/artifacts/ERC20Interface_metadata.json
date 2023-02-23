@@ -6,12 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"anonymous": false,
 				"inputs": [
 					{
@@ -97,7 +91,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "_value",
 						"type": "uint256"
 					}
 				],
@@ -137,66 +131,6 @@
 			{
 				"constant": true,
 				"inputs": [],
-				"name": "decimals",
-				"outputs": [
-					{
-						"internalType": "uint8",
-						"name": "",
-						"type": "uint8"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "owner",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
-				"name": "symbol",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"payable": false,
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"constant": true,
-				"inputs": [],
 				"name": "totalSupply",
 				"outputs": [
 					{
@@ -219,7 +153,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "_value",
 						"type": "uint256"
 					}
 				],
@@ -250,7 +184,7 @@
 					},
 					{
 						"internalType": "uint256",
-						"name": "_amount",
+						"name": "_value",
 						"type": "uint256"
 					}
 				],
@@ -258,7 +192,7 @@
 				"outputs": [
 					{
 						"internalType": "bool",
-						"name": "",
+						"name": "success",
 						"type": "bool"
 					}
 				],
@@ -276,7 +210,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/FixedSupplyToken.sol": "FixedSupplyToken"
+			"contracts/FixedSupplyToken.sol": "ERC20Interface"
 		},
 		"evmVersion": "istanbul",
 		"libraries": {},

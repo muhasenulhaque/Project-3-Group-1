@@ -1,23 +1,15 @@
 {
 	"compiler": {
-		"version": "0.4.26+commit.4563c3fc"
+		"version": "0.5.17+commit.d19bba13"
 	},
 	"language": "Solidity",
 	"output": {
 		"abi": [
 			{
-				"constant": false,
-				"inputs": [
-					{
-						"name": "new_address",
-						"type": "address"
-					}
-				],
-				"name": "upgrade",
-				"outputs": [],
+				"inputs": [],
 				"payable": false,
 				"stateMutability": "nonpayable",
-				"type": "function"
+				"type": "constructor"
 			},
 			{
 				"constant": true,
@@ -25,6 +17,7 @@
 				"name": "last_completed_migration",
 				"outputs": [
 					{
+						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
@@ -39,6 +32,7 @@
 				"name": "owner",
 				"outputs": [
 					{
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
@@ -51,6 +45,7 @@
 				"constant": false,
 				"inputs": [
 					{
+						"internalType": "uint256",
 						"name": "completed",
 						"type": "uint256"
 					}
@@ -62,10 +57,19 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "new_address",
+						"type": "address"
+					}
+				],
+				"name": "upgrade",
+				"outputs": [],
 				"payable": false,
 				"stateMutability": "nonpayable",
-				"type": "constructor"
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -79,7 +83,7 @@
 		"compilationTarget": {
 			"contracts/Migrations.sol": "Migrations"
 		},
-		"evmVersion": "byzantium",
+		"evmVersion": "istanbul",
 		"libraries": {},
 		"optimizer": {
 			"enabled": false,
@@ -89,9 +93,10 @@
 	},
 	"sources": {
 		"contracts/Migrations.sol": {
-			"keccak256": "0x687f3f0328a62a1a98b19173d77915135b8195919b3503af95388175911f2978",
+			"keccak256": "0xd5b807fe6ab8d217636241161f5fef2155e7ff098503fd06cf80c2bc346bbbea",
 			"urls": [
-				"bzzr://fabfaa0f3a23c497f0423ab78ba06c78f5d807d8f1b9dd525f29ba0a44950aea"
+				"bzz-raw://283884ff7b9eba85639ded760238347118bc3f5b0445eb98c146d9da1cb285ae",
+				"dweb:/ipfs/QmQXRWS9UdwfbVfp9fHhDDChRaTcks5ohuMoqRtECMEgh7"
 			]
 		}
 	},

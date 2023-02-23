@@ -120,7 +120,9 @@ contract Exchange is owned {
     // TOKEN MANAGEMENT //
     //////////////////////
 
-    function addToken(string symbolName, address erc20TokenAddress) public onlyowner {
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner {
         require(!hasToken(symbolName));
         require(tokenIndex + 1 > tokenIndex);
         tokenIndex++;
@@ -130,7 +132,9 @@ contract Exchange is owned {
         emit TokenAddedToSystem(tokenIndex, symbolName, now);
     }
 
-    function hasToken(string symbolName) view public returns (bool) {
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function hasToken(string memory symbolName) view public returns (bool) {
         uint8 index = getSymbolIndex(symbolName);
         if (index == 0) {
             return false;
@@ -139,7 +143,9 @@ contract Exchange is owned {
     }
 
 
-    function getSymbolIndex(string symbolName) internal view returns (uint8) {
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function getSymbolIndex(string memory symbolName) internal view returns (uint8) {
         for (uint8 i = 1; i <= tokenIndex; i++) {
             if (stringsEqual(tokens[i].symbolName, symbolName)) {
                 return i;
@@ -149,7 +155,9 @@ contract Exchange is owned {
     }
 
 
-    function getSymbolIndexOrThrow(string symbolName) public view returns (uint8) {
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function getSymbolIndexOrThrow(string memory symbolName) public view returns (uint8) {
         uint8 index = getSymbolIndex(symbolName);
         require(index > 0);
         return index;
@@ -164,7 +172,10 @@ contract Exchange is owned {
     //////////////////////////////////
     // DEPOSIT AND WITHDRAWAL TOKEN //
     //////////////////////////////////
-    function depositToken(string symbolName, uint amount) public {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function depositToken(string memory symbolName, uint amount) public {
         uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         require(tokens[symbolNameIndex].tokenContract != address(0));
 
@@ -176,7 +187,9 @@ contract Exchange is owned {
         emit DepositForTokenReceived(msg.sender, symbolNameIndex, amount, now);
     }
 
-    function withdrawToken(string symbolName, uint amount) public {
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function withdrawToken(string memory symbolName, uint amount) public {
         uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         require(tokens[symbolNameIndex].tokenContract != address(0));
 
@@ -190,7 +203,9 @@ contract Exchange is owned {
         emit WithdrawalToken(msg.sender, symbolNameIndex, amount, now);
     }
 
-    function getBalance(string symbolName) view public returns (uint) {
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function getBalance(string memory symbolName) view public returns (uint) {
         uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         return tokenBalanceForAddress[msg.sender][symbolNameIndex];
     }
@@ -200,7 +215,11 @@ contract Exchange is owned {
     /////////////////////////////
     // ORDER BOOK - BID ORDERS //
     /////////////////////////////
-    function getBuyOrderBook(string symbolName) view public returns (uint[], uint[]) {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    //Added 'memory to return datatype
+    function getBuyOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
         uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint[] memory arrPricesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
         uint[] memory arrVolumesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
@@ -241,7 +260,11 @@ contract Exchange is owned {
     /////////////////////////////
     // ORDER BOOK - ASK ORDERS //
     /////////////////////////////
-    function getSellOrderBook(string symbolName) view public returns (uint[], uint[]) {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    //Added 'memory to return datatype
+    function getSellOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
         uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint[] memory arrPricesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
         uint[] memory arrVolumesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
@@ -284,7 +307,10 @@ contract Exchange is owned {
     ////////////////////////////
     // NEW ORDER - BID ORDER //
     ///////////////////////////
-    function buyToken(string symbolName, uint priceInWei, uint amount) public {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
         uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint total_amount_ether_necessary = 0;
 
@@ -482,7 +508,11 @@ contract Exchange is owned {
     ////////////////////////////
     // NEW ORDER - ASK ORDER //
     ///////////////////////////
-    function sellToken(string symbolName, uint priceInWei, uint amount) public {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    //Added 'memory to return datatype
+    function sellToken(string memory symbolName, uint priceInWei, uint amount) public {
         uint8 tokenNameIndex = getSymbolIndexOrThrow(symbolName);
         uint total_amount_ether_necessary = 0;
         uint total_amount_ether_available = 0;
@@ -695,7 +725,11 @@ contract Exchange is owned {
     //////////////////////////////
     // CANCEL LIMIT ORDER LOGIC //
     //////////////////////////////
-    function cancelOrder(string symbolName, bool isSellOrder, uint priceInWei, uint offerKey) public {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    //Added 'memory to return datatype
+    function cancelOrder(string memory symbolName, bool isSellOrder, uint priceInWei, uint offerKey) public {
         uint8 symbolNameIndex = getSymbolIndexOrThrow(symbolName);
         if (isSellOrder) {
             require(tokens[symbolNameIndex].sellBook[priceInWei].offers[offerKey].who == msg.sender);
@@ -731,7 +765,12 @@ contract Exchange is owned {
 
     /// FIXED: what does "Warning: This function only accepts a single "bytes" argument. Please use "abi.encodePacked(...)" mean
     //https://ethereum.stackexchange.com/questions/50592/what-does-warning-this-function-only-accepts-a-single-bytes-argument-please
-    function stringsEqual(string _a, string _b) internal pure returns (bool) {
+
+    // FIXED - TypeError: Data location must be "memory" for parameter in function, but none was given.
+    //Added 'memory' to function declaration
+    //Added 'memory to return datatype
+
+    function stringsEqual(string memory _a, string memory _b) internal pure returns (bool) {
         return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b)); // FIXED line of code
     }
 

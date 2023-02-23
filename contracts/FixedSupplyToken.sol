@@ -82,7 +82,7 @@ contract FixedSupplyToken is ERC20Interface {
     function transfer(address _to, uint256 _amount) public returns (bool success) {
         if (balances[msg.sender] >= _amount
         && _amount > 0
-        && balances[_to].add(_amount) > balances[_to]) {
+        && (balances[_to].add(_amount) > balances[_to]) {
             balances[msg.sender] = balances[msg.sender].sub(_amount);
             balances[_to] = balances[_to].add(_amount);
             emit Transfer(msg.sender, _to, _amount);

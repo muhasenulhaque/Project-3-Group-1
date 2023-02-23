@@ -60,7 +60,7 @@ contract FixedSupplyToken is ERC20Interface {
 
     // Constructor
     //function FixedSupplyToken() public {
-    //{ *** Defining constructors as functions with the same name as the contract is deprecated. Use "constructor(...) { ... }" instead [duplicate]
+    // FIXED -  Defining constructors as functions with the same name as the contract is deprecated. Use "constructor(...) { ... }" instead [duplicate]
     //https://ethereum.stackexchange.com/questions/47175/defining-constructors-as-functions-with-the-same-name-as-the-contract-is-depreca
     
     constructor() public {  // New Constructor definition

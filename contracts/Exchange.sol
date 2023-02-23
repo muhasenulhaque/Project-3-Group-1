@@ -728,8 +728,11 @@ contract Exchange is owned {
     ////////////////////////////////
     // STRING COMPARISON FUNCTION //
     ////////////////////////////////
+
+    /// FIXED: what does "Warning: This function only accepts a single "bytes" argument. Please use "abi.encodePacked(...)" mean
+    //https://ethereum.stackexchange.com/questions/50592/what-does-warning-this-function-only-accepts-a-single-bytes-argument-please
     function stringsEqual(string _a, string _b) internal pure returns (bool) {
-        return keccak256(_a) == keccak256(_b);
+        return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b)); // FIXED line of code
     }
 
 

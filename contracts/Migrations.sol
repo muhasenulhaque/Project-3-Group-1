@@ -10,6 +10,7 @@ contract Migrations {
 
 //  function Migrations() 
 //{ *** Defining constructors as functions with the same name as the contract is deprecated. Use "constructor(...) { ... }" instead [duplicate]
+//https://ethereum.stackexchange.com/questions/47175/defining-constructors-as-functions-with-the-same-name-as-the-contract-is-depreca
   constructor public() {}  
     owner = msg.sender;
   }

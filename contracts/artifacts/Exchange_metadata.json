@@ -598,15 +598,15 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0xeac7c8395c54a035bf26324a8a29f1c56883f35b04adbabcaf596b7f726c7dd7",
+			"keccak256": "0xf7ec968ae3321ec9990e0c83a83b1c442c9cfa72b700c9b5a170f60b89c03f39",
 			"urls": [
-				"bzzr://bea8080f7abc712440f817a886a66dd934f2b9e0a6002bdb4e6daf6904837334"
+				"bzzr://19670a3e7a68abd6715494252d43bc2ae6950587f1019cf31e36c0c94bf3ac39"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0xe7b95fee9c5a7847a872a65b4709f0d84caaeec89fcab587a80bf44167d8a0b3",
+			"keccak256": "0x7c6e4e95cca607a686d66d0a1e637c193bf025b9ef5dac823c2499b19f20b1de",
 			"urls": [
-				"bzzr://44d03d5fecda6b74a5105c5f391b85115ecbf26299d3c937983d1b55cfe3b896"
+				"bzzr://c51634e9b209de5251f271cc9b1aa5eb48af539f345c1d931cbf6d86f3b76b2f"
 			]
 		},
 		"contracts/owned.sol": {

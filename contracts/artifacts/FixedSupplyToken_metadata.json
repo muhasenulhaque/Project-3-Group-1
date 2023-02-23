@@ -262,9 +262,9 @@
 	},
 	"sources": {
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0x900e9651ed1160786c925e94f9da1c169aee4b721f108b64df8b76ae3c44f5c8",
+			"keccak256": "0x7c6e4e95cca607a686d66d0a1e637c193bf025b9ef5dac823c2499b19f20b1de",
 			"urls": [
-				"bzzr://6f0bc3bc777820d1cfd3a0517efd30ee15c84e82ab8682d3618d7c09da3ad857"
+				"bzzr://c51634e9b209de5251f271cc9b1aa5eb48af539f345c1d931cbf6d86f3b76b2f"
 			]
 		}
 	},

@@ -89,9 +89,9 @@
 	},
 	"sources": {
 		"contracts/Migrations.sol": {
-			"keccak256": "0x9fb79f97cb2c799d2e01624c2276a7eba35c239f11d66375aa96ca73fc378d6c",
+			"keccak256": "0x687f3f0328a62a1a98b19173d77915135b8195919b3503af95388175911f2978",
 			"urls": [
-				"bzzr://5913ce695f62e8392537307488574115a54c8017eb1204f639ed8a6ff4c8bc6f"
+				"bzzr://fabfaa0f3a23c497f0423ab78ba06c78f5d807d8f1b9dd525f29ba0a44950aea"
 			]
 		}
 	},

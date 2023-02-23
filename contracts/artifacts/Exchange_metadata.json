@@ -532,9 +532,9 @@
 				"name": "getSymbolIndexOrThrow",
 				"outputs": [
 					{
-						"internalType": "uint8",
+						"internalType": "uint256",
 						"name": "",
-						"type": "uint8"
+						"type": "uint256"
 					}
 				],
 				"payable": false,
@@ -669,10 +669,10 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0xc8af59742df6cab679d12c4cbba588a95974893f386b07557d90d05be66a8814",
+			"keccak256": "0x5adcd947d61190d6afc384f14494cfd5875679786bcb059cea58f91d6d0a9311",
 			"urls": [
-				"bzz-raw://3e27bde88f887d396b2656a3ddf71725d5e2db703dc7ddbb90ce0ff28a9f3632",
-				"dweb:/ipfs/QmRZPPDdyeNuG4rCbQyrvtHsZfdDYv1qQvpwA8aMXSPVFA"
+				"bzz-raw://d91c25ab36a7698af9ef420521ead7734cf5093665de7784dd37fab1694dec8e",
+				"dweb:/ipfs/QmZYAKfVTuJEwekcminM4WxiyzJ6obLfBmcNZJaccP2Wef"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {

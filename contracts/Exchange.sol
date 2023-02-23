@@ -200,7 +200,7 @@ EXAMPLE CODE
 
         require(token.transferFrom(msg.sender, address(this), amount) == true);
         require(tokenBalanceForAddress[msg.sender][symbolNameIndex] + amount >= tokenBalanceForAddress[msg.sender][symbolNameIndex]);
-        tokenBalanceForAddress[msg.sender][symbolNameIndex] += amount;
+        tokenBalanceForAddress[msg.sender][symbolNameIndex] = tokenBalanceForAddress[msg.sender][symbolNameIndex].add(amount);
         emit DepositForTokenReceived(msg.sender, symbolNameIndex, amount, now);
     }
 
@@ -215,7 +215,7 @@ EXAMPLE CODE
         require(tokenBalanceForAddress[msg.sender][symbolNameIndex] - amount >= 0);
         require(tokenBalanceForAddress[msg.sender][symbolNameIndex] - amount <= tokenBalanceForAddress[msg.sender][symbolNameIndex]);
 
-        tokenBalanceForAddress[msg.sender][symbolNameIndex] -= amount;
+        tokenBalanceForAddress[msg.sender][symbolNameIndex] = tokenBalanceForAddress[msg.sender][symbolNameIndex].sub(amount);
         require(token.transfer(msg.sender, amount) == true);
         emit WithdrawalToken(msg.sender, symbolNameIndex, amount, now);
     }
@@ -251,8 +251,8 @@ EXAMPLE CODE
 
                 offers_key = tokens[tokenNameIndex].buyBook[whilePrice].offers_key;
                 while (offers_key <= tokens[tokenNameIndex].buyBook[whilePrice].offers_length) {
-                    volumeAtPrice += tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount;
-                    offers_key++;
+                    volumeAtPrice = volumeAtPrice.add(tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount);
+                    offers_key = offers_key.add(1);
                 }
 
                 arrVolumesBuy[counter] = volumeAtPrice;
@@ -264,7 +264,7 @@ EXAMPLE CODE
                 else {
                     whilePrice = tokens[tokenNameIndex].buyBook[whilePrice].higherPrice;
                 }
-                counter++;
+                counter = counter.add(1);
 
             }
         }
@@ -295,8 +295,8 @@ EXAMPLE CODE
 
                 sell_offers_key = tokens[tokenNameIndex].sellBook[sellWhilePrice].offers_key;
                 while (sell_offers_key <= tokens[tokenNameIndex].sellBook[sellWhilePrice].offers_length) {
-                    sellVolumeAtPrice += tokens[tokenNameIndex].sellBook[sellWhilePrice].offers[sell_offers_key].amount;
-                    sell_offers_key++;
+                    sellVolumeAtPrice = sellVolumeAtPrice.add(tokens[tokenNameIndex].sellBook[sellWhilePrice].offers[sell_offers_key].amount);
+                    sell_offers_key = sell_offers_key.add(1);
                 }
 
                 arrVolumesSell[sellCounter] = sellVolumeAtPrice;
@@ -308,7 +308,7 @@ EXAMPLE CODE
                 else {
                     sellWhilePrice = tokens[tokenNameIndex].sellBook[sellWhilePrice].higherPrice;
                 }
-                sellCounter++;
+                sellCounter = sellCounter.add(1);
 
             }
         }
@@ -333,17 +333,17 @@ EXAMPLE CODE
 
         if (tokens[tokenNameIndex].amountSellPrices == 0 || tokens[tokenNameIndex].curSellPrice > priceInWei) {
             //if we have enough ether, we can buy that:
-            total_amount_ether_necessary = amount * priceInWei;
+            total_amount_ether_necessary = amount.mul(priceInWei);
 
             //overflow check
             require(total_amount_ether_necessary >= amount);
             require(total_amount_ether_necessary >= priceInWei);
             require(balanceEthForAddress[msg.sender] >= total_amount_ether_necessary);
-            require(balanceEthForAddress[msg.sender] - total_amount_ether_necessary >= 0);
-            require(balanceEthForAddress[msg.sender] - total_amount_ether_necessary <= balanceEthForAddress[msg.sender]);
+            require(balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary) >= 0);
+            require(balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary) <= balanceEthForAddress[msg.sender]);
 
             //first deduct the amount of ether from our balance
-            balanceEthForAddress[msg.sender] -= total_amount_ether_necessary;
+            balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary);
 
             //limit order: we don't have enough offers to fulfill the amount
 
@@ -376,21 +376,21 @@ EXAMPLE CODE
                     //1) one person offers not enough volume to fulfill the market order - we use it up completely and move on to the next person who offers the symbolName
                     //2) else: we make use of parts of what a person is offering - lower his amount, fulfill out order.
                     if (volumeAtPriceFromAddress <= amountNecessary) {
-                        total_amount_ether_available = volumeAtPriceFromAddress * whilePrice;
+                        total_amount_ether_available = volumeAtPriceFromAddress.mul(whilePrice);
 
                         require(balanceEthForAddress[msg.sender] >= total_amount_ether_available);
                         require(balanceEthForAddress[msg.sender] - total_amount_ether_available <= balanceEthForAddress[msg.sender]);
                         //first deduct the amount of ether from our balance
-                        balanceEthForAddress[msg.sender] -= total_amount_ether_available;
+                        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(total_amount_ether_available);
 
                         require(tokenBalanceForAddress[msg.sender][tokenNameIndex] + volumeAtPriceFromAddress >= tokenBalanceForAddress[msg.sender][tokenNameIndex]);
                         require(balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] + total_amount_ether_available >= balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who]);
                         //overflow check
                         //this guy offers less or equal the volume that we ask for, so we use it up completely.
-                        tokenBalanceForAddress[msg.sender][tokenNameIndex] += volumeAtPriceFromAddress;
+                        tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].add(volumeAtPriceFromAddress);
                         tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount = 0;
-                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] += total_amount_ether_available;
-                        tokens[tokenNameIndex].sellBook[whilePrice].offers_key++;
+                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] = balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who].add(total_amount_ether_available);
+                        tokens[tokenNameIndex].sellBook[whilePrice].offers_key = tokens[tokenNameIndex].sellBook[whilePrice].offers_key.add(1);
 
                         emit SellOrderFulfilled(tokenNameIndex, volumeAtPriceFromAddress, whilePrice, offers_key);
 
@@ -399,18 +399,18 @@ EXAMPLE CODE
                     else {
                         require(tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount > amountNecessary);//sanity
 
-                        total_amount_ether_necessary = amountNecessary * whilePrice;
+                        total_amount_ether_necessary = amountNecessary.mul(whilePrice);
                         require(balanceEthForAddress[msg.sender] - total_amount_ether_necessary <= balanceEthForAddress[msg.sender]);
 
                         //first deduct the amount of ether from our balance
-                        balanceEthForAddress[msg.sender] -= total_amount_ether_necessary;
+                        balanceEthForAddress[msg.sender] = balanceEthForAddress[msg.sender].sub(total_amount_ether_necessary);
 
                         require(balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] + total_amount_ether_necessary >= balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who]);
                         //overflow check
                         //this guy offers more than we ask for. We reduce his stack, add the tokens to us and the ether to him.
-                        tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount -= amountNecessary;
-                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] += total_amount_ether_necessary;
-                        tokenBalanceForAddress[msg.sender][tokenNameIndex] += amountNecessary;
+                        tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount = tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].amount.sub(amountNecessary);
+                        balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who] = balanceEthForAddress[tokens[tokenNameIndex].sellBook[whilePrice].offers[offers_key].who].add(total_amount_ether_necessary);
+                        tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].add(amountNecessary);
 
                         amountNecessary = 0;
                         //we have fulfilled our order

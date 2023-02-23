@@ -9,8 +9,10 @@ contract owned {
 
     }
 
-   function owned() public {
-//    Constructor owned() public {
+//{ *** Defining constructors as functions with the same name as the contract is deprecated. Use "constructor(...) { ... }" instead [duplicate]
+//   function owned() public {
+    constructor() public {
+
         owner = msg.sender;
     }
 }

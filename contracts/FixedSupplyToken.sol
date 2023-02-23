@@ -59,7 +59,11 @@ contract FixedSupplyToken is ERC20Interface {
     }
 
     // Constructor
-    function FixedSupplyToken() public {
+    //function FixedSupplyToken() public {
+    //{ *** Defining constructors as functions with the same name as the contract is deprecated. Use "constructor(...) { ... }" instead [duplicate]
+
+    constructor() public {  // New Constructor definition
+
         owner = msg.sender;
         balances[owner] = _totalSupply;
     }

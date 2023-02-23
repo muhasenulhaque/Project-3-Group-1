@@ -8,7 +8,9 @@ contract Migrations {
     if (msg.sender == owner) _;
   }
 
-  function Migrations() {
+//  function Migrations() 
+//{ *** Defining constructors as functions with the same name as the contract is deprecated. Use "constructor(...) { ... }" instead [duplicate]
+  constructor public() {}  
     owner = msg.sender;
   }
 

@@ -757,7 +757,11 @@ EXAMPLE CODE
                         tokenBalanceForAddress[msg.sender][tokenNameIndex] = tokenBalanceForAddress[msg.sender][tokenNameIndex].sub(volumeAtPriceFromAddress);
 
                         //overflow check
-
+    
+    //      Project-3-Group-1
+    //      *****************
+	//	Converted arithmetic operations to SafeMath equivalent	
+	//
                         //require(tokenBalanceForAddress[msg.sender][tokenNameIndex] - volumeAtPriceFromAddress >= 0);
                         //require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] + volumeAtPriceFromAddress >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
                         //require(balanceEthForAddress[msg.sender] + total_amount_ether_available >= balanceEthForAddress[msg.sender]);
@@ -805,13 +809,18 @@ EXAMPLE CODE
 
                         //overflow check
                         require(tokenBalanceForAddress[msg.sender][tokenNameIndex] >= amountNecessary);
-
+    
+    //      Project-3-Group-1
+    //      *****************
+	//	Converted arithmetic operations to SafeMath equivalent	
+	//
                         //require(balanceEthForAddress[msg.sender] + total_amount_ether_necessary >= balanceEthForAddress[msg.sender]);
                         //require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] + amountNecessary >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
                         require(balanceEthForAddress[msg.sender].add(total_amount_ether_necessary) >= balanceEthForAddress[msg.sender]);
                         require(tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex].add(amountNecessary) >= tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex]);
 
                         //this guy offers more than we ask for. We reduce his stack, add the eth to us and the symbolName to him.
+                        
                         //tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].amount -= amountNecessary;
                         //balanceEthForAddress[msg.sender] += total_amount_ether_necessary;
                         //tokenBalanceForAddress[tokens[tokenNameIndex].buyBook[whilePrice].offers[offers_key].who][tokenNameIndex] += amountNecessary;

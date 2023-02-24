@@ -57,13 +57,19 @@ contract = load_contract()
 
 
 
-# LOAD ACCOUNTS
 
 
+#   Display Title
+
+st.title ("Welcome to Project 3 - Team 1 Decentralized Exchange")
+st.markdown("---")
+
+#   LOAD ACCOUNTS
+
+st.write("Choose an account to get started")
 accounts = w3.eth.accounts
 address = st.selectbox("Select Account", options=accounts)
-
-
+st.markdown("---")
 
 
 # /*

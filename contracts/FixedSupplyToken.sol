@@ -8,6 +8,28 @@ pragma solidity ^0.5.0;
 
 // ERC Token Standard #20 Interface
 // https://github.com/ethereum/EIPs/issues/20
+
+
+
+//
+//      Project-3-Group-1
+//      *****************
+//
+//      Group Membere:  Xu (Flora) Zhao
+//                      Md Muhasenul Haque
+//                      Samuel Nayacakalou
+//
+//      Date:           March 2023
+//
+//      Original Code:  https://github.com/tomw1808/distributed_exchange_truffle_class_3
+//
+
+
+// Adding SafeMath Library to improve security
+// @NOTE: This only works in Remix. Alternatively, paste the contents of SafeMath.sol directly here above ArcadeToken. You should use version 2.5.
+
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
+
 contract ERC20Interface {
     // Get the total token supply
     function totalSupply() view public returns (uint256);
@@ -42,6 +64,12 @@ contract FixedSupplyToken is ERC20Interface {
     string public constant name = "Example Fixed Supply Token";
     uint8 public constant decimals = 0;
     uint256 _totalSupply = 1000000;
+
+//      Project-3-Group-1
+//      *****************
+// Using SafeMath Library for improved security
+    using SafeMath for uint256;
+    using SafeMath for uint256;
 
     // Owner of this contract
     address public owner;
@@ -82,9 +110,21 @@ contract FixedSupplyToken is ERC20Interface {
     function transfer(address _to, uint256 _amount) public returns (bool success) {
         if (balances[msg.sender] >= _amount
         && _amount > 0
-        && (balances[_to].add(_amount) > balances[_to]) {
+
+
+	//      Project-3-Group-1
+    //      *****************
+	//	Converted arithmetic operations to SafeMath equivalent	
+	//
+        //&& balances[_to] + _amount > balances[_to]) {  
+        && (balances[_to].add(_amount)) > balances[_to]) {
+
+            //balances[msg.sender] -= _amount;
             balances[msg.sender] = balances[msg.sender].sub(_amount);
+            
+            //balances[_to] += _amount;            
             balances[_to] = balances[_to].add(_amount);
+            
             emit Transfer(msg.sender, _to, _amount);
             return true;
         }
@@ -104,13 +144,27 @@ contract FixedSupplyToken is ERC20Interface {
     address _to,
     uint256 _amount
     ) public returns (bool) {
+
+	//      Project-3-Group-1
+    //      *****************
+	//	Converted arithmetic operations to SafeMath equivalent	
+	//
         if (balances[_from] >= _amount
         && allowed[_from][msg.sender] >= _amount
         && _amount > 0
+
+        //&& balances[_to] + _amount > balances[_to]) {
         && balances[_to].add(_amount) > balances[_to]) {
-            balances[_from] = balances[_from].add(_amount);
+
+            //balances[_from] -= _amount;
+            balances[_from] = balances[_from].sub(_amount);
+            
+            //allowed[_from][msg.sender] -= _amount;            
             allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_amount);
+            
+            //balances[_to] += _amount;            
             balances[_to] = balances[_to].add(_amount);
+            
             emit Transfer(_from, _to, _amount);
             return true;
         }

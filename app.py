@@ -56,9 +56,6 @@ contract = load_contract()
 
 
 
-
-
-
 #   Display Title
 
 st.title ("Welcome to Project 3 - Team 1 Decentralized Exchange")

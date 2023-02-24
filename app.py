@@ -1,3 +1,18 @@
+
+    #   Project-3-Group-1
+    #   *****************
+
+    #   Group Membere:  Xu (Flora) Zhao
+    #                   Md Muhasenul Haque
+    #                   Samuel Nayacakalou
+
+    #   Date:           March 2023
+
+    #   Original Code:  https://github.com/tomw1808/distributed_exchange_truffle_class_3
+
+
+
+
 import os
 import json
 from web3 import Web3
@@ -38,6 +53,18 @@ def load_contract():
 
 # Load the contract
 contract = load_contract()
+
+
+
+
+# LOAD ACCOUNTS
+
+
+accounts = w3.eth.accounts
+address = st.selectbox("Select Account", options=accounts)
+
+
+
 
 # /*
 # st.title("Art Registry Appraisal System")

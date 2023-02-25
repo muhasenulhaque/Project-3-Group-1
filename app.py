@@ -58,7 +58,7 @@ contract = load_contract()
 
 #   Display Title
 
-st.title ("Welcome to Project 3 - Team 1 Decentralized Exchange")
+st.title ("Welcome to Project 3 - Team 1 Decentralized Token Exchange")
 st.markdown("---")
 
 #   LOAD ACCOUNTS
@@ -69,12 +69,68 @@ address = st.selectbox("Select Account", options=accounts)
 st.markdown("---")
 
 
-# /*
-# st.title("Art Registry Appraisal System")
-# st.write("Choose an account to get started")
-# accounts = w3.eth.accounts
-# address = st.selectbox("Select Account", options=accounts)
-# st.markdown("---")
+#   SETUP SIDEBAR
+
+option = st.sidebar.selectbox("Which Option?", ('DTE', 'Exchange Overview', 'FIXED Token Trading', 'Manage Token'), 3)
+
+
+#   DISPLAY SELECTED OPTION PAGE
+
+#st.header(option)
+
+if option == 'DTE':
+    st.write ("DTE Option")
+
+if option == 'Exchange Overview':
+    st.write ("Exchange Overview Option")
+
+if option == 'FIXED Token Trading':
+    st.write ("FIXED Token Trading Option")
+
+if option == 'Manage Token':
+    st.write ("Manage Token Option")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader("Send Token")
+        st.image("https://static.streamlit.io/examples/cat.jpg")
+        amount_token = st.text_input("Enter the name of token")
+        to_address = st.text_input("Enter the 'to' address")
+    
+        # if st.button("Send Token"):
+        # tx_hash = contract.functions.registerArtwork(
+        #     to_address,
+        #     artwork_name,
+        #     artist_name,
+        #     int(initial_appraisal_value),
+        #     artwork_uri
+        # ).transact({'from': address, 'gas': 1000000})
+    
+        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        # st.write("Transaction receipt mined:")
+        # st.write(dict(receipt))
+        # st.markdown("---")
+
+    with col2:
+        st.header("A dog")
+        st.image("https://static.streamlit.io/examples/dog.jpg")
+
+    st.markdown("---")
+    st.subheader("Add Token")
+    token_symbol = st.text_input("FIXED")
+    token_address = st.text_input("Token address eg. 0x1362FE...")
+    
+    if st.button("Add Token"):
+    #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
+        addToken_tx_hash = contract.functions.addToken(
+            token_symbol,
+            token_address
+        ).transact({'from': address, 'gas': 1000000})
+
+
+
+
+
 
 # ################################################################################
 # # Register New Artwork

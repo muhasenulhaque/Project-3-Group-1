@@ -91,6 +91,18 @@ if option == 'Manage Token':
     st.write ("Manage Token Option")
     col1, col2 = st.columns(2)
 
+    st.subheader("Add Token")
+    token_symbol = st.text_input("FIXED")
+    token_address = st.text_input("Token address eg. 0x1362FE...")
+    
+    if st.button("Add Token"):
+    #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
+        addToken_tx_hash = contract.functions.addToken(
+            token_symbol,
+            token_address
+        ).transact({'from': address, 'gas': 1000000})
+    st.markdown("---")
+
     with col1:
         st.subheader("Send Token")
         st.image("https://static.streamlit.io/examples/cat.jpg")
@@ -115,17 +127,7 @@ if option == 'Manage Token':
         st.header("A dog")
         st.image("https://static.streamlit.io/examples/dog.jpg")
 
-    st.markdown("---")
-    st.subheader("Add Token")
-    token_symbol = st.text_input("FIXED")
-    token_address = st.text_input("Token address eg. 0x1362FE...")
-    
-    if st.button("Add Token"):
-    #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
-        addToken_tx_hash = contract.functions.addToken(
-            token_symbol,
-            token_address
-        ).transact({'from': address, 'gas': 1000000})
+
 
 
 

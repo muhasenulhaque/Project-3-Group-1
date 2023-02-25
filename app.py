@@ -100,6 +100,8 @@ if option == 'Manage Token':
     token_address = st.text_input("Token address eg. 0x1362FE...")
     
     if st.button("Add Token"):
+
+    #exchange.sol:Smart Contract function call
     #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
         addToken_tx_hash = contract.functions.addToken(
             token_symbol,

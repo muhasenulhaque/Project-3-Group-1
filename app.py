@@ -20,6 +20,10 @@ from pathlib import Path
 from dotenv import load_dotenv
 import streamlit as st
 
+
+#   SET STREAMLIT PAGE LAYOUT TO "WIDE"
+st.set_page_config(layout="wide")
+
 load_dotenv()
 
 # Define and connect a new Web3 provider
@@ -89,10 +93,10 @@ if option == 'FIXED Token Trading':
 
 if option == 'Manage Token':
     st.write ("Manage Token Option")
-    col1, col2 = st.columns(2)
+    
 
     st.subheader("Add Token")
-    token_symbol = st.text_input("FIXED")
+    token_symbol = st.text_input("Token Symbol eg. FIXED")
     token_address = st.text_input("Token address eg. 0x1362FE...")
     
     if st.button("Add Token"):
@@ -103,6 +107,7 @@ if option == 'Manage Token':
         ).transact({'from': address, 'gas': 1000000})
     st.markdown("---")
 
+    col1, col2 = st.columns(2)
     with col1:
         st.subheader("Send Token")
         st.image("https://static.streamlit.io/examples/cat.jpg")

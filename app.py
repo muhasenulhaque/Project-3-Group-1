@@ -62,15 +62,19 @@ contract = load_contract()
 
 #   Display Title
 
-st.title ("Welcome to Project 3 - Team 1 Decentralized Token Exchange")
+st.title ("Welcome to MSF Decentralized Token Exchange")
+st.subheader ("Project 3 - Team 1 (March 2023)")
+# st.markdown('<div style="text-align: center;">### Welcome to Project 3 - Team 1!</div>', unsafe_allow_html=True)
+# st.markdown('<div style="text-align: center;">### Decentralized Token Exchange</div>', unsafe_allow_html=True)
+
 st.markdown("---")
 
 #   LOAD ACCOUNTS
 
-st.write("Choose an account to get started")
-accounts = w3.eth.accounts
-address = st.selectbox("Select Account", options=accounts)
-st.markdown("---")
+# st.write("Choose an account to get started")
+# accounts = w3.eth.accounts
+# address = st.selectbox("Select Account", options=accounts)
+#st.markdown("---")
 
 
 #   SETUP SIDEBAR
@@ -92,30 +96,30 @@ if option == 'FIXED Token Trading':
     st.write ("FIXED Token Trading Option")
 
 if option == 'Manage Token':
-    st.write ("Manage Token Option")
+    st.subheader ("Manage Token Option")
+    st.write("This page is intended for the FIXED Token as sample only. You can send token and you can approve token. Additionally you can add a token to the exchange provided in this example.")
     
+    st.write("Choose an account to get started")
+    accounts = w3.eth.accounts
+    address = st.selectbox("Select Account", options=accounts)    
 
-    st.subheader("Add Token")
-    token_symbol = st.text_input("Token Symbol eg. FIXED")
-    token_address = st.text_input("Token address eg. 0x1362FE...")
-    
-    if st.button("Add Token"):
-
-    #exchange.sol:Smart Contract function call
-    #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
-        addToken_tx_hash = contract.functions.addToken(
-            token_symbol,
-            token_address
-        ).transact({'from': address, 'gas': 1000000})
     st.markdown("---")
 
     col1, col2 = st.columns(2)
     with col1:
+        st.subheader("Approve Token Allowance")
+        #st.image("https://static.streamlit.io/examples/dog.jpg")
+        send_amount_token = st.text_input("Approve token")
+        send_to_address = st.text_input("Approved address")
+        st.write("Approve the address to be allowed to send a token from your address to another address. This is important for the Exchange. When you fund the token in the exchange then it will deduct in your name the token from your address to the token address.")
+
+    with col2:
         st.subheader("Send Token")
-        st.image("https://static.streamlit.io/examples/cat.jpg")
-        amount_token = st.text_input("Enter the name of token")
-        to_address = st.text_input("Enter the 'to' address")
-    
+        #st.image("https://static.streamlit.io/examples/cat.jpg")
+
+        apr_amount_token = st.text_input("Enter the name of token")
+        apr_to_address = st.text_input("Enter the 'to' address")  
+        st.write("Directly send a token from your address to another address.")
         # if st.button("Send Token"):
         # tx_hash = contract.functions.registerArtwork(
         #     to_address,
@@ -129,12 +133,21 @@ if option == 'Manage Token':
         # st.write("Transaction receipt mined:")
         # st.write(dict(receipt))
         # st.markdown("---")
+    st.markdown("---")
 
-    with col2:
-        st.header("A dog")
-        st.image("https://static.streamlit.io/examples/dog.jpg")
+    st.subheader("Add Token")
+    token_symbol = st.text_input("Token Symbol eg. FIXED")
+    token_address = st.text_input("Token address eg. 0x1362FE...")
+    
 
+    if st.button("Add Token"):
 
+    #exchange.sol:Smart Contract function call
+    #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
+        addToken_tx_hash = contract.functions.addToken(
+            token_symbol,
+            token_address
+        ).transact({'from': address, 'gas': 1000000})
 
 
 

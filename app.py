@@ -134,10 +134,10 @@ if option == 'Manage Token':
 
         # Send _value amount of tokens to address _to
         # function transfer(address _to, uint256 _value) public returns (bool success);
-        sendToken_tx_hash = contract.functions.transfer(
-            send_to_address,
-            send_amount_token
-        ).transact({'from': address, 'gas': 1000000})
+        # sendToken_tx_hash = contract.functions.transfer(
+        #     send_to_address,
+        #     send_amount_token
+        # ).transact({'from': address, 'gas': 1000000})
 
         # if st.button("Send Token"):
         # tx_hash = contract.functions.registerArtwork(

@@ -669,17 +669,17 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0xe00c6827cf19aedb781ecc40ecd7185b08a8f46a137f52dc92bc6491ed21a61c",
+			"keccak256": "0xf50d4c226d9ae62474902d598a04d9554d0aa3b3e60d978ba4cf8a6670cfafd1",
 			"urls": [
-				"bzz-raw://5316610aa0096221c950f890ba27513813ea37c15f7e5d23d62655ff1114c776",
-				"dweb:/ipfs/Qmazego9ywhAK6JgsTqYRxxWTuXGeYAVpeo12hdNX7yLhR"
+				"bzz-raw://549dd36dfa953d09b07dc72d0b60a4f84fab857533660a4e011ab58cef87b085",
+				"dweb:/ipfs/QmTDaskyNvS7txUb6uueVsfbL4wPk8FjjKBdTtebFWaDie"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0xf2279ca48db63767cfb1874f45569070b5a2580a7c1ee473ec89d53d185a0bc8",
+			"keccak256": "0x67bc61eba4e3c6a8c30f2393708e6dfffb6f1c4e7a04974766a02650645def9b",
 			"urls": [
-				"bzz-raw://1246f0e9af154c8d1ce85132aaec8d16869b669e318913378332c78fa2987497",
-				"dweb:/ipfs/QmVP8ztDH5vwdointrDTFGfnD1ZbsThkokpcyKCPjsHg9W"
+				"bzz-raw://35610345e0af1cfd7e641327967741f30e2873c2a7779836a71a4a2554034c2d",
+				"dweb:/ipfs/QmP6Jf1qLNUCu85mTmQJc9AYK4Y4gKo5ku9PwWC8hdJZtr"
 			]
 		},
 		"contracts/owned.sol": {

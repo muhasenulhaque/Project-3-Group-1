@@ -1,0 +1,105 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract CodiesAlert {
+
+    event showData(address indexed addressId, uint indexed _age, string city);
+
+    function display(address _addressId, uint _age, string memory _city) public {
+        emit showData(_addressId, _age, _city);
+    }
+}
+
+
+===========================================================================================================
+
+from web3 import Web3
+import asyncio
+from brownie import network, Contract
+import os
+from dotenv import load_dotenv
+# Load environment variables
+load_dotenv()
+
+# Create Infura Connection
+# define "INFURA_PROVIDER" in your .env file
+web3 = Web3(Web3.HTTPProvider(os.getenv("INFURA_PROVIDER")))
+
+# contract Address
+contractAddress = '0x0845d45E1D8b2e4c7583623Bed34b6D59Da0fBA3'
+
+# Connect to rinkeby network
+# doing this step just to read the Contract abi
+# file but you can read the abi file manually with web3. py as well
+
+try:
+    network.connect('rinkeby')
+except Exception as e:
+    print(e)
+
+token = Contract(contractAddress)
+
+contract = web3.eth.contract(address=contractAddress, abi=token.abi)
+
+# define function to handle events and print to the console
+# You can also setup any action after listening to the event
+def handle_event(event):
+    print(Web3.toJSON(event))
+
+
+# asynchronous defined function to loop
+# this loop sets up an event filter and is looking for new entires for the "PairCreated" event
+# this loop runs on a poll interval
+async def log_loop(event_filter, poll_interval):
+    while True:
+        for PairCreated in event_filter.get_new_entries():
+            handle_event(PairCreated)
+        await asyncio.sleep(poll_interval)
+
+
+# when main is called
+# create a filter for the latest block and look for the "PairCreated" event for the uniswap factory contract
+# run an async loop
+# try to run the log_loop function above every 2 seconds
+def main():
+    event_filter = contract.events.showData.createFilter(fromBlock='latest')
+    loop = asyncio.get_event_loop()
+    try:
+        loop.run_until_complete(
+            asyncio.gather(
+                log_loop(event_filter, 2)))
+    finally:
+        # close loop to free up system resources
+        loop.close()
+
+
+if __name__ == "__main__":
+    main()
+
+
+===========================================================================================================	
+
+from brownie import Contract , accounts
+from dotenv import load_dotenv
+load_dotenv()
+
+def main():
+    account = accounts.add(os.getenv("PRIVATE_KEY"))
+    # network.connect('rinkeby')
+    token = Contract('0x0845d45E1D8b2e4c7583623Bed34b6D59Da0fBA3')
+    print(token.display('0xF3cbcD528bb67C0EE3fCBE8e160828bF6fdbf92a', 30, "New York1", {"from":account}))
+    # network.disconnect()
+
+main()
+
+===========================================================================================================
+
+{"args": {"addressId": "0xF3cbcD528bb67C0EE3fCBE8e160828bF6fdbf92a",
+"_age": 30,
+"city": "New York1"},
+"event": "showData",
+"logIndex": 65, "transactionIndex": 43, "transactionHash": "0x1ae6b646ff681f0129c977fc4d2e60d81a79063ac027bff7879698e399b35250", "address": "0x0845d45E1D8b2e4c7583623Bed34b6D59Da0fBA3", "blockHash": "0x46a2c525357dd214edcad4ba6e85e54f673e43bc649079aeaede74cf7d62ef3f", "blockNumber": 10131181}
+
+===========================================================================================================
+
+===========================================================================================================

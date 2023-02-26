@@ -81,6 +81,8 @@ st.markdown("---")
 
 option = st.sidebar.selectbox("Which Option?", ('DTE', 'Exchange Overview', 'FIXED Token Trading', 'Manage Token'), 3)
 
+st.sidebar.write("Token Balance", )
+st.sidebar.write("ETH Balance")
 
 #   DISPLAY SELECTED OPTION PAGE
 
@@ -109,17 +111,34 @@ if option == 'Manage Token':
     with col1:
         st.subheader("Approve Token Allowance")
         #st.image("https://static.streamlit.io/examples/dog.jpg")
-        send_amount_token = st.text_input("Approve token")
-        send_to_address = st.text_input("Approved address")
+        aprove_token_amount = st.text_input("Approve token amount")
+        approve_address = st.text_input("Approved address")
         st.write("Approve the address to be allowed to send a token from your address to another address. This is important for the Exchange. When you fund the token in the exchange then it will deduct in your name the token from your address to the token address.")
+
+        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+        # If this function is called again it overwrites the current allowance with _value.
+        # function approve(address _spender, uint256 _amount) public returns (bool success) {
+        # approveToken_return = contract.functions.approve(
+        #     approve_address,
+        #     aprove_token_amount
+        # ).transact({'from': address, 'gas': 1000000})
+        
 
     with col2:
         st.subheader("Send Token")
         #st.image("https://static.streamlit.io/examples/cat.jpg")
 
-        apr_amount_token = st.text_input("Enter the name of token")
-        apr_to_address = st.text_input("Enter the 'to' address")  
+        send_amount_token = st.text_input("Enter the name of token")
+        send_to_address = st.text_input("Enter the 'to' address")  
         st.write("Directly send a token from your address to another address.")
+
+        # Send _value amount of tokens to address _to
+        # function transfer(address _to, uint256 _value) public returns (bool success);
+        sendToken_tx_hash = contract.functions.transfer(
+            send_to_address,
+            send_amount_token
+        ).transact({'from': address, 'gas': 1000000})
+
         # if st.button("Send Token"):
         # tx_hash = contract.functions.registerArtwork(
         #     to_address,
@@ -148,6 +167,8 @@ if option == 'Manage Token':
             token_symbol,
             token_address
         ).transact({'from': address, 'gas': 1000000})
+
+        st.write("Add Token hash:", addToken_tx_hash)
 
 
 

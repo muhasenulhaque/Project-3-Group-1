@@ -79,10 +79,13 @@ st.markdown("---")
 
 #   SETUP SIDEBAR
 
-option = st.sidebar.selectbox("Which Option?", ('Exchange Overview', 'FIXED Token Trading', 'Manage Token'), 2)
+option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'FIXED Token Trading', 'Manage Token', 'About'), 4)
 
-st.sidebar.write("Token Balance", )
+st.sidebar.write("Token Balance:", )
 st.sidebar.write("ETH Balance")
+
+#getSellOrderBook
+#getBuyOrderBook
 
 #   DISPLAY SELECTED OPTION PAGE
 
@@ -91,8 +94,13 @@ st.sidebar.write("ETH Balance")
 # if option == 'DTE':
 #     st.write ("DTE Option")
 
-if option == 'Exchange Overview':
-    st.write ("Exchange Overview Option")
+
+if option == 'Home':
+    st.subheader("Home")
+    st.image("iStock-1323542329.jpg")
+
+if option == 'Deposit/Withdrawal':
+    st.subheader ("Deposit/Withdrawal Option")
     
     #st.subheader ("FIXED Token Trading Option")
     st.write("Here you can trade the FIXED token we discuss during our course. The Solidity Contract is not limited to a single token and new tokens can be easily added.")
@@ -171,7 +179,20 @@ if option == 'FIXED Token Trading':
         buy_amount_token = st.text_input("Buy Number of token")
         bid_price_wei = st.text_input("Bid Price in wei")
 
-
+        # if st.button("Send Token"):
+        # buy_symbol_name_tx_hash = contract.functions.registerArtwork(
+        #     to_address,
+        #     artwork_name,
+        #     artist_name,
+        #     int(initial_appraisal_value),
+        #     artwork_uri
+        # ).transact({'from': address, 'gas': 1000000})
+    
+        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        # st.write("Transaction receipt mined:")
+        # st.write(dict(receipt))
+        
+        
         # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
         # If this function is called again it overwrites the current allowance with _value.
         # function approve(address _spender, uint256 _amount) public returns (bool success) {
@@ -198,6 +219,7 @@ if option == 'FIXED Token Trading':
     col2_1, col2_2 = st.columns(2)
     with col2_1:
         st.subheader("Bid")
+        st.write(contract.functions.getBuyOrderBook("FIXED"))
         # buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
         # buy_amount_token = st.text_input("Buy Number of token")
         # bid_price_wei = st.text_input("Bid Price in wei")
@@ -214,6 +236,8 @@ if option == 'FIXED Token Trading':
 
     with col2_2:
         st.subheader("Ask")
+        st.write(contract.functions.getSellOrderBook("FIXED"))
+        
         # sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
         # sell_amount_token = st.text_input("Sell Number of token")
         # ask_price_wei = st.text_input("Ask Price in wei")
@@ -291,6 +315,8 @@ if option == 'Manage Token':
 
         st.write("Add Token hash:", addToken_tx_hash)
 
+if option == 'About':
+    st.subheader("About Section")
 
 
 

@@ -669,10 +669,10 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0x7ad7ac4ba7262ecff2ffb86cee90547504ece4a45a53c143c5819e51e0013f51",
+			"keccak256": "0xd6812d0b1433f88bd2cc4d50cea63efc7bab214f2de39d48ea8121eef2ba5f45",
 			"urls": [
-				"bzz-raw://6af3c96c2362868de2fb50e55cd12762d53b4e7c827e5773f51cf2e44839d7a5",
-				"dweb:/ipfs/QmPHegfzFvPjNs5BcAdBzVPka5DaNr1PnCZ9Z4jMaUBNhM"
+				"bzz-raw://272cff886243098790c9c6de4bdc3fc0f7edee45e28ca3c163269d3cbe8f069b",
+				"dweb:/ipfs/QmU7HcMGjGe8GtQAc7gmmRcpJqeHBWwVqDBZ89yoc13gUx"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {
@@ -689,11 +689,32 @@
 				"dweb:/ipfs/QmV5x2MmNyNqaD94JCECYzU3VsDzRWXh2NADDDxnfUMwUT"
 			]
 		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/GSN/Context.sol": {
+			"keccak256": "0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061",
+			"urls": [
+				"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436",
+				"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG"
+			]
+		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol": {
 			"keccak256": "0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076",
 			"urls": [
 				"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f",
 				"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0xb15af804e2bc97db51e4e103f13de9fe13f87e6b835d7a88c897966c0e58506e",
+			"urls": [
+				"bzz-raw://1e8cff8437557fc915a3bed968fcd8f2df9809599e665ef69c2c9ce628548055",
+				"dweb:/ipfs/QmP5spYP8vs2jvLF8zNrXUbqB79hMsoEvMHiLcBxerWKcm"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9",
+			"urls": [
+				"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91",
+				"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc"
 			]
 		}
 	},

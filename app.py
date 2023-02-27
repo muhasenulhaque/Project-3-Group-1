@@ -79,7 +79,7 @@ st.markdown("---")
 
 #   SETUP SIDEBAR
 
-option = st.sidebar.selectbox("Which Option?", ('DTE', 'Exchange Overview', 'FIXED Token Trading', 'Manage Token'), 3)
+option = st.sidebar.selectbox("Which Option?", ('Exchange Overview', 'FIXED Token Trading', 'Manage Token'), 2)
 
 st.sidebar.write("Token Balance", )
 st.sidebar.write("ETH Balance")
@@ -88,15 +88,136 @@ st.sidebar.write("ETH Balance")
 
 #st.header(option)
 
-if option == 'DTE':
-    st.write ("DTE Option")
+# if option == 'DTE':
+#     st.write ("DTE Option")
 
 if option == 'Exchange Overview':
     st.write ("Exchange Overview Option")
+    
+    #st.subheader ("FIXED Token Trading Option")
+    st.write("Here you can trade the FIXED token we discuss during our course. The Solidity Contract is not limited to a single token and new tokens can be easily added.")
+    
+    # st.write("Choose an account to get started")
+    # accounts = w3.eth.accounts
+    # address = st.selectbox("Select Account", options=accounts)    
+
+    st.markdown("---")
+
+    st.subheader("Deposit")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        
+        st.subheader("Deposit Token")
+        deposit_symbol_name = st.text_input("Deposit Symbol Name eg.'FIXED'")
+        deposit_amount_token = st.text_input("Deposit Number of token")
+
+
+        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+        # If this function is called again it overwrites the current allowance with _value.
+        # function approve(address _spender, uint256 _amount) public returns (bool success) {
+        # approveToken_return = contract.functions.approve(
+        #     approve_address,
+        #     aprove_token_amount
+        # ).transact({'from': address, 'gas': 1000000})
+        
+
+    with col2:
+        #st.subheader("Sell Token")
+        
+        st.subheader("Deposit ETH")
+        deposit_amount_ETH = st.text_input("Deposit Number of ETH")
+
+    st.markdown("---")
+
+    st.subheader("Withdraw")
+
+    col2_1, col2_2 = st.columns(2)
+    with col2_1:
+        st.subheader("Withdraw Token")
+        withdraw_symbol_name = st.text_input("Withdraw Symbol Name eg.'FIXED'")
+        withdraw_amount_token = st.text_input("Withdraw Number of token")
+        
+
+    with col2_2:
+        st.subheader("Withdraw ETH")
+        #withdraw_eth = st.text_input("Withdraw ETH")
+        withdraw_amount_eth = st.text_input("Withdraw Number of ETH")
+                
+    
 
 if option == 'FIXED Token Trading':
-    st.write ("FIXED Token Trading Option")
+    st.subheader ("FIXED Token Trading Option")
+    st.write("Here you can trade the FIXED token we discuss during our course. The Solidity Contract is not limited to a single token and new tokens can be easily added.")
+    
+    # st.write("Choose an account to get started")
+    # accounts = w3.eth.accounts
+    # address = st.selectbox("Select Account", options=accounts)    
 
+    st.markdown("---")
+
+    st.subheader("New Order")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        # new_title = '<p style="font-family:sans-serif; color:Green; font-size: 42px;">New image</p>'
+        # st.markdown(new_title, unsafe_allow_html=True)
+        
+        buy_title = '<p style="font-family:sans-serif; color:Green; font-size: 42px;">Buy Token</p>'
+        st.markdown(buy_title, unsafe_allow_html=True)
+        
+        #st.subheader("Buy Token")
+        buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
+        buy_amount_token = st.text_input("Buy Number of token")
+        bid_price_wei = st.text_input("Bid Price in wei")
+
+
+        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+        # If this function is called again it overwrites the current allowance with _value.
+        # function approve(address _spender, uint256 _amount) public returns (bool success) {
+        # approveToken_return = contract.functions.approve(
+        #     approve_address,
+        #     aprove_token_amount
+        # ).transact({'from': address, 'gas': 1000000})
+        
+
+    with col2:
+        #st.subheader("Sell Token")
+        
+        sell_title = '<p style="font-family:sans-serif; color:Red; font-size: 42px;">Sell Token</p>'
+        st.markdown(sell_title, unsafe_allow_html=True)
+                
+        sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
+        sell_amount_token = st.text_input("Sell Number of token")
+        ask_price_wei = st.text_input("Ask Price in wei")
+
+    st.markdown("---")
+
+    st.subheader("Order Book")
+
+    col2_1, col2_2 = st.columns(2)
+    with col2_1:
+        st.subheader("Bid")
+        # buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
+        # buy_amount_token = st.text_input("Buy Number of token")
+        # bid_price_wei = st.text_input("Bid Price in wei")
+
+
+        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+        # If this function is called again it overwrites the current allowance with _value.
+        # function approve(address _spender, uint256 _amount) public returns (bool success) {
+        # approveToken_return = contract.functions.approve(
+        #     approve_address,
+        #     aprove_token_amount
+        # ).transact({'from': address, 'gas': 1000000})
+        
+
+    with col2_2:
+        st.subheader("Ask")
+        # sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
+        # sell_amount_token = st.text_input("Sell Number of token")
+        # ask_price_wei = st.text_input("Ask Price in wei")
+        
 if option == 'Manage Token':
     st.subheader ("Manage Token Option")
     st.write("This page is intended for the FIXED Token as sample only. You can send token and you can approve token. Additionally you can add a token to the exchange provided in this example.")

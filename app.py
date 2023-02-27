@@ -63,7 +63,7 @@ contract = load_contract()
 #   Display Title
 
 st.title ("Welcome to MSF Decentralized Token Exchange")
-st.subheader ("Project 3 - Team 1 (March 2023)")
+st.subheader ("Project 3 - Group 1 (March 2023)")
 # st.markdown('<div style="text-align: center;">### Welcome to Project 3 - Team 1!</div>', unsafe_allow_html=True)
 # st.markdown('<div style="text-align: center;">### Decentralized Token Exchange</div>', unsafe_allow_html=True)
 
@@ -97,7 +97,7 @@ st.sidebar.write("ETH Balance")
 
 if option == 'Home':
     st.subheader("Home")
-    st.image("iStock-1323542329.jpg")
+    st.image("./images/iStock-1323542329.jpg")
 
 if option == 'Deposit/Withdrawal':
     st.subheader ("Deposit/Withdrawal Option")
@@ -176,30 +176,16 @@ if option == 'FIXED Token Trading':
         
         #st.subheader("Buy Token")
         buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
-        buy_amount_token = st.text_input("Buy Number of token")
-        bid_price_wei = st.text_input("Bid Price in wei")
+        buy_amount_token = st.text_number("Buy Number of token")
+        bid_price_wei = st.text_number("Bid Price in wei")
 
-        # if st.button("Send Token"):
-        # buy_symbol_name_tx_hash = contract.functions.registerArtwork(
-        #     to_address,
-        #     artwork_name,
-        #     artist_name,
-        #     int(initial_appraisal_value),
-        #     artwork_uri
-        # ).transact({'from': address, 'gas': 1000000})
-    
-        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        # st.write("Transaction receipt mined:")
-        # st.write(dict(receipt))
-        
-        
-        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
-        # If this function is called again it overwrites the current allowance with _value.
-        # function approve(address _spender, uint256 _amount) public returns (bool success) {
-        # approveToken_return = contract.functions.approve(
-        #     approve_address,
-        #     aprove_token_amount
-        # ).transact({'from': address, 'gas': 1000000})
+        # if st.button("Buy Token"):
+        #     tx_hash = contract.functions.depositEther().transact(
+        #         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+        #         )
+        #     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        #     st.write(receipt)
+        #     st.markdown(f"{eth_deposit_amount} ETH deposited")
         
 
     with col2:
@@ -317,7 +303,35 @@ if option == 'Manage Token':
 
 if option == 'About':
     st.subheader("About Section")
-
+    st.write("This is the final capstone project for Group 1 of the Sydney University FinTech Bootcamp. The Boot Camp takes a multidisciplinary approach to finance, fundamental programming, data analysis, and modern tools in cryptocurrency and blockchain. This capstone project aims to pull together all the skills gained during the course.")
+    st.write("This project leverages the code base developed in Udemy course 'Ethereum Master Class: Build Real World Projects' by Ravinder Deol and Thomas Weisner. The course develops a decentralisd exchange using an Ethereum testnet and Solidity. Team members took the code and rebuilt the web3 frontend (originally Bootstrap) using Streamlit. Before this could be done a deep understanding of the Solidity Smart Contract code base had to be achieved. In doing so the code base was updated to current Ethereum and Solidity standards, removing deprecated code. We also improved security by converting code to use the SafeMath library from OpenZeppelin")
+    st.write('Original Code:  https://github.com/tomw1808/distributed_exchange_truffle_class_3')
+    
+    st.subheader("Team Members")
+    
+    # st.image("Xu_Flora_Zhao.png")
+    # st.write("Xu Flora Zhao")
+    
+    # st.image("Md_Muhasenul_Haque.png")
+    # st.write("Md Muhasenul Haque")
+        
+    # st.image("Samuel_Nayacakalou.png")
+    # st.write("Samuel Nayacakalou")
+    
+    team_members = ['./images/Xu_Flora_Zhao.png', './images/Md_Muhasenul_Haque.png', './images/Samuel_Nayacakalou.png']
+    team_members_names =['Xu Flora Zhao', 'Md Muhasenul Haque', 'Samuel Nayacakalou']
+    
+    st.image(team_members, caption = team_members_names)
+    
+    st.subheader("Instructors")
+    
+    st.image("./images/Adrian Rusli - Instructor.png")
+    st.write("Adrian Rusli - Instructor")
+    
+    st.image("./images/Larry Huang - TA.png")
+    st.write("Larry Huang - TA")    
+    
+    
 
 
 

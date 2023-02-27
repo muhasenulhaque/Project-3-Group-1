@@ -76,24 +76,32 @@ st.markdown("---")
 # address = st.selectbox("Select Account", options=accounts)
 #st.markdown("---")
 
-
+################################################################################
 #   SETUP SIDEBAR
 
 option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'FIXED Token Trading', 'Manage Token', 'About'), 4)
+                
 
-st.sidebar.write("Token Balance:", )
-st.sidebar.write("ETH Balance")
+# Token getBalance               
+# getBalance = contract.functions.getBalance().transact(
+#             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+#             )
 
-#getSellOrderBook
-#getBuyOrderBook
+# st.sidebar.subheader(f"Token Balance:", {getBalance})
+st.sidebar.subheader("Token Balance:")
 
+# getEthBalanceInWei
+# function getEthBalanceInWei() view public returns (uint){
+
+# getEthBalanceInWei = contract.functions.getEthBalanceInWei().transact(
+#             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+#             )
+
+#st.sidebar.subheader(f"ETH Balance", {getEthBalanceInWei})
+st.sidebar.subheader("ETH Balance")
+
+################################################################################
 #   DISPLAY SELECTED OPTION PAGE
-
-#st.header(option)
-
-# if option == 'DTE':
-#     st.write ("DTE Option")
-
 
 if option == 'Home':
     st.subheader("Home")
@@ -180,7 +188,7 @@ if option == 'FIXED Token Trading':
         bid_price_wei = st.text_number("Bid Price in wei")
 
         # if st.button("Buy Token"):
-        #     tx_hash = contract.functions.depositEther().transact(
+        #     buytk_tx_hash = contract.functions.depositEther().transact(
         #         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
         #         )
         #     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
@@ -198,6 +206,13 @@ if option == 'FIXED Token Trading':
         sell_amount_token = st.text_input("Sell Number of token")
         ask_price_wei = st.text_input("Ask Price in wei")
 
+        # if st.button("Sell Token"):
+        #     tx_hash = contract.functions.depositEther().transact(
+        #         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+        #         )
+        #     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        #     st.write(receipt)
+        #     st.markdown(f"{eth_deposit_amount} ETH deposited")
     st.markdown("---")
 
     st.subheader("Order Book")

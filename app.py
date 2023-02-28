@@ -184,16 +184,16 @@ if option == 'FIXED Token Trading':
         
         #st.subheader("Buy Token")
         buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
-        buy_amount_token = st.text_input("Buy Number of token")
-        bid_price_wei = st.text_input("Bid Price in wei")
+        buy_amount_token = st.number_input("Buy Number of token")
+        bid_price_wei = st.number_input("Bid Price in wei")
 
     #function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
 
         if st.button("Buy Token"):
             buytk_tx_hash = contract.functions.buyToken(
                 buy_symbol_name, 
-                int(bid_price_wei), 
-                int(buy_amount_token)).transact({'from': address, 'gas': 1000000})
+                bid_price_wei, 
+                buy_amount_token).transact({'from': contract.address, 'gas': 1000000})
             # .transact(
             #     {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
             #     )
@@ -209,16 +209,20 @@ if option == 'FIXED Token Trading':
         st.markdown(sell_title, unsafe_allow_html=True)
                 
         sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
-        sell_amount_token = st.text_input("Sell Number of token")
-        ask_price_wei = st.text_input("Ask Price in wei")
+        sell_amount_token = st.number_input("Sell Number of token")
+        ask_price_wei = st.number_input("Ask Price in wei")
 
-        # if st.button("Sell Token"):
-        #     tx_hash = contract.functions.depositEther().transact(
-        #         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
-        #         )
-        #     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        #     st.write(receipt)
-        #     st.markdown(f"{eth_deposit_amount} ETH deposited")
+        if st.button("Buy Token"):
+            buytk_tx_hash = contract.functions.sellToken(
+                sell_symbol_name, 
+                ask_price_wei, 
+                sell_amount_token).transact({'from': contract.address, 'gas': 1000000})
+            # .transact(
+            #     {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
+            #     )
+            # receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
+            # st.write(receipt)
+            st.markdown(f"{sell_amount_token} Token sold")
     st.markdown("---")
 
     st.subheader("Order Book")

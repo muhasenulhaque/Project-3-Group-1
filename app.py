@@ -240,26 +240,31 @@ if option == 'Manage Token':
     st.subheader ("Manage Token Option")
     st.write("This page is intended for the FIXED Token as sample only. You can send token and you can approve token. Additionally you can add a token to the exchange provided in this example.")
     
-    # st.write("Choose an account to get started")
-    # accounts = w3.eth.accounts
-    # address = st.selectbox("Select Account", options=accounts)    
+    st.write("Choose an account to get started")
+    accounts = w3.eth.accounts
+    address = st.selectbox("Select Account", options=accounts)    
 
     st.markdown("---")
 
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Approve Token Allowance")
-        aprove_token_amount = st.text_input("Approve token amount")
-        approve_address = st.text_input("Approved address")
+        approve_token_amount = st.text_input("Approve token amount") # should be the exchange smart contract address
+        approve_address = st.text_input("Approved address")   # should be the exchange smart contract address
         st.write("Approve the address to be allowed to send a token from your address to another address. This is important for the Exchange. When you fund the token in the exchange then it will deduct in your name the token from your address to the token address.")
 
-        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
-        # If this function is called again it overwrites the current allowance with _value.
-        # function approve(address _spender, uint256 _amount) public returns (bool success) {
-        # approveToken_return = contract.functions.approve(
-        #     approve_address,
-        #     aprove_token_amount
-        # ).transact({'from': address, 'gas': 1000000})
+        if st.button("Allow Token to be used"):
+            tx_hash = token_contract.functions.approve(approve_address, approve_token_amount).transact(
+                {
+                # the transaction is initiated from the wallet address to the smart contract address
+                'from': address,
+                # 'value':wei_withdraw_amount,
+                'gas': 1000000,
+                'to':approve_address
+                }
+            )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write(receipt)
         
 
     with col2:

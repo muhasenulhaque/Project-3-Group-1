@@ -37,3 +37,12 @@
 
             return exchangeInstance.buyToken(tokenName, price, amount, {from: account, gas: 4000000});
 
+            return tokenInstance.balanceOf.call(account);
+
+            tokenInstance.allEvents({}, {fromBlock: 0, toBlock: 'latest'}).watch(function (error, result) {
+
+            return tokenInstance.transfer(receiver, amount, {from: account});
+
+            return tokenInstance.approve(receiver, amount, {from: account});
+
+

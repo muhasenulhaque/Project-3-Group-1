@@ -37,27 +37,27 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 
 
 @st.cache(allow_output_mutation=True)
-def load_contract():
-
+def load_contract(abi_file_path,env_keywords):
     # Load the contract ABI
-    with open(Path('./contracts/compiled/exchange_abi.json')) as f:
+    with open(Path(abi_file_path)) as f:
         contract_abi = json.load(f)
-
     # Set the contract address (this is the address of the deployed contract)
-    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
-
+    contract_address = os.getenv(env_keywords)
     # Get the contract
     contract = w3.eth.contract(
         address=contract_address,
         abi=contract_abi
     )
-
     return contract
 
 
 # Load the contract
-contract = load_contract()
-
+ex_abi_file_path='./contracts/compiled/Exchange_abi.json'
+token_abi_file_path='./contracts/compiled/FixedSupplyToken_abi.json'
+ex_env_keywords='SMART_CONTRACT_ADDRESS'
+token_env_keywords='TOKEN_SMART_CONTRACT_ADDRESS'
+contract = load_contract(ex_abi_file_path,ex_env_keywords)  ##load Exchange smart contract
+token_contract = load_contract(token_abi_file_path,token_env_keywords)   ##load FixedSupplyToken smart contract
 
 
 #   Display Title
@@ -193,12 +193,11 @@ if option == 'FIXED Token Trading':
             buytk_tx_hash = contract.functions.buyToken(
                 buy_symbol_name, 
                 bid_price_wei, 
-                buy_amount_token).transact({'from': contract.address, 'gas': 1000000})
-            # .transact(
-            #     {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
-            #     )
-            # receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
-            # st.write(receipt)
+                buy_amount_token).transact({'from': contract.address, 'gas': 1000000}).transact(
+                {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
+                )
+            receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
+            st.write(receipt)
             st.markdown(f"{buy_amount_token} Token bought")
         
 
@@ -212,16 +211,15 @@ if option == 'FIXED Token Trading':
         sell_amount_token = st.number_input("Sell Number of token")
         ask_price_wei = st.number_input("Ask Price in wei")
 
-        if st.button("Buy Token"):
+        if st.button("Sell Token"):
             buytk_tx_hash = contract.functions.sellToken(
                 sell_symbol_name, 
                 ask_price_wei, 
-                sell_amount_token).transact({'from': contract.address, 'gas': 1000000})
-            # .transact(
-            #     {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
-            #     )
-            # receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
-            # st.write(receipt)
+                sell_amount_token).transact({'from': contract.address, 'gas': 1000000}).transact(
+                {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
+                )
+            receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
+            st.write(receipt)
             st.markdown(f"{sell_amount_token} Token sold")
     st.markdown("---")
 

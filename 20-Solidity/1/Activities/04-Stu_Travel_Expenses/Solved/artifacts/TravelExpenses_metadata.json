@@ -1,0 +1,88 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint32",
+						"name": "new_net_expense_usd",
+						"type": "uint32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "tax_rate",
+						"type": "uint256"
+					}
+				],
+				"name": "RecordExpense",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "corporate_account",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "daily_expenses_wei",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"20-Solidity/1/Activities/04-Stu_Travel_Expenses/Solved/TravelExpenses.sol": "TravelExpenses"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"20-Solidity/1/Activities/04-Stu_Travel_Expenses/Solved/TravelExpenses.sol": {
+			"keccak256": "0x4530e4697696f94b59e2e4c97d542274cc06e63e43b16528bdb48f280434a4d5",
+			"urls": [
+				"bzz-raw://a80bfcb1c54c0c20e10b89bee8c96822db0d937e69aa241dcf4593d21f8330e9",
+				"dweb:/ipfs/QmaRVkJ55esh8rbgiDEAACFWsm9iYRydG4mYm6v6mpaU8z"
+			]
+		}
+	},
+	"version": 1
+}

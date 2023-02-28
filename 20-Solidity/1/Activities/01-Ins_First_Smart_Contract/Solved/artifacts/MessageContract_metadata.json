@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+<<<<<<< HEAD
+			"Users/kuki/Documents/dev/FinTech_Bootcamp/FinTechBC-ClassActivity/20-Solidity/1/Activities/01-Ins_First_Smart_Contract/Solved/First_Smart_Contract.sol": "MessageContract"
+=======
+			"20-Solidity/1/Activities/01-Ins_First_Smart_Contract/Solved/First_Smart_Contract.sol": "MessageContract"
+>>>>>>> e156523c5916e104c40b8948e5d88f8fce8e1579
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+<<<<<<< HEAD
+		"Users/kuki/Documents/dev/FinTech_Bootcamp/FinTechBC-ClassActivity/20-Solidity/1/Activities/01-Ins_First_Smart_Contract/Solved/First_Smart_Contract.sol": {
+=======
+		"20-Solidity/1/Activities/01-Ins_First_Smart_Contract/Solved/First_Smart_Contract.sol": {
+>>>>>>> e156523c5916e104c40b8948e5d88f8fce8e1579
+			"keccak256": "0xa59d95475e3ca19a61028a06132889c5919636cc47d91d0e4b2e12f8787f1508",
+			"urls": [
+				"bzz-raw://556e836bc50a3aacc41b6ff85ee9d7ed3cf69580beffd2bbaf901fef67afdc13",
+				"dweb:/ipfs/QmavNUafFz4qNXKQX8w1Ta4p1p4Qgc3uJL843ouVtgDr2d"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,71 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newCoin",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isBuy",
+						"type": "bool"
+					}
+				],
+				"name": "updateTrade",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+<<<<<<< HEAD
+			"Users/kuki/Documents/dev/FinTech_Bootcamp/FinTechBC-ClassActivity/20-Solidity/1/Activities/03-Ins_Crypto_Trading_Functions/Solved/Crypto_Trading_Functions.sol": "LatestTrade"
+=======
+			"20-Solidity/1/Activities/03-Ins_Crypto_Trading_Functions/Solved/Crypto_Trading_Functions.sol": "LatestTrade"
+>>>>>>> e156523c5916e104c40b8948e5d88f8fce8e1579
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+<<<<<<< HEAD
+		"Users/kuki/Documents/dev/FinTech_Bootcamp/FinTechBC-ClassActivity/20-Solidity/1/Activities/03-Ins_Crypto_Trading_Functions/Solved/Crypto_Trading_Functions.sol": {
+=======
+		"20-Solidity/1/Activities/03-Ins_Crypto_Trading_Functions/Solved/Crypto_Trading_Functions.sol": {
+>>>>>>> e156523c5916e104c40b8948e5d88f8fce8e1579
+			"keccak256": "0xbb531e1fc2cff9dbf343d2fa61d85981db9d5f1141296b4cf669db1cb7d35c23",
+			"urls": [
+				"bzz-raw://e8f7b06e98f097f347d13d151a645433d6835d5b357d2b625dd353e790516c06",
+				"dweb:/ipfs/QmNWipYPp1XT87eFi7QTxagYhpuvyeuAs9eZY5ac2jhFY7"
+			]
+		}
+	},
+	"version": 1
+}

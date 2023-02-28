@@ -1,0 +1,97 @@
+{
+	"compiler": {
+		"version": "0.5.2+commit.1df8f40c"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"name": "",
+						"type": "address"
+					},
+					{
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"name": "",
+						"type": "string"
+					},
+					{
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"name": "newOwner",
+						"type": "address"
+					},
+					{
+						"name": "newAccountStatus",
+						"type": "bool"
+					},
+					{
+						"name": "newAccountBalance",
+						"type": "uint256"
+					},
+					{
+						"name": "newCustomerName",
+						"type": "string"
+					},
+					{
+						"name": "newCustomerLastName",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"20-Solidity/06-customer_contract.sol": "CustomerAccount"
+		},
+		"evmVersion": "byzantium",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"20-Solidity/06-customer_contract.sol": {
+			"keccak256": "0x6354cab0b436de8554983c3306782eb82d1c48e1175eebc4a9735f86ce2b33fe",
+			"urls": [
+				"bzzr://d7af466c8f3ff871e6d3ac0769d6627e14f059a857d81a192571ee59a9ddfa24"
+			]
+		}
+	},
+	"version": 1
+}

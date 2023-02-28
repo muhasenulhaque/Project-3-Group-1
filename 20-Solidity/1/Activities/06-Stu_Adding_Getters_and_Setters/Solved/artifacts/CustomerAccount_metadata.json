@@ -1,0 +1,108 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "newAccountStatus",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newAccountBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "newCustomerName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newCustomerLastName",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"20-Solidity/1/Activities/06-Stu_Adding_Getters_and_Setters/Solved/customer_contract.sol": "CustomerAccount"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"20-Solidity/1/Activities/06-Stu_Adding_Getters_and_Setters/Solved/customer_contract.sol": {
+			"keccak256": "0xebf2a43be7d80488b91732a5e9a4c88737eaa9478936b9539c47c3a71bb516cc",
+			"urls": [
+				"bzz-raw://0e84146654775b2f27734f7fd488b195b827ee5b51ef6913bfb0da97d1f59324",
+				"dweb:/ipfs/QmVB4Y8Qb5DZU8KiEeSaeddvq7ejPXXjaQxKSrny5x5JxQ"
+			]
+		}
+	},
+	"version": 1
+}

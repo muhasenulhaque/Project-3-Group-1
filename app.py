@@ -87,8 +87,10 @@ option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'F
 #             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 #             )
 
-# st.sidebar.subheader(f"Token Balance:", {getBalance})
-st.sidebar.subheader("Token Balance:")
+token_balance = contract.functions.getBalance().tranact()
+
+st.sidebar.subheader(f"Token Balance:", {token_balance})
+#st.sidebar.subheader("Token Balance:")
 
 # getEthBalanceInWei
 # function getEthBalanceInWei() view public returns (uint){
@@ -97,8 +99,8 @@ st.sidebar.subheader("Token Balance:")
 #             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 #             )
 
-#st.sidebar.subheader(f"ETH Balance", {getEthBalanceInWei})
-st.sidebar.subheader("ETH Balance")
+st.sidebar.subheader(f"ETH Balance", {contract.functions.getEthBalanceInWei()})
+#st.sidebar.subheader("ETH Balance")
 
 ################################################################################
 #   DISPLAY SELECTED OPTION PAGE
@@ -184,8 +186,8 @@ if option == 'FIXED Token Trading':
         
         #st.subheader("Buy Token")
         buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
-        buy_amount_token = st.text_number("Buy Number of token")
-        bid_price_wei = st.text_number("Bid Price in wei")
+        buy_amount_token = st.text_input("Buy Number of token")
+        bid_price_wei = st.text_input("Bid Price in wei")
 
         # if st.button("Buy Token"):
         #     buytk_tx_hash = contract.functions.depositEther().transact(

@@ -288,10 +288,10 @@
 	},
 	"sources": {
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0xc76329d36e173150d97fa7a4183606ef5fabc37e419446cfa5c06059999ed099",
+			"keccak256": "0x2517c4a59df7c7113847a2ac59d1d6448da965d9ca54aa62f5d409857ee9ad6e",
 			"urls": [
-				"bzz-raw://77d4430a5a8ef1e44de6b05ec83683332112786d73f868414c31188f9c37f60d",
-				"dweb:/ipfs/QmXZ3LmWCRLVDeAAt74ef9p75ZDjbWGa4Ui6jPiHxbR1RM"
+				"bzz-raw://0653a12e678464d6e0f98cc21542f74dc4d7e6d5d32779efbdae417043ab8103",
+				"dweb:/ipfs/QmfWSgUmpKF1ptHVcxnW2yuNwHCR6tc6tgdHqkanjCk97G"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol": {

@@ -1022,10 +1022,5 @@ EXAMPLE CODE
         return keccak256(abi.encodePacked(_a)) == keccak256(abi.encodePacked(_b)); // FIXED line of code
     }
 
-    //      Project-3-Group-1
-    //      *****************
-    // Added a Fallback function
-    function() external payable {}
 
 }
-

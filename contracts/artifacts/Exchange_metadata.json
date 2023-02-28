@@ -329,11 +329,6 @@
 				"type": "event"
 			},
 			{
-				"payable": true,
-				"stateMutability": "payable",
-				"type": "fallback"
-			},
-			{
 				"constant": false,
 				"inputs": [
 					{
@@ -674,24 +669,24 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0x3d0b84ed6f9a7e917c312d6d3ed7197d69cef6f6bec5da73321729a4511d2dc7",
+			"keccak256": "0x20f3094a5b35f5f07bf92d9bc81377dc28b3c1a88460cec3b055b5766ef021f3",
 			"urls": [
-				"bzz-raw://3659a91addef4744492998c74d31da9c03fb699018670c7c9856efb21e43b0ed",
-				"dweb:/ipfs/QmYwuMfJwMTJadDE94rVbjz1hZGoZS4JdZ8CTYxy85eVet"
+				"bzz-raw://f4cf461a540f561a70365598d506d7886dea20fc1ebd1b799719db2731367d29",
+				"dweb:/ipfs/QmTyZqG8bPgRpWqDwL9Ft98kCtLykDGU2STrH5ErpaZ2SK"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0x23825aa0fd06e6335e1585a9bb982d53bb7e3b85bf467b7dd3f2bbefec720ffc",
+			"keccak256": "0x2517c4a59df7c7113847a2ac59d1d6448da965d9ca54aa62f5d409857ee9ad6e",
 			"urls": [
-				"bzz-raw://3641b2035c30b59aa8264dc30aa707eb2d596a4c2e4cc99d9d554ff4aaf54a7f",
-				"dweb:/ipfs/QmeLQpYr9gV97jZYPy9aKtUKvs72VRdBssmjkUExZwXBmT"
+				"bzz-raw://0653a12e678464d6e0f98cc21542f74dc4d7e6d5d32779efbdae417043ab8103",
+				"dweb:/ipfs/QmfWSgUmpKF1ptHVcxnW2yuNwHCR6tc6tgdHqkanjCk97G"
 			]
 		},
 		"contracts/owned.sol": {
-			"keccak256": "0x80e69139476d369c948659ed8881e81346327000f0ab1b32b7611cdd15f436a4",
+			"keccak256": "0x16d4b13476f5d54071d23115887d1e7b480841b6f948e5b94d96eb3b930146b9",
 			"urls": [
-				"bzz-raw://3eecb6523bbbf56c2628361a0f64953b1a53107a70088acd8fe23b096e53e556",
-				"dweb:/ipfs/QmV5x2MmNyNqaD94JCECYzU3VsDzRWXh2NADDDxnfUMwUT"
+				"bzz-raw://e812d204dc7463301d10d9376b5a25c6e89a28b878eeb8f20995760c78c8e76b",
+				"dweb:/ipfs/QmRwXkJc7ZwWxhkcLQ1Q4mqdnVp9RzdRQ4tx4PG99inXMX"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/GSN/Context.sol": {

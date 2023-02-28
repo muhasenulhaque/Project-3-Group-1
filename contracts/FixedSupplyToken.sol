@@ -29,6 +29,7 @@ pragma solidity ^0.5.0;
 // @NOTE: This only works in Remix. Alternatively, paste the contents of SafeMath.sol directly here above ArcadeToken. You should use version 2.5.
 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol";
 
 contract ERC20Interface {
     // Get the total token supply
@@ -62,7 +63,7 @@ contract ERC20Interface {
 contract FixedSupplyToken is ERC20Interface {
     string public constant symbol = "FIXED";
     string public constant name = "Example Fixed Supply Token";
-    uint8 public constant decimals = 0;
+    uint8 public constant decimals = 18;
     uint256 _totalSupply = 1000000;
 
 //      Project-3-Group-1

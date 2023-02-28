@@ -141,21 +141,9 @@ if option == 'Deposit/Withdrawal':
         
 
     with col2:
-        #st.subheader("Sell Token")
-        
         st.subheader("Deposit ETH")
         deposit_amount_ETH = st.text_input("Deposit Number of ETH")
-        user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
-        eth_deposit_amount = st.number_input("How many ETH do you want to deposit?")
-        #eth_deposit_amount=int(eth_deposit_amount)
-        wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
-        if st.button("Deposit"):
-            tx_hash = contract.functions.depositEther().transact(
-                {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
-                )
-            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            st.write(receipt)
-            st.markdown(f"{eth_deposit_amount} ETH deposited")
+
     st.markdown("---")
 
     st.subheader("Withdraw")
@@ -171,17 +159,7 @@ if option == 'Deposit/Withdrawal':
         st.subheader("Withdraw ETH")
         #withdraw_eth = st.text_input("Withdraw ETH")
         withdraw_amount_eth = st.text_input("Withdraw Number of ETH")
-        user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
-        eth_deposit_amount = st.number_input("How many ETH do you want to deposit?")
-        #eth_deposit_amount=int(eth_deposit_amount)
-        wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
-        if st.button("Deposit"):
-            tx_hash = contract.functions.depositEther().transact(
-                {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
-                )
-            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            st.write(receipt)
-            st.markdown(f"{eth_deposit_amount} ETH deposited")                
+                
     
 
 if option == 'FIXED Token Trading':
@@ -209,13 +187,19 @@ if option == 'FIXED Token Trading':
         buy_amount_token = st.text_input("Buy Number of token")
         bid_price_wei = st.text_input("Bid Price in wei")
 
-        # if st.button("Buy Token"):
-        #     buytk_tx_hash = contract.functions.depositEther().transact(
-        #         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
-        #         )
-        #     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        #     st.write(receipt)
-        #     st.markdown(f"{eth_deposit_amount} ETH deposited")
+    #function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
+
+        if st.button("Buy Token"):
+            buytk_tx_hash = contract.functions.buyToken(
+                buy_symbol_name, 
+                int(bid_price_wei), 
+                int(buy_amount_token)).transact({'from': address, 'gas': 1000000})
+            # .transact(
+            #     {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
+            #     )
+            # receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
+            # st.write(receipt)
+            st.markdown(f"{buy_amount_token} Token bought")
         
 
     with col2:
@@ -243,42 +227,26 @@ if option == 'FIXED Token Trading':
     with col2_1:
         st.subheader("Bid")
         st.write(contract.functions.getBuyOrderBook("FIXED"))
-        # buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
-        # buy_amount_token = st.text_input("Buy Number of token")
-        # bid_price_wei = st.text_input("Bid Price in wei")
-
-
-        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
-        # If this function is called again it overwrites the current allowance with _value.
-        # function approve(address _spender, uint256 _amount) public returns (bool success) {
-        # approveToken_return = contract.functions.approve(
-        #     approve_address,
-        #     aprove_token_amount
-        # ).transact({'from': address, 'gas': 1000000})
         
 
     with col2_2:
         st.subheader("Ask")
         st.write(contract.functions.getSellOrderBook("FIXED"))
         
-        # sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
-        # sell_amount_token = st.text_input("Sell Number of token")
-        # ask_price_wei = st.text_input("Ask Price in wei")
         
 if option == 'Manage Token':
     st.subheader ("Manage Token Option")
     st.write("This page is intended for the FIXED Token as sample only. You can send token and you can approve token. Additionally you can add a token to the exchange provided in this example.")
     
-    st.write("Choose an account to get started")
-    accounts = w3.eth.accounts
-    address = st.selectbox("Select Account", options=accounts)    
+    # st.write("Choose an account to get started")
+    # accounts = w3.eth.accounts
+    # address = st.selectbox("Select Account", options=accounts)    
 
     st.markdown("---")
 
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Approve Token Allowance")
-        #st.image("https://static.streamlit.io/examples/dog.jpg")
         aprove_token_amount = st.text_input("Approve token amount")
         approve_address = st.text_input("Approved address")
         st.write("Approve the address to be allowed to send a token from your address to another address. This is important for the Exchange. When you fund the token in the exchange then it will deduct in your name the token from your address to the token address.")
@@ -294,8 +262,6 @@ if option == 'Manage Token':
 
     with col2:
         st.subheader("Send Token")
-        #st.image("https://static.streamlit.io/examples/cat.jpg")
-
         send_amount_token = st.text_input("Enter the name of token")
         send_to_address = st.text_input("Enter the 'to' address")  
         st.write("Directly send a token from your address to another address.")
@@ -334,7 +300,7 @@ if option == 'Manage Token':
         addToken_tx_hash = contract.functions.addToken(
             token_symbol,
             token_address
-        ).transact({'from': address, 'gas': 1000000})
+        ).transact({'from': token_address, 'gas': 1000000})
 
         st.write("Add Token hash:", addToken_tx_hash)
 

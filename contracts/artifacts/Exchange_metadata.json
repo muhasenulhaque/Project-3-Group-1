@@ -329,6 +329,11 @@
 				"type": "event"
 			},
 			{
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
 				"constant": false,
 				"inputs": [
 					{
@@ -669,10 +674,10 @@
 	},
 	"sources": {
 		"contracts/Exchange.sol": {
-			"keccak256": "0xd6812d0b1433f88bd2cc4d50cea63efc7bab214f2de39d48ea8121eef2ba5f45",
+			"keccak256": "0x3d0b84ed6f9a7e917c312d6d3ed7197d69cef6f6bec5da73321729a4511d2dc7",
 			"urls": [
-				"bzz-raw://272cff886243098790c9c6de4bdc3fc0f7edee45e28ca3c163269d3cbe8f069b",
-				"dweb:/ipfs/QmU7HcMGjGe8GtQAc7gmmRcpJqeHBWwVqDBZ89yoc13gUx"
+				"bzz-raw://3659a91addef4744492998c74d31da9c03fb699018670c7c9856efb21e43b0ed",
+				"dweb:/ipfs/QmYwuMfJwMTJadDE94rVbjz1hZGoZS4JdZ8CTYxy85eVet"
 			]
 		},
 		"contracts/FixedSupplyToken.sol": {

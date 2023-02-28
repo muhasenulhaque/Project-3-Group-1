@@ -1,0 +1,88 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getLatestTrade",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "newCoin",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newPrice",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isBuy",
+						"type": "bool"
+					}
+				],
+				"name": "updateTrade",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"20-Solidity/1/Activities/05-Ins_Getters-and-Setters/Solved/GettersAndSetters.sol": "LatestTrade"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"20-Solidity/1/Activities/05-Ins_Getters-and-Setters/Solved/GettersAndSetters.sol": {
+			"keccak256": "0xe64c91446a6b0e79dcf158c773f1814ec38726483f0cb50f7edd13550011ab5a",
+			"urls": [
+				"bzz-raw://29e5a0dafd9919dabd525017d97064ceecaf9cebe28eaf0295bff7bd44a6d0dd",
+				"dweb:/ipfs/QmQEvHW7K9zaFABf98L5XKSBaphNikCCeFbchQLY99jMZg"
+			]
+		}
+	},
+	"version": 1
+}

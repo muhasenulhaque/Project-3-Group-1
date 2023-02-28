@@ -1,0 +1,157 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "accountBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "deposit",
+				"outputs": [],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address payable",
+						"name": "recipient",
+						"type": "address"
+					}
+				],
+				"name": "sendRemittance",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "newAccountStatus",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "newAccountBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "newCustomerName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "newCustomerLastName",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"20-Solidity/2/Activities/02-Evr_Implement_Ether_Management_Functions/Solved/customer_account.sol": "CustomerAccount"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"20-Solidity/2/Activities/02-Evr_Implement_Ether_Management_Functions/Solved/customer_account.sol": {
+			"keccak256": "0x261f9470ecf33f517ae405018e4f7f2a779648af5ae67a4a8a87dfda2f72c07d",
+			"urls": [
+				"bzz-raw://fa323bdba35bad27966dd66393123d9c806eeee0b03de995f43e0c2cb4f53249",
+				"dweb:/ipfs/QmVBPch69Wwwq9AgSXrvNPJicdnDxVLcHnshNHfPYz7a2s"
+			]
+		}
+	},
+	"version": 1
+}

@@ -288,10 +288,17 @@
 	},
 	"sources": {
 		"contracts/FixedSupplyToken.sol": {
-			"keccak256": "0xc76329d36e173150d97fa7a4183606ef5fabc37e419446cfa5c06059999ed099",
+			"keccak256": "0x12c1ed5b51f96d803437c29b2e99422cec81e5b37145f0e9f098fcb8f9fe9c84",
 			"urls": [
-				"bzz-raw://77d4430a5a8ef1e44de6b05ec83683332112786d73f868414c31188f9c37f60d",
-				"dweb:/ipfs/QmXZ3LmWCRLVDeAAt74ef9p75ZDjbWGa4Ui6jPiHxbR1RM"
+				"bzz-raw://ddf8ba7bf5cc29aa259645b1184d34112d45e6598e9af2cc93f03edd5813007e",
+				"dweb:/ipfs/QmUFffAMm9LeqsMiJVAPiHGNuSijPo3AYaJKRNBdFhFPeH"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/GSN/Context.sol": {
+			"keccak256": "0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061",
+			"urls": [
+				"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436",
+				"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol": {
@@ -299,6 +306,20 @@
 			"urls": [
 				"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f",
 				"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0xb15af804e2bc97db51e4e103f13de9fe13f87e6b835d7a88c897966c0e58506e",
+			"urls": [
+				"bzz-raw://1e8cff8437557fc915a3bed968fcd8f2df9809599e665ef69c2c9ce628548055",
+				"dweb:/ipfs/QmP5spYP8vs2jvLF8zNrXUbqB79hMsoEvMHiLcBxerWKcm"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9",
+			"urls": [
+				"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91",
+				"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc"
 			]
 		}
 	},

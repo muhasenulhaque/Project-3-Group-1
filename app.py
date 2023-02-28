@@ -87,10 +87,10 @@ option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'F
 #             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 #             )
 
-token_balance = contract.functions.getBalance().tranact()
+#token_balance = contract.functions.getBalance().tranact()
 
-st.sidebar.subheader(f"Token Balance:", {token_balance})
-#st.sidebar.subheader("Token Balance:")
+#st.sidebar.subheader(f"Token Balance:", {token_balance})
+st.sidebar.subheader("Token Balance:")
 
 # getEthBalanceInWei
 # function getEthBalanceInWei() view public returns (uint){
@@ -99,8 +99,8 @@ st.sidebar.subheader(f"Token Balance:", {token_balance})
 #             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 #             )
 
-st.sidebar.subheader(f"ETH Balance", {contract.functions.getEthBalanceInWei()})
-#st.sidebar.subheader("ETH Balance")
+#st.sidebar.subheader(f"ETH Balance", {contract.functions.getEthBalanceInWei()})
+st.sidebar.subheader("ETH Balance")
 
 ################################################################################
 #   DISPLAY SELECTED OPTION PAGE

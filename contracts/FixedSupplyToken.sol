@@ -69,7 +69,6 @@ contract FixedSupplyToken is ERC20Interface {
 //      *****************
 // Using SafeMath Library for improved security
     using SafeMath for uint256;
-    using SafeMath for uint256;
 
     // Owner of this contract
     address public owner;

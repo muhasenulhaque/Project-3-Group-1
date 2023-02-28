@@ -145,7 +145,17 @@ if option == 'Deposit/Withdrawal':
         
         st.subheader("Deposit ETH")
         deposit_amount_ETH = st.text_input("Deposit Number of ETH")
-
+        user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
+        eth_deposit_amount = st.number_input("How many ETH do you want to deposit?")
+        #eth_deposit_amount=int(eth_deposit_amount)
+        wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
+        if st.button("Deposit"):
+            tx_hash = contract.functions.depositEther().transact(
+                {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+                )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write(receipt)
+            st.markdown(f"{eth_deposit_amount} ETH deposited")
     st.markdown("---")
 
     st.subheader("Withdraw")

@@ -17,7 +17,13 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 ################################################################################
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache(allow_output_mutation=True) 
+
+
+################################################################################
+# @st.cache_data(allow_output_mutation=True) 
+################################################################################
+
 def load_contract():
 
     # Load the contract ABI
@@ -73,26 +79,48 @@ st.markdown("---")
 # Deposit ETH into the DEX Center
 ##################################################################################################
 
-user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
+# user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
+
+# eth_deposit_amount = st.number_input("How much ETH do you want to deposit?")
+
+# # eth_deposit_amount=int(eth_deposit_amount)
+# wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
+
+
+
+# if st.button("Deposit"):
+#     tx_hash = contract.functions.depositEther().transact(
+#         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+#         )
+#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+#     st.write(receipt)
+#     st.markdown(f"{eth_deposit_amount} ETH deposited")
 
 
 
 
+    # user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
+eth_deposit_amount = st.number_input("How many ETH do you want to deposit?")
 
-eth_deposit_amount = st.number_input("How much ETH do you want to deposit?")
+    #eth_deposit_amount=int(eth_deposit_amount)
 
-eth_deposit_amount=int(eth_deposit_amount)
 wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
-
-
 
 if st.button("Deposit"):
     tx_hash = contract.functions.depositEther().transact(
-        {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+        {'value':wei_deposit_amount,'gas': 1000000}
         )
     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
     st.write(receipt)
     st.markdown(f"{eth_deposit_amount} ETH deposited")
+
+
+
+
+
+
+
+
 
 
 # address= st.text_input("Enter your wallet address")
@@ -138,16 +166,27 @@ if st.button("Deposit"):
 # Check Ether Balance
 ##################################################################################################
 
+# if st.button("Check Ether Balance"):
+#     balance_wei = contract.functions.getEthBalanceInWei().call()
+#     balance_eth = w3.fromWei(balance_wei,"ether")
+#     # tx_hash = contract.functions.getEthBalanceInWei().transact({'from': contract.address, 'gas': 1000000})
+#     # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+#     # st.write("Transaction receipt mined:")
+#     # st.write(dict(receipt))
+#     st.write(f"The balance of Ether held by the smart contract is {balance_eth:.2f} ETH")
+# st.markdown("---")
+
 if st.button("Check Ether Balance"):
+    st.write(f"{contract.address}")
     balance_wei = contract.functions.getEthBalanceInWei().call()
     balance_eth = w3.fromWei(balance_wei,"ether")
+    st.write(f"The balance of wei held by the smart contract is {balance_wei} wei")
     # tx_hash = contract.functions.getEthBalanceInWei().transact({'from': contract.address, 'gas': 1000000})
     # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
     # st.write("Transaction receipt mined:")
     # st.write(dict(receipt))
-    st.write(f"The balance of Ether held by the smart contract is {balance_eth:.2f} ETH")
+    st.write(f"The balance of Ether held by the smart contract is {balance_eth} ETH")
 st.markdown("---")
-
 
 
 

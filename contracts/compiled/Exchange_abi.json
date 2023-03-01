@@ -1,42 +1,5 @@
 [
 	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "symbolName",
-				"type": "string"
-			}
-		],
-		"name": "getBuyOrderBook",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			},
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getEthBalanceInWei",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"constant": false,
 		"inputs": [
 			{
@@ -44,44 +7,11 @@
 				"type": "string"
 			},
 			{
-				"name": "amount",
-				"type": "uint256"
+				"name": "erc20TokenAddress",
+				"type": "address"
 			}
 		],
-		"name": "depositToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "symbolName",
-				"type": "string"
-			}
-		],
-		"name": "getBalance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "amountInWei",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawEther",
+		"name": "addToken",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -110,26 +40,56 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
 				"name": "symbolName",
 				"type": "string"
-			}
-		],
-		"name": "getSellOrderBook",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
 			},
 			{
-				"name": "",
-				"type": "uint256[]"
+				"name": "isSellOrder",
+				"type": "bool"
+			},
+			{
+				"name": "priceInWei",
+				"type": "uint256"
+			},
+			{
+				"name": "offerKey",
+				"type": "uint256"
 			}
 		],
+		"name": "cancelOrder",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "depositEther",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "symbolName",
+				"type": "string"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "depositToken",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -155,68 +115,17 @@
 		"type": "function"
 	},
 	{
-		"constant": true,
+		"constant": false,
 		"inputs": [
 			{
-				"name": "symbolName",
-				"type": "string"
-			}
-		],
-		"name": "hasToken",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "symbolName",
-				"type": "string"
-			}
-		],
-		"name": "getSymbolIndexOrThrow",
-		"outputs": [
-			{
-				"name": "",
+				"name": "amountInWei",
 				"type": "uint256"
 			}
 		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "depositEther",
+		"name": "withdrawEther",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
-				"name": "erc20TokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "addToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -232,32 +141,6 @@
 			}
 		],
 		"name": "withdrawToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
-				"name": "isSellOrder",
-				"type": "bool"
-			},
-			{
-				"name": "priceInWei",
-				"type": "uint256"
-			},
-			{
-				"name": "offerKey",
-				"type": "uint256"
-			}
-		],
-		"name": "cancelOrder",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -544,5 +427,122 @@
 		],
 		"name": "TokenAddedToSystem",
 		"type": "event"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "symbolName",
+				"type": "string"
+			}
+		],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "symbolName",
+				"type": "string"
+			}
+		],
+		"name": "getBuyOrderBook",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getEthBalanceInWei",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "symbolName",
+				"type": "string"
+			}
+		],
+		"name": "getSellOrderBook",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			},
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "symbolName",
+				"type": "string"
+			}
+		],
+		"name": "getSymbolIndexOrThrow",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "symbolName",
+				"type": "string"
+			}
+		],
+		"name": "hasToken",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]

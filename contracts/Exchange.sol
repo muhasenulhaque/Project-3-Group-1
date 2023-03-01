@@ -144,7 +144,7 @@ EXAMPLE CODE
         emit DepositForEthReceived(msg.sender, msg.value, now);
     }
 
-    function withdrawEther(uint amountInWei) public {
+    function withdrawEther(uint amountInWei) public payable {
 	
 	//      Project-3-Group-1
     //      *****************

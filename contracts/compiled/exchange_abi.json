@@ -1,5 +1,25 @@
 [
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "symbolName",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "erc20TokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "addToken",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -56,6 +76,70 @@
 		"type": "event"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "symbolName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "priceInWei",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "buyToken",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "symbolName",
+				"type": "string"
+			},
+			{
+				"internalType": "bool",
+				"name": "isSellOrder",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "priceInWei",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "offerKey",
+				"type": "uint256"
+			}
+		],
+		"name": "cancelOrder",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "depositEther",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -110,6 +194,26 @@
 		],
 		"name": "DepositForTokenReceived",
 		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "symbolName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "depositToken",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -242,6 +346,31 @@
 		"type": "event"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "symbolName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "priceInWei",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "sellToken",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -326,84 +455,15 @@
 		"constant": false,
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "erc20TokenAddress",
-				"type": "address"
-			}
-		],
-		"name": "addToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
 				"internalType": "uint256",
-				"name": "priceInWei",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
+				"name": "amountInWei",
 				"type": "uint256"
 			}
 		],
-		"name": "buyToken",
+		"name": "withdrawEther",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
-				"internalType": "bool",
-				"name": "isSellOrder",
-				"type": "bool"
-			},
-			{
-				"internalType": "uint256",
-				"name": "priceInWei",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "offerKey",
-				"type": "uint256"
-			}
-		],
-		"name": "cancelOrder",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "depositEther",
-		"outputs": [],
-		"payable": true,
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -420,7 +480,7 @@
 				"type": "uint256"
 			}
 		],
-		"name": "depositToken",
+		"name": "withdrawToken",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -554,66 +614,6 @@
 		],
 		"payable": false,
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "priceInWei",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "sellToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "amountInWei",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawEther",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "symbolName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawToken",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

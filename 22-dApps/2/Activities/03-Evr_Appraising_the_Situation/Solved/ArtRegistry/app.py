@@ -57,6 +57,16 @@ initial_appraisal_value = st.text_input("Enter the initial appraisal amount")
 artwork_uri = st.text_input("Enter the URI to the artwork")
 
 if st.button("Register Artwork"):
+
+#Smart contract function
+    # function registerArtwork(
+    #     address owner,
+    #     string memory name,
+    #     string memory artist,
+    #     uint256 initialAppraisalValue,
+    #     string memory tokenURI
+    # ) public returns (uint256)
+
     tx_hash = contract.functions.registerArtwork(
         address,
         artwork_name,

@@ -56,7 +56,7 @@ ex_abi_file_path='./contracts/compiled/Exchange_abi.json'
 token_abi_file_path='./contracts/compiled/FixedSupplyToken_abi.json'
 ex_env_keywords='SMART_CONTRACT_ADDRESS'
 token_env_keywords='TOKEN_SMART_CONTRACT_ADDRESS'
-contract = load_contract(ex_abi_file_path,ex_env_keywords)  ##load Exchange smart contract
+ex_contract = load_contract(ex_abi_file_path,ex_env_keywords)  ##load Exchange smart contract
 token_contract = load_contract(token_abi_file_path,token_env_keywords)   ##load FixedSupplyToken smart contract
 
 
@@ -190,10 +190,10 @@ if option == 'FIXED Token Trading':
     #function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
 
         if st.button("Buy Token"):
-            buytk_tx_hash = contract.functions.buyToken(
+            buytk_tx_hash = ex_contract.functions.buyToken(
                 buy_symbol_name, 
                 bid_price_wei, 
-                buy_amount_token).transact({'from': contract.address, 'gas': 1000000}).transact(
+                buy_amount_token).transact({'from': ex_contract.address, 'gas': 1000000}).transact(
                 {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
                 )
             receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
@@ -211,11 +211,13 @@ if option == 'FIXED Token Trading':
         sell_amount_token = st.number_input("Sell Number of token")
         ask_price_wei = st.number_input("Ask Price in wei")
 
+    #    function sellToken(string memory symbolName, uint priceInWei, uint amount) public {
+
         if st.button("Sell Token"):
-            buytk_tx_hash = contract.functions.sellToken(
+            buytk_tx_hash = ex_contract.functions.sellToken(
                 sell_symbol_name, 
                 ask_price_wei, 
-                sell_amount_token).transact({'from': contract.address, 'gas': 1000000}).transact(
+                sell_amount_token).transact({'from': ex_contract.address, 'gas': 1000000}).transact(
                 {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
                 )
             receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
@@ -228,12 +230,12 @@ if option == 'FIXED Token Trading':
     col2_1, col2_2 = st.columns(2)
     with col2_1:
         st.subheader("Bid")
-        st.write(contract.functions.getBuyOrderBook("FIXED"))
+        st.write(ex_contract.functions.getBuyOrderBook("FIXED"))
         
 
     with col2_2:
         st.subheader("Ask")
-        st.write(contract.functions.getSellOrderBook("FIXED"))
+        st.write(ex_contract.functions.getSellOrderBook("FIXED"))
         
         
 if option == 'Manage Token':
@@ -257,7 +259,7 @@ if option == 'Manage Token':
             tx_hash = token_contract.functions.approve(approve_address, approve_token_amount).transact(
                 {
                 # the transaction is initiated from the wallet address to the smart contract address
-                'from': address,
+                'from': token_contract.address,
                 # 'value':wei_withdraw_amount,
                 'gas': 1000000,
                 'to':approve_address
@@ -273,12 +275,12 @@ if option == 'Manage Token':
         send_to_address = st.text_input("Enter the 'to' address")  
         st.write("Directly send a token from your address to another address.")
 
-        # Send _value amount of tokens to address _to
-        # function transfer(address _to, uint256 _value) public returns (bool success);
-        # sendToken_tx_hash = contract.functions.transfer(
-        #     send_to_address,
-        #     send_amount_token
-        # ).transact({'from': address, 'gas': 1000000})
+        #Send _value amount of tokens to address _to
+        #function transfer(address _to, uint256 _value) public returns (bool success);
+        sendToken_tx_hash = token_contract.functions.transfer(
+            send_to_address,
+            send_amount_token
+        ).transact({'from': token_contract.address, 'gas': 1000000})
 
         # if st.button("Send Token"):
         # tx_hash = contract.functions.registerArtwork(
@@ -304,7 +306,7 @@ if option == 'Manage Token':
 
     #exchange.sol:Smart Contract function call
     #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
-        addToken_tx_hash = contract.functions.addToken(
+        addToken_tx_hash = ex_contract.functions.addToken(
             token_symbol,
             token_address
         ).transact({'from': token_address, 'gas': 1000000})

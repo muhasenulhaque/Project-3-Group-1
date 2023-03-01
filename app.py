@@ -1,16 +1,41 @@
 
+    ################################################################################    
     #   Project-3-Group-1
     #   *****************
-
+    ################################################################################
+    #
+    #
     #   Group Membere:  Xu (Flora) Zhao
     #                   Md Muhasenul Haque
     #                   Samuel Nayacakalou
-
+    #
     #   Date:           March 2023
-
+    #
     #   Original Code:  https://github.com/tomw1808/distributed_exchange_truffle_class_3
+    #
 
-
+    ################################################################################
+    # Below is a list of contract Helper functions gleaned from the bootstrap javascript file
+    # That were used in this streamlit file to connect the Web3 frontend to the Solidity smart contract
+    # backend.
+    # 
+    # getBalance
+    # getEthBalanceInWei
+    # depositEther
+    # withdrawEther
+    # depositToken
+    # withdrawToken
+    # getSellOrderBook
+    # getBuyOrderBook
+    # LimitSellOrderCreated
+    # LimitBuyOrderCreated
+    # SellOrderFulfilled            
+    # BuyOrderFulfilled
+    # sellToken
+    # buyToken
+    # balanceOf
+    # transfer
+    # approve
 
 
 import os
@@ -60,6 +85,7 @@ ex_contract = load_contract(ex_abi_file_path,exch_smart_contract_address)  ##loa
 token_contract = load_contract(token_abi_file_path,token_smart_contract_address)   ##load FixedSupplyToken smart contract
 
 # Save Ganache Workspace as "FRAGILE-BRAKE", with the following wallet addresses
+# This was done for persistance between coding sessions
 token_wallet = w3.eth.accounts[0]           # 0x76FE9b2683bc5E391b8c74123a70b26A85429345
 exchange_wallet = w3.eth.accounts[1]        # 0x22212a5523fc90739046C49FeE7806bE261A9092
 user_wallet = w3.eth.accounts[2]            # 0x9F94916A80F0B2174ece3eB665ae3d4AA86ba12F
@@ -86,7 +112,10 @@ st.markdown("---")
 option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'FIXED Token Trading', 'Manage Token', 'About'), 4)
                 
 
-# Token getBalance               
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+# # Token getBalance               
 # getBalance = contract.functions.getBalance().transact(
 #             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 #             )
@@ -96,6 +125,9 @@ option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'F
 #st.sidebar.subheader(f"Token Balance:", {token_balance})
 st.sidebar.subheader("Token Balance:")
 
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
 # getEthBalanceInWei
 # function getEthBalanceInWei() view public returns (uint){
 
@@ -134,7 +166,9 @@ if option == 'Deposit/Withdrawal':
         deposit_symbol_name = st.text_input("Deposit Symbol Name eg.'FIXED'")
         deposit_amount_token = st.text_input("Deposit Number of token")
 
-
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
         # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
         # If this function is called again it overwrites the current allowance with _value.
         # function approve(address _spender, uint256 _amount) public returns (bool success) {
@@ -148,6 +182,10 @@ if option == 'Deposit/Withdrawal':
         st.subheader("Deposit ETH")
         deposit_amount_ETH = st.text_input("Deposit Number of ETH")
 
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+
     st.markdown("---")
 
     st.subheader("Withdraw")
@@ -158,13 +196,20 @@ if option == 'Deposit/Withdrawal':
         withdraw_symbol_name = st.text_input("Withdraw Symbol Name eg.'FIXED'")
         withdraw_amount_token = st.text_input("Withdraw Number of token")
         
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
 
     with col2_2:
         st.subheader("Withdraw ETH")
         #withdraw_eth = st.text_input("Withdraw ETH")
         withdraw_amount_eth = st.text_input("Withdraw Number of ETH")
                 
-    
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+# 
+#     
 
 if option == 'FIXED Token Trading':
     st.subheader ("FIXED Token Trading Option")
@@ -188,18 +233,23 @@ if option == 'FIXED Token Trading':
         
         #st.subheader("Buy Token")
         buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
-        buy_amount_token = st.number_input("Buy Number of token")
-        bid_price_wei = st.number_input("Bid Price in wei")
+        
+        buy_amount_token = st.text_input("Buy Number of token")
+        #buy_amount_token = int(buy_amount_token)
+        
+        bid_price_wei = st.text_input("Bid Price in wei")
+        #bid_price_wei = int(bid_price_wei)
 
-    #function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+#   function buyToken(string memory symbolName, uint priceInWei, uint amount) public {
 
         if st.button("Buy Token"):
             buytk_tx_hash = ex_contract.functions.buyToken(
                 buy_symbol_name, 
-                bid_price_wei, 
-                buy_amount_token).transact({'from': ex_contract.address, 'gas': 1000000}).transact(
-                {'symbolName': buy_symbol_name, 'priceInWei':int(bid_price_wei),'amount': int(buy_amount_token)}
-                )
+                int(bid_price_wei), 
+                int(buy_amount_token)).transact({'from': exchange_wallet, 'gas': 1000000})
             receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
             st.write(receipt)
             st.markdown(f"{buy_amount_token} Token bought")
@@ -212,43 +262,70 @@ if option == 'FIXED Token Trading':
         st.markdown(sell_title, unsafe_allow_html=True)
                 
         sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
-        sell_amount_token = st.number_input("Sell Number of token")
-        ask_price_wei = st.number_input("Ask Price in wei")
+        
+        sell_amount_token = st.text_input("Sell Number of token")
+        #sell_amount_token = int(sell_amount_token)
+        
+        ask_price_wei = st.text_input("Ask Price in wei")
+        #ask_price_wei = int(ask_price_wei)
 
-    #    function sellToken(string memory symbolName, uint priceInWei, uint amount) public {
+
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+#    function sellToken(string memory symbolName, uint priceInWei, uint amount) public {
 
         if st.button("Sell Token"):
-            buytk_tx_hash = ex_contract.functions.sellToken(
+            selltk_tx_hash = ex_contract.functions.sellToken(
                 sell_symbol_name, 
-                ask_price_wei, 
-                sell_amount_token).transact({'from': ex_contract.address, 'gas': 1000000}).transact(
-                {'symbolName': sell_symbol_name, 'priceInWei':int(ask_price_wei),'amount': int(sell_amount_token)}
-                )
-            receipt = w3.eth.waitForTransactionReceipt(buytk_tx_hash)
+                int(ask_price_wei), 
+                int(sell_amount_token)).transact({'from': exchange_wallet, 'gas': 1000000})
+            receipt = w3.eth.waitForTransactionReceipt(selltk_tx_hash)
             st.write(receipt)
             st.markdown(f"{sell_amount_token} Token sold")
     st.markdown("---")
 
     st.subheader("Order Book")
 
+
     col2_1, col2_2 = st.columns(2)
+
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+    # function getBuyOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
+    #     uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+    #     uint[] memory arrPricesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
+    #     uint[] memory arrVolumesBuy = new uint[](tokens[tokenNameIndex].amountBuyPrices);
+
     with col2_1:
         st.subheader("Bid")
-        st.write(dict(ex_contract.functions.getBuyOrderBook("FIXED")))
+        #st.write(dict0
+        st.write(ex_contract.functions.getBuyOrderBook("FIXED"))
         
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+    # function getSellOrderBook(string memory symbolName) view public returns (uint[] memory, uint[] memory) {
+    #     uint tokenNameIndex = getSymbolIndexOrThrow(symbolName);
+    #     uint[] memory arrPricesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
+    #     uint[] memory arrVolumesSell = new uint[](tokens[tokenNameIndex].amountSellPrices);
+    #     uint sellWhilePrice = tokens[tokenNameIndex].curSellPrice;
+    #     uint sellCounter = 0;
 
     with col2_2:
         st.subheader("Ask")
-        st.write(dict(ex_contract.functions.getSellOrderBook("FIXED")))
+        #st.write(dict(
+        #st.write(ex_contract.functions.getSellOrderBook("FIXED"))
         
         
 if option == 'Manage Token':
     st.subheader ("Manage Token Option")
     st.write("This page is intended for the FIXED Token as sample only. You can send token and you can approve token. Additionally you can add a token to the exchange provided in this example.")
     
-    st.write("Choose an account to get started")
-    accounts = w3.eth.accounts
-    address = st.selectbox("Select Account", options=accounts)    
+    # st.write("Choose an account to get started")
+    # accounts = w3.eth.accounts
+    # address = st.selectbox("Select Account", options=accounts)    
 
     st.markdown("---")
 
@@ -263,7 +340,10 @@ if option == 'Manage Token':
 
         st.write("Approve the address to be allowed to send a token from your address to another address. This is important for the Exchange. When you fund the token in the exchange then it will deduct in your name the token from your address to the token address.")
 
-    #function approve(address _spender, uint256 _amount) public returns (bool success) {
+################################################################################
+#   FUNCTION CALL TO FIXEDSUPPYTOKEN.SOL
+#
+#   function approve(address _spender, uint256 _amount) public returns (bool success) {
 
         if st.button("Allow Token to be used"):
             tx_hash = token_contract.functions.approve(ex_contract.address, approve_token_amount).transact(
@@ -292,7 +372,9 @@ if option == 'Manage Token':
         #Send _value amount of tokens to address _to
         #function transfer(address _to, uint256 _value) public returns (bool success);
 
-
+################################################################################
+#   FUNCTION CALL TO FIXEDSUPPYTOKEN.SOL
+#
         if st.button("Send Token"):                
             sendToken_tx_hash = token_contract.functions.transfer(
                 send_to_address,
@@ -329,13 +411,17 @@ if option == 'Manage Token':
 
     if st.button("Add Token"):
 
+################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+    # Token contract address: 0xA276143cF63A1C4Dd2Fd1c8687ac4D93Ea53314F
     #exchange.sol:Smart Contract function call
     #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
         addToken_tx_hash = ex_contract.functions.addToken(
             token_symbol,
             #token_contract.address
-            token_address
-        ).transact({'from': token_address, 'gas': 100000}) #Ganache Acc[0] - Token Wallet
+            token_wallet
+        ).transact({'from': token_wallet, 'gas': 100000}) #Ganache Acc[0] - Token Wallet
         addToken_tx_receipt = w3.eth.waitForTransactionReceipt(addToken_tx_hash)
 
 

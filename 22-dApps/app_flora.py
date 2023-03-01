@@ -259,4 +259,4 @@ st.markdown("---")
 #             st.markdown("### Appraisal Report Details")
 #             st.write(report_dictionary["args"])
 #     else:
-#         st.write("This artwork has no new appraisals")
+#         st.write("This artwork has no new appraisals")x

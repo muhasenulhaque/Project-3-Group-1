@@ -375,6 +375,8 @@ if option == 'Manage Token':
 ################################################################################
 #   FUNCTION CALL TO FIXEDSUPPYTOKEN.SOL
 #
+#    function transfer(address _to, uint256 _amount) public returns (bool success) {
+
         if st.button("Send Token"):                
             sendToken_tx_hash = token_contract.functions.transfer(
                 send_to_address,

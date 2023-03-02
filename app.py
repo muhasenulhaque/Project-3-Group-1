@@ -28,10 +28,6 @@
     # withdrawToken
     # getSellOrderBook
     # getBuyOrderBook
-    # LimitSellOrderCreated
-    # LimitBuyOrderCreated
-    # SellOrderFulfilled            
-    # BuyOrderFulfilled
     # sellToken
     # buyToken
     # balanceOf

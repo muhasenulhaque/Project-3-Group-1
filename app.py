@@ -16,8 +16,9 @@
 
     ################################################################################
     # Below is a list of contract Helper functions gleaned from the bootstrap javascript file
-    # That were used in this streamlit file to connect the Web3 frontend to the Solidity smart contract
-    # backend.
+    # that were used in this our web3 frontend (streamlit) file to connect the Web3 frontend to the 
+    # Solidity smart contract backend.
+    # 
     # 
     # getBalance
     # getEthBalanceInWei

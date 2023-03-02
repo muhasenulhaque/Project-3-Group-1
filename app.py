@@ -134,6 +134,11 @@ st.sidebar.subheader("Token Balance:")
 
 #st.sidebar.subheader(f"ETH Balance", {contract.functions.getEthBalanceInWei()})
 st.sidebar.subheader("ETH Balance")
+if st.sidebar.button("Check Ether Balance"):
+    st.sidebar.write(f"{ex_contract.address}")
+    balance_wei = ex_contract.functions.getEthBalanceInWei().call()
+    balance_eth = w3.fromWei(balance_wei,"ether")
+    st.sidebar.write(f"The balance of wei held by the smart contract is {balance_wei} wei")
 
 ################################################################################
 #   DISPLAY SELECTED OPTION PAGE
@@ -162,14 +167,49 @@ if option == 'Deposit/Withdrawal':
         st.subheader("Deposit Token")
         deposit_symbol_name = st.text_input("Deposit Symbol Name eg.'FIXED'")
         deposit_amount_token = st.text_input("Deposit Number of token")
-        
+
+ ################################################################################
+#   FUNCTION CALL TO EXCHANGE.SOL
+#
+        if st.button("Deposit Token"):
+            tx_hash = ex_contract.functions.depositToken(
+                deposit_symbol_name,
+                int(deposit_amount_token)
+            ).transact(
+                {'from':user_wallet,'value':int(deposit_amount_token),'gas': 1000000}
+                )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write(receipt)
+            st.markdown(f"{deposit_amount_token} Token deposited")  
+
+
     with col2:
         st.subheader("Deposit ETH")
-        deposit_amount_ETH = st.text_input("Deposit Number of ETH")
+        #deposit_amount_ETH = st.text_input("Deposit Number of ETH")
 
 ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
 #
+    # user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
+        deposit_amount_ETH = st.number_input("How many ETH do you want to deposit?")
+
+            #deposit_amount_ETH=int(deposit_amount_ETH)
+
+        wei_deposit_amount = w3.toWei(deposit_amount_ETH, "ether")
+
+        if st.button("Deposit"):
+            tx_hash = ex_contract.functions.depositEther().transact(
+                {'from':user_wallet,'value':wei_deposit_amount,'gas': 1000000}
+                )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write(receipt)
+            st.markdown(f"{deposit_amount_ETH} ETH deposited")
+
+        if st.button("Check Eth Balance"):
+            st.write(f"{ex_contract.address}")
+            balance_wei = ex_contract.functions.getEthBalanceInWei().call()
+            balance_eth = w3.fromWei(balance_wei,"ether")
+            st.write(f"The balance of wei held by the smart contract is {balance_wei} wei")
 
     st.markdown("---")
 

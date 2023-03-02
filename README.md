@@ -6,21 +6,7 @@
 ## Executive summary: 
 The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can deposit ettherium in wallet, add token in the wallet through smart contract, then approve the added token in the wallet, can transfer from one address to another. Customer's loyalty programs can be done though the exchange where we issue token. Later this token can be applied to purchase different services. 
 
-## Team
 
-### Course Instructor Adrian Rusli
-<img src="./images/Adrian Rusli - Instructor.png" width = "150"> <br>
-
-### and Larry Hang
-<img src="./images/Larry Huang - TA.png" width = "150"> <br>
-
-### Team Memebers Flora Zhao, Samuel Apakuki Nayacakalou, Md Muhasenul Haque
-
-<img src="./images/Xu_Flora_Zhao.png" width = "150"> <br>
-<img src="./images/Samuel_Nayacakalou.png" width = "150"> <br>
-<img src="./images/Md_Muhasenul_Haque.png" width = "150"> <br>
-
- 
 ## Origin of the Project Concept 
 The idea of the project is to create a platform where people can trade coins and token within Etherium Technology.  We thought of a decentralized trading platform for trading coins and tokens. After research, we found there was already a project created by Thomas Wiesner regarding this matter where the front end is developed with .js file. We thought of understanding the proejct and communicating with streamlit front end. 
 

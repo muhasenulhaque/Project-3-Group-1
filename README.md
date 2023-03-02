@@ -17,7 +17,7 @@ https://github.com/tomw1808/distributed_exchange_truffle_class_3
 
 
 ## Approach
-Our approach was try to understand the functionalities of the decentralized prject and then use the steamlit front end which is tought in the course to connect front end with the back end. We tried to understand and upgrade the codes from  
+Our approach was try to understand the functionalities of the decentralized prject and then use the steamlit front end which is tought in the course to connect front end with the back end. We tried to understand and upgrade the codes from pragma solidity ^0.4.21 to pragma solidity ^0.5.0.  
 
 
 ## Demo

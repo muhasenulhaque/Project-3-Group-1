@@ -1,1 +1,0 @@
-# Pinata Helper Functions

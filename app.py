@@ -398,14 +398,36 @@ if option == 'Manage Token':
 
         addToken_tx_hash = ex_contract.functions.addToken(
             token_symbol,
-            #token_contract.address
-            token_wallet
-        ).transact({'from': token_wallet, 'gas': 100000}) #Ganache Acc[0] - Token Wallet
+            token_contract.address
+            #token_wallet
+        ).transact({'from': exchange_wallet, 'gas': 100000}) #Ganache Acc[0] - Token Wallet
         addToken_tx_receipt = w3.eth.waitForTransactionReceipt(addToken_tx_hash)
 
 
         st.write("Add Token hash:", addToken_tx_hash)
         st.write("Add Token Receipt:", addToken_tx_receipt)
+    
+    if st.button("Check Ether Balance"):
+        st.write(f"{ex_contract.address}")
+        balance_wei = ex_contract.functions.getEthBalanceInWei().call()
+        balance_eth = w3.fromWei(balance_wei,"ether")
+        st.write(f"The balance of wei held by the smart contract is {balance_wei} wei")
+        # tx_hash = contract.functions.getEthBalanceInWei().transact({'from': contract.address, 'gas': 1000000})
+        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        # st.write("Transaction receipt mined:")
+        # st.write(dict(receipt))
+        st.write(f"The balance of Ether held by the smart contract is {balance_eth} ETH")
+
+    if st.button("Check Token Balance"):
+        st.write(f"{token_contract.address}")
+        balance_wei = token_contract.functions.balanceOf().call()
+        balance_eth = w3.fromWei(balance_wei,"ether")
+        st.write(f"The balance of wei held by the smart contract is {balance_wei} wei")
+        # tx_hash = contract.functions.getEthBalanceInWei().transact({'from': contract.address, 'gas': 1000000})
+        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        # st.write("Transaction receipt mined:")
+        # st.write(dict(receipt))
+        st.write(f"The balance of Ether held by the smart contract is {balance_eth} ETH")
 
 if option == 'About':
     st.subheader("About Section")

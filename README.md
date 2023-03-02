@@ -9,16 +9,16 @@ The decentralized exchange can create non-fangible token using the etherium bloc
 ## Team
 
 ### Course Instructor Adrian Rusli
-<img src="./images/Adrian Rusli - Instructor.jpg" width = "150"> <br>
+<img src="./images/Adrian Rusli - Instructor.png" width = "150"> <br>
 
 ### and Larry Hang
-<img src="./images/Larry Huang - TA.jpg" width = "150"> <br>
+<img src="./images/Larry Huang - TA.png" width = "150"> <br>
 
 ### Team Memebers Flora Zhao, Samuel Apakuki Nayacakalou, Md Muhasenul Haque
 
-<img src="./images/Xu_Flora_Zhao.jpg" width = "150"> <br>
-<img src="./images/Samuel_Nayacakalou.jpg" width = "150"> <br>
-<img src="./images/Md_Muhasenul_Haque.jpg" width = "150"> <br>
+<img src="./images/Xu_Flora_Zhao.png" width = "150"> <br>
+<img src="./images/Samuel_Nayacakalou.png" width = "150"> <br>
+<img src="./images/Md_Muhasenul_Haque.png" width = "150"> <br>
 
  
 ## Origin of the Project Concept 

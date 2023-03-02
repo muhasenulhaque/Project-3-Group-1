@@ -41,22 +41,6 @@ Our approach was try to understand the functionalities of the decentralized prje
 <img src="./images/Successfully Deposited  of 50 Ether.jpg" width = "150"> <br>
 
 
-## Team
-
-
-### Team Memebers Flora Zhao, Samuel Apakuki Nayacakalou, Md Muhasenul Haque
-<p float="left">
-    <img src="./images/Xu_Flora_Zhao.png" width = "100"> 
-    <img src="./images/Samuel_Nayacakalou.png" width = "100"> 
-    <img src="./images/Md_Muhasenul_Haque.png" width = "100"> 
-</p>
-
-### Course Instructor 
-### Adrian Rusli
-<img src="./images/Adrian Rusli - Instructor.png" width = "150"> <br>
-
-### and Larry Hang
-<img src="./images/Larry Huang - TA.png" width = "150"> <br>
 
 ## References 
 Imported SafeMath from 
@@ -88,17 +72,20 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 Imported ERC20.sol
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol";
 
-
 ## Team
 
-### Course Instructor Adrian Rusli
+
+### Team Memebers Flora Zhao, Samuel Apakuki Nayacakalou, Md Muhasenul Haque
+<p float="left">
+    <img src="./images/Xu_Flora_Zhao.png" width = "100"> 
+    <img src="./images/Samuel_Nayacakalou.png" width = "100"> 
+    <img src="./images/Md_Muhasenul_Haque.png" width = "100"> 
+</p>
+
+### Course Instructor 
+### Adrian Rusli
 <img src="./images/Adrian Rusli - Instructor.png" width = "150"> <br>
 
 ### and Larry Hang
 <img src="./images/Larry Huang - TA.png" width = "150"> <br>
 
-### Team Memebers Flora Zhao, Samuel Apakuki Nayacakalou, Md Muhasenul Haque
-
-<img src="./images/Xu_Flora_Zhao.png" width = "150"> <br>
-<img src="./images/Samuel_Nayacakalou.png" width = "150"> <br>
-<img src="./images/Md_Muhasenul_Haque.png" width = "150"> <br>

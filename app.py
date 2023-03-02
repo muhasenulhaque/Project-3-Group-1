@@ -165,19 +165,7 @@ if option == 'Deposit/Withdrawal':
         st.subheader("Deposit Token")
         deposit_symbol_name = st.text_input("Deposit Symbol Name eg.'FIXED'")
         deposit_amount_token = st.text_input("Deposit Number of token")
-
-################################################################################
-#   FUNCTION CALL TO EXCHANGE.SOL
-#
-        # Allow _spender to withdraw from your account, multiple times, up to the _value amount.
-        # If this function is called again it overwrites the current allowance with _value.
-        # function approve(address _spender, uint256 _amount) public returns (bool success) {
-        # approveToken_return = contract.functions.approve(
-        #     approve_address,
-        #     aprove_token_amount
-        # ).transact({'from': address, 'gas': 1000000})
         
-
     with col2:
         st.subheader("Deposit ETH")
         deposit_amount_ETH = st.text_input("Deposit Number of ETH")
@@ -342,7 +330,8 @@ if option == 'Manage Token':
 
 ################################################################################
 #   FUNCTION CALL TO FIXEDSUPPYTOKEN.SOL
-#
+#   Allow _spender to withdraw from your account, multiple times, up to the _value amount.
+#   If this function is called again it overwrites the current allowance with _value.
 #   function approve(address _spender, uint256 _amount) public returns (bool success) {
 
         if st.button("Allow Token to be used"):
@@ -369,13 +358,11 @@ if option == 'Manage Token':
         st.write("Sending to the EXchange smart contract address")  
         #st.write("Directly send a token from your address to another address.")
 
-        #Send _value amount of tokens to address _to
-        #function transfer(address _to, uint256 _value) public returns (bool success);
-
 ################################################################################
 #   FUNCTION CALL TO FIXEDSUPPYTOKEN.SOL
 #
-#    function transfer(address _to, uint256 _amount) public returns (bool success) {
+#   Send _value amount of tokens to address _to
+#   function transfer(address _to, uint256 _amount) public returns (bool success) {
 
         if st.button("Send Token"):                
             sendToken_tx_hash = token_contract.functions.transfer(
@@ -402,23 +389,16 @@ if option == 'Manage Token':
     st.write("Token contract:", token_contract.address)
     st.write("Exchange wallet:", exchange_wallet)
     st.write("Exchange contract:", ex_contract.address)
-    # # Load the contract
-    # ex_abi_file_path='./contracts/compiled/Exchange_abi.json'
-    # token_abi_file_path='./contracts/compiled/FixedSupplyToken_abi.json'
-    # exch_smart_contract_address='SMART_CONTRACT_ADDRESS'
-    # token_smart_contract_address ='TOKEN_SMART_CONTRACT_ADDRESS'
-    # ex_contract = load_contract(ex_abi_file_path,exch_smart_contract_address)  ##load Exchange smart contract
-    # token_contract = load_contract(token_abi_file_path,token_smart_contract_address)   ##load FixedSupplyToken smart contract
-    
 
     if st.button("Add Token"):
 
 ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
 #
-    # Token contract address: 0xA276143cF63A1C4Dd2Fd1c8687ac4D93Ea53314F
-    #exchange.sol:Smart Contract function call
-    #function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
+#    Token contract address: 0xA276143cF63A1C4Dd2Fd1c8687ac4D93Ea53314F
+#    exchange.sol:Smart Contract function call
+#    function addToken(string memory symbolName, address erc20TokenAddress) public onlyowner
+
         addToken_tx_hash = ex_contract.functions.addToken(
             token_symbol,
             #token_contract.address
@@ -463,69 +443,3 @@ if option == 'About':
     
 
 
-
-
-# ################################################################################
-# # Register New Artwork
-# ################################################################################
-# st.markdown("## Register New Artwork")
-
-# artwork_name = st.text_input("Enter the name of the artwork")
-# artist_name = st.text_input("Enter the artist name")
-# initial_appraisal_value = st.text_input("Enter the initial appraisal amount")
-# artwork_uri = st.text_input("Enter the URI to the artwork")
-
-# if st.button("Register Artwork"):
-#     tx_hash = contract.functions.registerArtwork(
-#         address,
-#         artwork_name,
-#         artist_name,
-#         int(initial_appraisal_value),
-#         artwork_uri
-#     ).transact({'from': address, 'gas': 1000000})
-#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#     st.write("Transaction receipt mined:")
-#     st.write(dict(receipt))
-# st.markdown("---")
-
-
-# ################################################################################
-# # Appraise Art
-# ################################################################################
-# st.markdown("## Appraise Artwork")
-# tokens = contract.functions.totalSupply().call()
-# token_id = st.selectbox("Choose an Art Token ID", list(range(tokens)))
-# new_appraisal_value = st.text_input("Enter the new appraisal amount")
-# report_uri = st.text_area("Enter notes about the appraisal")
-# if st.button("Appraise Artwork"):
-
-#     # Use the token_id and the report_uri to record the appraisal
-#     tx_hash = contract.functions.newAppraisal(
-#         token_id,
-#         int(new_appraisal_value),
-#         report_uri
-#     ).transact({"from": w3.eth.accounts[0]})
-#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#     st.write(receipt)
-# st.markdown("---")
-
-# ################################################################################
-# # Get Appraisals
-# ################################################################################
-# st.markdown("## Get the appraisal report history")
-# art_token_id = st.number_input("Artwork ID", value=0, step=1)
-# if st.button("Get Appraisal Reports"):
-#     appraisal_filter = contract.events.Appraisal.createFilter(
-#         fromBlock=0,
-#         argument_filters={"tokenId": art_token_id}
-#     )
-#     appraisals = appraisal_filter.get_all_entries()
-#     if appraisals:
-#         for appraisal in appraisals:
-#             report_dictionary = dict(appraisal)
-#             st.markdown("### Appraisal Report Event Log")
-#             st.write(report_dictionary)
-#             st.markdown("### Appraisal Report Details")
-#             st.write(report_dictionary["args"])
-#     else:
-#         st.write("This artwork has no new appraisals")

@@ -1,88 +1,86 @@
-# Ethereum Distributed Token Exchange
+# Bootcamp Project 3: Decentralized Trading Platform Token and Coin trading with Etherium  
 
-This repository is part of the [_Ethereum Developer Masterclass: ICO and Token Exchange with Solidity_](https://www.udemy.com/ethereum-masterclass/?couponCode=VOMTOMWEBSITE10) course on Udemy. The Token-Exchange can be tested with MetaMask and the Rinkeby Test-Net under [https://tomw1808.github.io/distributed_exchange_truffle_class_3/index.html](https://tomw1808.github.io/distributed_exchange_truffle_class_3/index.html)
-
-![distributed token exchange splash screen](exchange_animation.gif "The Distributed Token Exchange")
-
-The Exchange Smart-Contract has 3 functions:
-1. Funding: It's possible to deposit and withdraw both _tokens_ of any kind and Ether
-2. Trading: You can trade any kind of token against ether. Both market orders and limit orders. It's also possible to cancel an order.
-3. Manangement: It's possible to add new tokens on the fly.
-
-The Exchange is unit tested with Truffle's Test-Framework.
-
-All of this is also shown in the Course!
+<img src="./images/iStock-1323542329.jpg" width = "500"> <br>
 
 
-# Folder Structure
+## Executive summary: 
+The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can deposit ettherium in wallet, add token in the wallet through smart contract, then approve the added token in the wallet, can transfer from one address to another. Customer's loyalty programs can be done though the exchange where we issue token. Later this token can be applied to purchase different services. 
 
-* Genesis.json file is in _general files_ folder
-* Diagrams are written in https://www.draw.io - the files are in _general files_ folder
-* Every other folder follows the structure of the course
+## Team
 
-# Necessary Software
+### Course Instructor Adrian Rusli
+<img src="./images/Adrian Rusli - Instructor.jpg" width = "150"> <br>
 
-In order to work with the smart contracts and for the course you need
+### and Larry Hang
+<img src="./images/Larry Huang - TA.jpg" width = "150"> <br>
 
-1. the Node Package Manager
-2. Truffle
-3. Ethereumjs-TestRPC
-4. Geth
-5. MIST
-6. MetaMask
-7. The Chome-Browser
-8. On windows eventually the Git-Bash
+### Team Memebers Flora Zhao, Samuel Apakuki Nayacakalou, Md Muhasenul Haque
 
+<img src="./images/Xu_Flora_Zhao.jpg" width = "150"> <br>
+<img src="./images/Samuel_Nayacakalou.jpg" width = "150"> <br>
+<img src="./images/Md_Muhasenul_Haque.jpg" width = "150"> <br>
 
-# Knowlegde prior this course
+ 
+## Origin of the Project Concept 
+The idea of the project is to create a platform where people can trade coins and token within Etherium Technology.  We thought of a decentralized trading platform for trading coins and tokens. After research, we found there was already a project created by Thomas Wiesner regarding this matter where the front end is developed with .js file. We thought of understanding the proejct and communicating with streamlit front end. 
 
-* Read "Solidity in Depth" and "Solidity Examples" from the Solidity docs
-* Know what is a list and a linked list. A short intro will be given, but our DataStructures use linked lists.
+## Data Collection, Cleanup, and Exploration:
+We have reseached on available git hub libraries and found an wonderful work done by "Thomas Wiesne" on decentralized excahgne. The project files are in the following link. 
 
-# License
-The source-code provided in this Repository shall be licensed under the terms of the
-
-MIT License
-
-Copyright (c) [2017] [Thomas Wiesner]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-# Just interested in the code?
-
-1. Download necessary tools
-```
-npm install -g truffle
-```
-
-2. Download this repository:
-```
-git clone https://github.com/tomw1808/distributed_exchange_truffle_class_3.git
-cd  "Practical Part 11 - FINAL Project"
-```
-
-3. With a running Ethereum Blockchain Node in the background (such as the ethereumjs-testrpc) do
-```
-truffle migrate
-npm run dev
-```
+https://github.com/tomw1808/distributed_exchange_truffle_class_3
 
 
-# About me
-If you are interested about my work, what I do and where you can get more courses, material and information, checkout my blog: [https://vomtom.at](https://vomtom.at)
+## Approach
+Our approach was try to understand the functionalities of the decentralized prject and then use the steamlit front end which is tought in the course to connect front end with the back end. We tried to understand and upgrade the codes from  
+
+
+## Demo
+
+### Successfull Deployment of Codes in Remix Development Environment
+<img src="./images/Successful_Deployment_of_Exchange_sol.jpg" width = "150"> <br>
+<img src="./images/Successful_Deployment_of_FixedSupplyToken_sol.jpg" width = "150"> <br>
+
+### Successfull Transaction of in the Exchange 
+
+### Sucessfully added token
+<img src="./images/SuccessfullyAddedToken_MFS.jpg" width = "150"> <br>
+
+### Sucessfully approved token
+<img src="./images/SuccessfullyApprovedToken_MFS.jpg" width = "150"> <br>
+
+### Successfully transferred Token
+<img src="./images/SuccessfullyTransferred100Token_MFS.jpg" width = "150"> <br>
+
+### Successfully Deposited Ether
+<img src="./images/Successfully Deposited  of 50 Ether.jpg" width = "150"> <br>
+
+
+## References 
+Imported SafeMath from 
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
+
+Imported ERC20.sol
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol";
+
+## Difficulties Faced 
+We faced a bit of the difficulty in deplying the project beacuse of differnet versions of solidity. We tried checked and upgraded with recent solidy version. 
+
+We faced a bit of difficulty in interacting the back end with the front end. We could debug the issue with breaking the code in steps. 
+
+
+## Future Scope of Work
+
+Creating mobile app to interact with the clients for the front end. 
+Going for Initial Coin Offerings for the new coins introduced in the exchange. 
+
+
+## Conclusion 
+We could make the decentralized exchange with the front end of steamlit which can transact any kind of ether and tokens using etherium techonology. The exchange can also create token, buy, sell and transfer token . 
+
+
+## References 
+Imported SafeMath from 
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
+
+Imported ERC20.sol
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol";

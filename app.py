@@ -81,11 +81,11 @@ token_smart_contract_address ='TOKEN_SMART_CONTRACT_ADDRESS'
 ex_contract = load_contract(ex_abi_file_path,exch_smart_contract_address)  ##load Exchange smart contract
 token_contract = load_contract(token_abi_file_path,token_smart_contract_address)   ##load FixedSupplyToken smart contract
 
-# Save Ganache Workspace as "FRAGILE-BRAKE", with the following wallet addresses
+# Save Ganache Workspace as "SUBSTANTIAL-PLAY", with the following wallet addresses
 # This was done for persistance between coding sessions
-token_wallet = w3.eth.accounts[0]           # 0x76FE9b2683bc5E391b8c74123a70b26A85429345
-exchange_wallet = w3.eth.accounts[1]        # 0x22212a5523fc90739046C49FeE7806bE261A9092
-user_wallet = w3.eth.accounts[2]            # 0x9F94916A80F0B2174ece3eB665ae3d4AA86ba12F
+token_wallet = w3.eth.accounts[0]           # 0xebb4134ef71F2af6a3B99e812Cf50B6Ef8228C6e
+exchange_wallet = w3.eth.accounts[1]        # 0x095fadC32C6aAC49888C2282E249575c32882e20
+user_wallet = w3.eth.accounts[2]            # 0x3cAd17eE3Bb982c130238f9265ce6B4D2A3A95a1
 
 #   Display Title
 
@@ -112,8 +112,11 @@ option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'F
 ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
 #
-# # Token getBalance               
-# getBalance = contract.functions.getBalance().transact(
+# # Token getBalance  
+# 
+#     function getBalance(string memory symbolName) view public returns (uint) {
+#              
+#       getBalance = contract.functions.getBalance().transact(
 #             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 #             )
 
@@ -121,7 +124,11 @@ option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'F
 
 #st.sidebar.subheader(f"Token Balance:", {token_balance})
 st.sidebar.subheader("Token Balance:")
-
+if st.sidebar.button("Token Balance"):
+    #st.sidebar.write(f"{ex_contract.address}")
+    balance_of_token  = ex_contract.functions.getBalance("FIXED").call()
+    #balance_eth = w3.fromWei(balance_wei,"ether")
+    st.sidebar.write(f"The balance of token held by the smart contract is {balance_of_token}")
 ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
 #
@@ -167,6 +174,12 @@ if option == 'Deposit/Withdrawal':
         st.subheader("Deposit Token")
         deposit_symbol_name = st.text_input("Deposit Symbol Name eg.'FIXED'")
         deposit_amount_token = st.text_input("Deposit Number of token")
+        accounts = w3.eth.accounts
+        user_wallet = st.selectbox("Select Account to Deposit to    ", options=accounts)
+        st.write("token_wallet = accounts[0] 0xebb4134ef71F2af6a3B99e812Cf50B6Ef8228C6e")
+        st.write("exchange_wallet = accounts[1] 0x095fadC32C6aAC49888C2282E249575c32882e20")
+        st.write("user_wallet = accounts[2]  0x3cAd17eE3Bb982c130238f9265ce6B4D2A3A95a1")
+        st.markdown("---")
 
  ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
@@ -176,7 +189,9 @@ if option == 'Deposit/Withdrawal':
                 deposit_symbol_name,
                 int(deposit_amount_token)
             ).transact(
-                {'from':user_wallet,'value':int(deposit_amount_token),'gas': 1000000}
+#                {'from':user_wallet,'gas': 1000000} # Use user wallet address here
+                {'from':user_wallet,'gas': 1000000}
+
                 )
             receipt = w3.eth.waitForTransactionReceipt(tx_hash)
             st.write(receipt)
@@ -199,7 +214,7 @@ if option == 'Deposit/Withdrawal':
 
         if st.button("Deposit"):
             tx_hash = ex_contract.functions.depositEther().transact(
-                {'from':user_wallet,'value':wei_deposit_amount,'gas': 1000000}
+                {'from':exchange_wallet,'value':wei_deposit_amount,'gas': 1000000}
                 )
             receipt = w3.eth.waitForTransactionReceipt(tx_hash)
             st.write(receipt)
@@ -220,10 +235,28 @@ if option == 'Deposit/Withdrawal':
         st.subheader("Withdraw Token")
         withdraw_symbol_name = st.text_input("Withdraw Symbol Name eg.'FIXED'")
         withdraw_amount_token = st.text_input("Withdraw Number of token")
-        
-################################################################################
+        accounts = w3.eth.accounts
+        user_wallet = st.selectbox("Select Account to Withdraw from", options=accounts)
+        st.write("token_wallet = accounts[0] 0xebb4134ef71F2af6a3B99e812Cf50B6Ef8228C6e")
+        st.write("exchange_wallet = accounts[1] 0x095fadC32C6aAC49888C2282E249575c32882e20")
+        st.write("user_wallet = accounts[2]  0x3cAd17eE3Bb982c130238f9265ce6B4D2A3A95a1")
+        st.markdown("---")
+
+ ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
 #
+        if st.button("Withdraw Token"):
+            tx_hash = ex_contract.functions.withdrawToken(
+                withdraw_symbol_name,
+                int(withdraw_amount_token)
+            ).transact(
+#                {'from':user_wallet,'gas': 1000000} # Use user wallet address here
+                {'from':user_wallet,'gas': 1000000}
+
+                )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.write(receipt)
+            st.markdown(f"{withdraw_amount_token} Token Withdrawn")  
 
     with col2_2:
         st.subheader("Withdraw ETH")
@@ -417,7 +450,7 @@ if option == 'Manage Token':
 
     st.subheader("Add Token")
     token_symbol = st.text_input("Token Symbol eg. FIXED")
-    token_address = st.text_input("Token address eg. 0x1362FE...")
+    token_contract_address = st.text_input("Token address eg. 0x1362FE...")
 
     st.write("Using the smart contract address of the Token:", token_contract.address)
     balance = w3.eth.getBalance(token_wallet) #Ganache Acc[0] - Token Wallet
@@ -438,8 +471,9 @@ if option == 'Manage Token':
 
         addToken_tx_hash = ex_contract.functions.addToken(
             token_symbol,
-            token_contract.address
+            #token_contract.address
             #token_wallet
+            token_contract_address
         ).transact({'from': exchange_wallet, 'gas': 100000}) #Ganache Acc[0] - Token Wallet
         addToken_tx_receipt = w3.eth.waitForTransactionReceipt(addToken_tx_hash)
 
@@ -447,7 +481,7 @@ if option == 'Manage Token':
         st.write("Add Token hash:", addToken_tx_hash)
         st.write("Add Token Receipt:", addToken_tx_receipt)
     
-    if st.button("Check Ether Balance"):
+    if st.button("Check Eth Balance"):
         st.write(f"{ex_contract.address}")
         balance_wei = ex_contract.functions.getEthBalanceInWei().call()
         balance_eth = w3.fromWei(balance_wei,"ether")

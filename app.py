@@ -111,15 +111,9 @@ option = st.sidebar.selectbox("Which Option?", ('Home', 'Deposit/Withdrawal', 'F
 
 ################################################################################
 #   FUNCTION CALL TO EXCHANGE.SOL
-#
-# # Token getBalance  
-# 
-#     function getBalance(string memory symbolName) view public returns (uint) {
-#              
-#       getBalance = contract.functions.getBalance().transact(
-#             {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
-#             )
-
+#          
+#        getBalance = contract.functions.getBalance().transact(
+#                    {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
 st.sidebar.subheader("Token Balance:")
 if st.sidebar.button("Token Balance"):
     #st.sidebar.write(f"{ex_contract.address}")
@@ -188,11 +182,8 @@ if option == 'Deposit/Withdrawal':
             tx_hash = ex_contract.functions.depositToken(
                 deposit_symbol_name,
                 int(deposit_amount_token)
-            ).transact(
-#                {'from':user_wallet,'gas': 1000000} # Use user wallet address here
-                {'from':user_wallet,'gas': 1000000}
+            ).transact({'from':user_wallet,'gas': 1000000})
 
-                )
             receipt = w3.eth.waitForTransactionReceipt(tx_hash)
             st.write(receipt)
             st.markdown(f"{deposit_amount_token} Token deposited")  
@@ -200,7 +191,6 @@ if option == 'Deposit/Withdrawal':
 
     with col2:
         st.subheader("Deposit ETH")
-        #deposit_amount_ETH = st.text_input("Deposit Number of ETH")
 
         ################################################################################
         #   FUNCTION CALL TO EXCHANGE.SOL
@@ -225,8 +215,6 @@ if option == 'Deposit/Withdrawal':
             st.markdown(f"{deposit_amount_ETH} ETH deposited")
 
         if st.button("Check Eth Balance"):
-#            st.write(f"{ex_contract.address}")
-#            balance_wei = ex_contract.functions.getEthBalanceInWei().call()
             balance_wei = ex_contract.functions.getEthBalanceInWei().transact(
                 {'from':user_wallet,'gas': 1000000}
             )
@@ -250,9 +238,9 @@ if option == 'Deposit/Withdrawal':
         st.write("user_wallet = accounts[2]  0x3cAd17eE3Bb982c130238f9265ce6B4D2A3A95a1")
         st.markdown("---")
 
- ################################################################################
-#   FUNCTION CALL TO EXCHANGE.SOL
-#
+        ################################################################################
+        #   FUNCTION CALL TO EXCHANGE.SOL
+        #
         if st.button("Withdraw Token"):
             tx_hash = ex_contract.functions.withdrawToken(
                 withdraw_symbol_name,

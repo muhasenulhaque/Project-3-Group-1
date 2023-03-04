@@ -98,25 +98,23 @@ You can buy/sell tokens and you can check order books in this page.
 <img src="./images/token_trading_page.png" width = "300"> <br>
 
 #### Successfully transferred Token
-<img src="./images/SuccessfullyTransferred100Token_MFS.jpg" width = "150"> <br>
+<img src="./images/SuccessfullyTransferred100Token_MFS.jpg" width = "300"> <br>
 
 #### Buy Token/Sell Token/Order Book
 
-<img src="./images/buy_token_1.png" width = "150"> <br>
+<img src="./images/buy_token_1.png" width = "300"> <br>
 
-<img src="./images/buy_token_2.png" width = "150"> <br>
+<img src="./images/buy_token_2.png" width = "300"> <br>
 
-<img src="./images/buy_token_3.png" width = "150"> <br>
+<img src="./images/buy_token_3.png" width = "300"> <br>
 
-<img src="./images/sell_token_2.png" width = "150"> <br>
+<img src="./images/sell_token_2.png" width = "300"> <br>
 
-<img src="./images/sell_token_3.png" width = "150"> <br>
+<img src="./images/sell_token_3.png" width = "300"> <br>
 
+<img src="./images/price_meet_before.png" width = "300"> <br>
 
-<img src="./images/price_meet_before.png" width = "150"> <br>
-
-
-<img src="./images/price_meet_after.png" width = "150"> <br>
+<img src="./images/price_meet_after.png" width = "300"> <br>
 
 ## References 
 Imported SafeMath from 

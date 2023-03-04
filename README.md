@@ -23,19 +23,19 @@ Our approach was try to understand the functionalities of the decentralized prje
 ## Demo
 
 ### Successfull Deployment of Codes in Remix Development Environment
-<img src="./images/Successful_Deployment_of_Exchange_sol.jpg" width = "150"> <br>
-<img src="./images/Successful_Deployment_of_FixedSupplyToken_sol.jpg" width = "150"> <br>
+<img src="./images/Successful_Deployment_of_Exchange_sol.jpg"> <br>
+<img src="./images/Successful_Deployment_of_FixedSupplyToken_sol.jpg"> <br>
 
 
 ### Home Page Options
 #### There are three tabs: Manage Token, Fund Management and Token Trading
 
-<img src="./images/homepage_options.png" width = "300"> <br>
+<img src="./images/homepage_options.png"> <br>
 
 ### Manage Token Page
 - Two main functions: Add Token and Approve Token Allowance
 
-<img src="./images/manage_token_page.png" width = "300"> <br>
+<img src="./images/manage_token_page.png"> <br>
 
 - Only the admin of the exchange can add token, so please choose the wallet address of the exchange
 - You can only add new tokens that the exchange hasn't added before
@@ -43,50 +43,50 @@ Our approach was try to understand the functionalities of the decentralized prje
 
 #### Add Token Successfully
 ##### Add Token Front End
-<img src="./images/add_token_successfully.png" width = "300"> <br>
+<img src="./images/add_token_successfully.png" > <br>
 ##### Successful Transaction of added token
-<img src="./images/SuccessfullyAddedToken_MFS.jpg" width = "300"> <br>
+<img src="./images/SuccessfullyAddedToken_MFS.jpg"> <br>
 
 #### Approve Token Allowance Successfully
 ##### Approve Token Allowance Front End
-<img src="./images/approve_token_allowance_successfully.png" width = "300"> <br>
+<img src="./images/approve_token_allowance_successfully.png"> <br>
 ##### Sucessfully Approved Token Back End
-<img src="./images/SuccessfullyApprovedToken_MFS.jpg" width = "300"> <br>
+<img src="./images/SuccessfullyApprovedToken_MFS.jpg" > <br>
 
 
 ### Fund Management
 #### The layout and functions for fund management page is as below:
-<img src="./images/fund_management_page.png" width = "300"> <br>
+<img src="./images/fund_management_page.png" > <br>
 
 ### Deposit Token
 #### Deposit Token Front End
-<img src="./images/deposit_token_successfully.png" width = "300"> <br>
+<img src="./images/deposit_token_successfully.png" > <br>
 
 #### Withdraw Token
-<img src="./images/withdraw_token_successfully.png" width = "300"> <br>
+<img src="./images/withdraw_token_successfully.png" > <br>
 
 #### Check Token Balance
 
-<img src="./images/check_token_balance.png" width = "300"> <br>
+<img src="./images/check_token_balance.png"> <br>
 
 #### Deposit ETH
 ##### Wallet ether balance in Ganache before depositing ether to the DEX
 
-<img src="./images/before_deposit_eth_ganache.png" width = "300"> <br>
+<img src="./images/before_deposit_eth_ganache.png" > <br>
 
 #### Successfully Deposited Ether
-<img src="./images/Successfully Deposited  of 50 Ether.jpg" width = "300"> <br>
+<img src="./images/Successfully Deposited  of 50 Ether.jpg" > <br>
 
 ##### Deposit 10 ETH 
 
-<img src="./images/deposit_eth_successfully.png" width = "300"> <br>
-<img src="./images/ether_balance_check_in_DEX.png" width = "300"> <br>
-<img src="./images/ether_balance_check_in_ganache.png" width = "300"> <br>
+<img src="./images/deposit_eth_successfully.png" > <br>
+<img src="./images/ether_balance_check_in_DEX.png" > <br>
+<img src="./images/ether_balance_check_in_ganache.png" > <br>
 
 #### Withdraw ETH
 
-<img src="./images/withdraw_eth_successfully.png" width = "300"> <br>
-<img src="./images/ether_balance_check_after_withdraw_in_DEX.png" width = "300"> <br>
+<img src="./images/withdraw_eth_successfully.png" > <br>
+<img src="./images/ether_balance_check_after_withdraw_in_DEX.png" > <br>
 
 #### Check Ether Balance
 
@@ -95,22 +95,22 @@ Our approach was try to understand the functionalities of the decentralized prje
 ### Token Trading Page
 #### You can buy/sell tokens and you can check order books in this page.
 
-<img src="./images/token_trading_page.png" width = "300"> <br>
+<img src="./images/token_trading_page.png" > <br>
 
 #### Buy Token/Sell Token/Order Book
 
 <p float="left">
-    <img src="./images/buy_token_1.png" width = "450"> 
-    <img src="./images/buy_token_2.png" width = "450"> 
-    <img src="./images/buy_token_3.png" width = "450"> 
-    <img src="./images/sell_token_2.png" width = "450"> 
-    <img src="./images/sell_token_3.png" width = "450">
-    <img src="./images/price_meet_before.png" width = "450">
-    <img src="./images/price_meet_after.png" width = "450">
+    <img src="./images/buy_token_1.png" > 
+    <img src="./images/buy_token_2.png" > 
+    <img src="./images/buy_token_3.png" > 
+    <img src="./images/sell_token_2.png" > 
+    <img src="./images/sell_token_3.png" >
+    <img src="./images/price_meet_before.png" >
+    <img src="./images/price_meet_after.png" >
 </p>
 
 #### Successfully transferred Token
-<img src="./images/SuccessfullyTransferred100Token_MFS.jpg" width = "300"> <br>
+<img src="./images/SuccessfullyTransferred100Token_MFS.jpg" > <br>
 
 ## References 
 Imported SafeMath from 

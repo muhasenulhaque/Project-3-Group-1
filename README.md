@@ -3,8 +3,8 @@
 <img src="./images/iStock-1323542329.jpg" width = "500"> <br>
 
 
-## __Executive summary__: 
-The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can deposit or withdraw etherium in wallet, add token in the wallet through smart contract, then approve the added token allowance and then deposit the token to the DEX, buy or sell the token on the DEX and check the order books. 
+## Executive summary: 
+The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can deposit ettherium in wallet, add token in the wallet through smart contract, then approve the added token in the wallet, can transfer from one address to another. Customer's loyalty programs can be done though the exchange where we issue token. Later this token can be applied to purchase different services. 
 
 
 ## __Origin of the Project Concept__ 
@@ -87,26 +87,44 @@ We updated the code, compiled it with a newer version of pragma ^0.5.0 instead o
 
 #### Check Ether Balance
 
-as shown in the above
+##### As shown in the above
 
 ### Token Trading Page
-You can buy/sell tokens and you can check order books in this page.
+#### You can buy/sell tokens and you can check order books in this page.
 
 <img src="./images/token_trading_page.png" > <br>
 
 #### Buy Token/Sell Token/Order Book
 
-<img src="./images/buy_token_1.png" > <br>
+<p float="left">
+    <img src="./images/buy_token_1.png" > 
+    <img src="./images/buy_token_2.png" > 
+    <img src="./images/buy_token_3.png" > 
+    <img src="./images/sell_token_2.png" > 
+    <img src="./images/sell_token_3.png" >
+    <img src="./images/price_meet_before.png" >
+    <img src="./images/price_meet_after.png" >
+</p>
 
 <img src="./images/buy_token_2.png" > <br>
 
 <img src="./images/buy_token_3.png" > <br>
+
+
+
+
+
+
+
 <img src="./images/sell_token_2.png" > <br>
+
 <img src="./images/sell_token_3.png" > <br>
+
+
 <img src="./images/price_meet_before.png" > <br>
+
+
 <img src="./images/price_meet_after.png" > <br>
-#### Successfully transferred Token
-<img src="./images/SuccessfullyTransferred100Token_MFS.jpg" > <br>
 
 ## __Difficulties Faced__ 
 - Understanding the different concepts of token address, user wallet address, exchange address etc. and call/choose the right address for the input of the front end.
@@ -135,7 +153,16 @@ You can buy/sell tokens and you can check order books in this page.
 
 - https://github.com/tomw1808/distributed_exchange_truffle_class_3
 
-- Imported SafeMath from 
+Creating mobile app to interact with the clients for the front end. 
+Going for Initial Coin Offerings for the new coins introduced in the exchange. 
+
+
+## Conclusion 
+We could make the decentralized exchange with the front end of steamlit which can transact any kind of ether and tokens using etherium techonology. The exchange can also create token, buy, sell and transfer token . 
+
+
+## References 
+Imported SafeMath from 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
 
 - Imported ERC20.sol

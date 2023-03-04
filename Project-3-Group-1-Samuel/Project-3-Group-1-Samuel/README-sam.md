@@ -88,16 +88,39 @@ Deposit 10 ETH
 
 <img src="./images/withdraw_eth_successfully.png" > <br>
 <img src="./images/ether_balance_check_after_withdraw_in_DEX.png" > <br>
-<img src="./images/ether_balance_check_after_withdraw_in_ganache.png" > <br>
-
-
-
-
 
 #### Check Ether Balance
 
+as shown in the above
+
+### Token Trading Page
+You can buy/sell tokens and you can check order books in this page.
+
+<img src="./images/token_trading_page.png" > <br>
+
+#### Buy Token/Sell Token/Order Book
+
+<img src="./images/buy_token_1.png" > <br>
+
+<img src="./images/buy_token_2.png" > <br>
+
+<img src="./images/buy_token_3.png" > <br>
 
 
+
+
+
+
+
+<img src="./images/sell_token_2.png" > <br>
+
+<img src="./images/sell_token_3.png" > <br>
+
+
+<img src="./images/price_meet_before.png" > <br>
+
+
+<img src="./images/price_meet_after.png" > <br>
 
 ## References 
 Imported SafeMath from 

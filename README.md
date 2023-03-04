@@ -98,6 +98,7 @@ Our approach was try to understand the functionalities of the decentralized prje
 <img src="./images/token_trading_page.png" width = "300"> <br>
 
 #### Buy Token/Sell Token/Order Book
+
 <p float="left">
     <img src="./images/buy_token_1.png" width = "300"> <br>
     <img src="./images/buy_token_2.png" width = "300"> <br>
@@ -107,6 +108,7 @@ Our approach was try to understand the functionalities of the decentralized prje
     <img src="./images/price_meet_before.png" width = "300"> <br>
     <img src="./images/price_meet_after.png" width = "300"> <br>
 </p>
+
 #### Successfully transferred Token
 <img src="./images/SuccessfullyTransferred100Token_MFS.jpg" width = "300"> <br>
 

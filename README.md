@@ -28,7 +28,7 @@ Our approach was try to understand the functionalities of the decentralized prje
 
 
 ### Home Page Options
-Three tabs: Manage Token, Fund Management and Token Trading
+#### There are three tabs: Manage Token, Fund Management and Token Trading
 
 <img src="./images/homepage_options.png" width = "300"> <br>
 

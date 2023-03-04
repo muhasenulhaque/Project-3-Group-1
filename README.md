@@ -4,8 +4,7 @@
 
 
 ## Executive summary: 
-The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can deposit ettherium in wallet, add token in the wallet through smart contract, then approve the added token in the wallet, can transfer from one address to another. Customer's loyalty programs can be done though the exchange where we issue token. Later this token can be applied to purchase different services. 
-
+The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can add token in the wallet through smart contract, then approve the added token in the wallet, deposit ettherium in wallet, can transfer from one address to another. 
 
 ## Origin of the Project Concept 
 The idea of the project is to create a platform where people can trade coins and token within Etherium Technology.  We thought of a decentralized trading platform for trading coins and tokens. After research, we found there was already a project created by Thomas Wiesner regarding this matter where the front end is developed with .js file. We thought of understanding the proejct and communicating with streamlit front end. 
@@ -136,6 +135,10 @@ We could make the decentralized exchange with the front end of steamlit which ca
 
 
 ## References 
+<img src="./images/udemy_course.png" > <br>
+
+https://github.com/tomw1808/distributed_exchange_truffle_class_3
+
 Imported SafeMath from 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
 

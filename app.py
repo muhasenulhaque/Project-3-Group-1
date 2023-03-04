@@ -159,7 +159,6 @@ if option == 'Fund Management':
                 {
                 # the transaction is initiated from the wallet address to the smart contract address
                 'from': user_wallet_address, 
-                'value':wei_withdraw_amount,
                 'gas': 1000000,
                 'to':contract.address
                 }

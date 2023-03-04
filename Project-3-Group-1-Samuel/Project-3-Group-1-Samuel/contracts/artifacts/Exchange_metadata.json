@@ -1,0 +1,722 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_priceInWei",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_orderKey",
+						"type": "uint256"
+					}
+				],
+				"name": "BuyOrderCanceled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_priceInWei",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_orderKey",
+						"type": "uint256"
+					}
+				],
+				"name": "BuyOrderFulfilled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DepositForEthReceived",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "DepositForTokenReceived",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_who",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amountTokens",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_priceInWei",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_orderKey",
+						"type": "uint256"
+					}
+				],
+				"name": "LimitBuyOrderCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_who",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amountTokens",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_priceInWei",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_orderKey",
+						"type": "uint256"
+					}
+				],
+				"name": "LimitSellOrderCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_priceInWei",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_orderKey",
+						"type": "uint256"
+					}
+				],
+				"name": "SellOrderCanceled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_priceInWei",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_orderKey",
+						"type": "uint256"
+					}
+				],
+				"name": "SellOrderFulfilled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "_token",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "TokenAddedToSystem",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "WithdrawalEth",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "_symbolIndex",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "_timestamp",
+						"type": "uint256"
+					}
+				],
+				"name": "WithdrawalToken",
+				"type": "event"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "erc20TokenAddress",
+						"type": "address"
+					}
+				],
+				"name": "addToken",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "priceInWei",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "buyToken",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "isSellOrder",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "priceInWei",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "offerKey",
+						"type": "uint256"
+					}
+				],
+				"name": "cancelOrder",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [],
+				"name": "depositEther",
+				"outputs": [],
+				"payable": true,
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "depositToken",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					}
+				],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					}
+				],
+				"name": "getBuyOrderBook",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "getEthBalanceInWei",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					}
+				],
+				"name": "getSellOrderBook",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					}
+				],
+				"name": "getSymbolIndexOrThrow",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					}
+				],
+				"name": "hasToken",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "priceInWei",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "sellToken",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amountInWei",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawEther",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "symbolName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawToken",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {}
+		},
+		"userdoc": {
+			"methods": {
+				"addToken(string,address)": {
+					"notice": "///////////////////"
+				},
+				"buyToken(string,uint256,uint256)": {
+					"notice": "////////////////////////"
+				},
+				"cancelOrder(string,bool,uint256,uint256)": {
+					"notice": "///////////////////////////"
+				},
+				"depositEther()": {
+					"notice": "///////////////////////////////"
+				},
+				"depositToken(string,uint256)": {
+					"notice": "///////////////////////////////"
+				},
+				"getBuyOrderBook(string)": {
+					"notice": "//////////////////////////"
+				},
+				"getSellOrderBook(string)": {
+					"notice": "//////////////////////////"
+				},
+				"sellToken(string,uint256,uint256)": {
+					"notice": "////////////////////////"
+				}
+			}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Exchange.sol": "Exchange"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Exchange.sol": {
+			"keccak256": "0x20f3094a5b35f5f07bf92d9bc81377dc28b3c1a88460cec3b055b5766ef021f3",
+			"urls": [
+				"bzz-raw://f4cf461a540f561a70365598d506d7886dea20fc1ebd1b799719db2731367d29",
+				"dweb:/ipfs/QmTyZqG8bPgRpWqDwL9Ft98kCtLykDGU2STrH5ErpaZ2SK"
+			]
+		},
+		"contracts/FixedSupplyToken.sol": {
+			"keccak256": "0x0650a292e972cd5a8e0b91dee5f6ac1153cace4656cf14adf63693285f6723de",
+			"urls": [
+				"bzz-raw://f1adacade941a06d97a6c376994ff4086f3232d19973b30684230cb43bb33351",
+				"dweb:/ipfs/QmeTJLKha3azToz6Yppj4jUYhhd4zjNT7ntqLFvQBiBs8Z"
+			]
+		},
+		"contracts/owned.sol": {
+			"keccak256": "0x16d4b13476f5d54071d23115887d1e7b480841b6f948e5b94d96eb3b930146b9",
+			"urls": [
+				"bzz-raw://e812d204dc7463301d10d9376b5a25c6e89a28b878eeb8f20995760c78c8e76b",
+				"dweb:/ipfs/QmRwXkJc7ZwWxhkcLQ1Q4mqdnVp9RzdRQ4tx4PG99inXMX"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/GSN/Context.sol": {
+			"keccak256": "0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061",
+			"urls": [
+				"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436",
+				"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol": {
+			"keccak256": "0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076",
+			"urls": [
+				"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f",
+				"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0xb15af804e2bc97db51e4e103f13de9fe13f87e6b835d7a88c897966c0e58506e",
+			"urls": [
+				"bzz-raw://1e8cff8437557fc915a3bed968fcd8f2df9809599e665ef69c2c9ce628548055",
+				"dweb:/ipfs/QmP5spYP8vs2jvLF8zNrXUbqB79hMsoEvMHiLcBxerWKcm"
+			]
+		},
+		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9",
+			"urls": [
+				"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91",
+				"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc"
+			]
+		}
+	},
+	"version": 1
+}

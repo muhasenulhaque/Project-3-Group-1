@@ -89,21 +89,6 @@ option = st.sidebar.selectbox("Which Option?", ('Manage Token','Fund Management'
 # st.sidebar.write(f"The Token Smart Contract Address is : {token_contract.address}")
 # st.sidebar.write(f"The User Wallet Address Selected is : {user_wallet_address}")
 
-# # Check Ether Balance
-# if st.sidebar.button("Check Ether Balance"):
-#     balance_wei = contract.functions.getEthBalanceInWei().call({'from':user_wallet_address,'gas':1000000})
-#     balance_eth = w3.fromWei(balance_wei,"ether")
-#     st.sidebar.write(f"The balance of Ether held by the smart contract is {balance_eth:.2f} ETH")
-# st.sidebar.markdown("---")
-
-# # Check Token Balance
-# symbol_name=st.sidebar.text_input("Please input the symbol name to check balance")
-# if st.sidebar.button("Check Token Balance"):
-#     balance_token = contract.functions.getBalance(symbol_name).call({'from':user_wallet_address,'gas':1000000})
-
-#     st.sidebar.write(f"The balance of {symbol_name}  is {balance_token} ")
-#     st.markdown("---")
-
 ###########################################################################################################################################
 
                                             #OPTION "Fund Management" SELECTED

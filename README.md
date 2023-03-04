@@ -70,13 +70,14 @@ The layout and functions for fund management page is as below:
 <img src="./images/check_token_balance.png" width = "300"> <br>
 
 #### Deposit ETH
-wallet ether balance in Ganache before depositing ether to the DEX
+##### Wallet ether balance in Ganache before depositing ether to the DEX
+
 <img src="./images/before_deposit_eth_ganache.png" width = "300"> <br>
 
 #### Successfully Deposited Ether
 <img src="./images/Successfully Deposited  of 50 Ether.jpg" width = "300"> <br>
 
-Deposit 10 ETH 
+##### Deposit 10 ETH 
 
 <img src="./images/deposit_eth_successfully.png" width = "300"> <br>
 <img src="./images/ether_balance_check_in_DEX.png" width = "300"> <br>
@@ -89,7 +90,7 @@ Deposit 10 ETH
 
 #### Check Ether Balance
 
-as shown in the above
+##### As shown in the above
 
 ### Token Trading Page
 You can buy/sell tokens and you can check order books in this page.

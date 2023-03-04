@@ -1,9 +1,26 @@
+    #   Project-3-Group-1
+    #   *****************
+
+    #   Group Membere:  Xu (Flora) Zhao
+    #                   Md Muhasenul Haque
+    #                   Samuel Nayacakalou
+
+    #   Date:           March 2023
+
+    #   Original Code:  https://github.com/tomw1808/distributed_exchange_truffle_class_3
+
+
+
 import os
 import json
 from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
 import streamlit as st
+
+
+#   SET STREAMLIT PAGE LAYOUT TO "WIDE"
+st.set_page_config(layout="wide")
 
 load_dotenv()
 
@@ -16,23 +33,15 @@ w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 # 2. Connects to the contract using the contract address and ABI
 ################################################################################
 
-
-@st.cache(allow_output_mutation=True) 
-
-
-################################################################################
-# @st.cache_data(allow_output_mutation=True) 
-################################################################################
-
-def load_contract():
+@st.cache_resource()
+def load_contract(abi_file_path,env_keywords):
 
     # Load the contract ABI
-    with open(Path('./contracts/compiled/Exchange_abi.json')) as f:
+    with open(Path(abi_file_path)) as f:
         contract_abi = json.load(f)
 
     # Set the contract address (this is the address of the deployed contract)
-    contract_address = os.getenv("SMART_CONTRACT_ADDRESS")
-    # st.write("contract address******",contract_address)
+    contract_address = os.getenv(env_keywords)
 
     # Get the contract
     contract = w3.eth.contract(
@@ -43,220 +52,289 @@ def load_contract():
     return contract
 
 
-# Load the contract
-contract = load_contract()
-st.write("contract address******",contract.address)
+# Set parramatters for the laod_contract() function
+ex_abi_file_path='./contracts/compiled/Exchange_abi.json'
+token_abi_file_path='./contracts/compiled/FixedSupplyToken_abi.json'
+ex_env_keywords='SMART_CONTRACT_ADDRESS'
+token_env_keywords='TOKEN_SMART_CONTRACT_ADDRESS'
+
+# Load Exchange smart contract
+contract = load_contract(ex_abi_file_path,ex_env_keywords)  
+
+# Load FixedSupplyToken smart contract
+token_contract = load_contract(token_abi_file_path,token_env_keywords)   
+
+####################################################################################################################
+#   Display Title
+st.markdown(""" <style> .font {
+font-size:50px ; font-family: 'Cooper Black'; color: #FF9633;} 
+</style> """, unsafe_allow_html=True)
+st.markdown('<p class="font">Welcome to MSF Decentralized Token Exchange</p>', unsafe_allow_html=True)
 
 
-st.title("Welcome to our DEX Center!!!")
-
-
-st.write("***************************")
-
-##################################################################################################
-# For Admin of the DEX
-
-# Adding New Tokens
-##################################################################################################
-token_symbolName = st.text_input("Enter the symbol name of the token")
-address= st.text_input("Enter the wallet address")
-
-if st.button("Add Token"):
-    tx_hash = contract.functions.addToken(
-        token_symbolName,
-        address
-    ).transact({'from': address, 'gas': 1000000})
-    
-    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-    st.write("Transaction receipt mined:")
-    st.write(dict(receipt))
 st.markdown("---")
 
-
-##################################################################################################
-# For User of the DEX
-
-# Deposit ETH into the DEX Center
-##################################################################################################
-
-# user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
-
-# eth_deposit_amount = st.number_input("How much ETH do you want to deposit?")
-
-# # eth_deposit_amount=int(eth_deposit_amount)
-# wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
-
-
-
-# if st.button("Deposit"):
-#     tx_hash = contract.functions.depositEther().transact(
-#         {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
-#         )
-#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#     st.write(receipt)
-#     st.markdown(f"{eth_deposit_amount} ETH deposited")
-
-
-
-
-    # user_wallet_address = st.text_input("Enter the wallet address from where you wannt to transfer the ETH")
-eth_deposit_amount = st.number_input("How many ETH do you want to deposit?")
-
-    #eth_deposit_amount=int(eth_deposit_amount)
-
-wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
-
-if st.button("Deposit"):
-    tx_hash = contract.functions.depositEther().transact(
-        {'value':wei_deposit_amount,'gas': 1000000}
-        )
-    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-    st.write(receipt)
-    st.markdown(f"{eth_deposit_amount} ETH deposited")
-
-
-
-
-
-
-
-
-
-
-# address= st.text_input("Enter your wallet address")
-# address="0xf071d66b6A298D2AdEA73Ae6BDF7E93d4ffb7F83"
-# private_key="dedaef419dfce412a0a12bb7e7c90075c721df721474af3a165246c3c98e63cc"
-
-# eth_deposit_amount = st.number_input("How much ETH do you want to deposit?")
-
-# if st.button("Deposit"):
-#     # Convert the ether amount to Wei (the smallest unit of ether)
-#     wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
-    
-#     st.write(contract.address)
-#     # build the transaction
-#     transaction = {
-#         'to': contract.address,
-#         'value': wei_deposit_amount,
-#         'gas': 21000,  # gas limit for a standard transaction
-#         'gasPrice': w3.toWei(50, 'gwei'),  # gas price in wei
-#         'nonce': w3.eth.getTransactionCount(address)
-#     }
-
-
-#     # Sign the transaction object with the user's private key
-#     signed_tx = w3.eth.account.sign_transaction(transaction, private_key)
-    
-#     # Send the signed transaction to the network
-#     tx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)
-    
-#     # Wait for the transaction to be mined and get the receipt
-#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-    
-#     # Display the receipt to the user
-#     st.write(receipt)
-#     st.markdown(f"{eth_deposit_amount} ETH deposited from wallet address : {address} to {contract.address}")
-
-
-
-
-##################################################################################################
-# For User of the DEX
-
-# Check Ether Balance
-##################################################################################################
-
-# if st.button("Check Ether Balance"):
-#     balance_wei = contract.functions.getEthBalanceInWei().call()
-#     balance_eth = w3.fromWei(balance_wei,"ether")
-#     # tx_hash = contract.functions.getEthBalanceInWei().transact({'from': contract.address, 'gas': 1000000})
-#     # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#     # st.write("Transaction receipt mined:")
-#     # st.write(dict(receipt))
-#     st.write(f"The balance of Ether held by the smart contract is {balance_eth:.2f} ETH")
-# st.markdown("---")
-
-if st.button("Check Ether Balance"):
-    st.write(f"{contract.address}")
-    balance_wei = contract.functions.getEthBalanceInWei().call()
-    balance_eth = w3.fromWei(balance_wei,"ether")
-    st.write(f"The balance of wei held by the smart contract is {balance_wei} wei")
-    # tx_hash = contract.functions.getEthBalanceInWei().transact({'from': contract.address, 'gas': 1000000})
-    # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-    # st.write("Transaction receipt mined:")
-    # st.write(dict(receipt))
-    st.write(f"The balance of Ether held by the smart contract is {balance_eth} ETH")
-st.markdown("---")
-
-
-
-
-# st.write("Choose an account to get started")
+# #   LOAD ACCOUNTS
+# st.subheader("Choose an account to get started")
 # accounts = w3.eth.accounts
-# address = st.selectbox("Select Account", options=accounts)
+# user_wallet_address = st.selectbox("Select Account", options=accounts)
 # st.markdown("---")
 
-# ################################################################################
-# # Register New Artwork
-# ################################################################################
-# st.markdown("## Register New Artwork")
+#   SETUP SIDEBAR
 
-# artwork_name = st.text_input("Enter the name of the artwork")
-# artist_name = st.text_input("Enter the artist name")
-# initial_appraisal_value = st.text_input("Enter the initial appraisal amount")
-# artwork_uri = st.text_input("Enter the URI to the artwork")
+option = st.sidebar.selectbox("Which Option?", ('Manage Token','Fund Management', 'Token Trading' ),2)
 
-# if st.button("Register Artwork"):
-#     tx_hash = contract.functions.registerArtwork(
-#         address,
-#         artwork_name,
-#         artist_name,
-#         int(initial_appraisal_value),
-#         artwork_uri
-#     ).transact({'from': address, 'gas': 1000000})
-#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#     st.write("Transaction receipt mined:")
-#     st.write(dict(receipt))
-# st.markdown("---")
+# Test info saved for testing purpose only
+# st.sidebar.write(f"The Exchange Smart Contract Address is : {contract.address}")
+# st.sidebar.write(f"The Token Smart Contract Address is : {token_contract.address}")
+# st.sidebar.write(f"The User Wallet Address Selected is : {user_wallet_address}")
+
+# # Check Ether Balance
+# if st.sidebar.button("Check Ether Balance"):
+#     balance_wei = contract.functions.getEthBalanceInWei().call({'from':user_wallet_address,'gas':1000000})
+#     balance_eth = w3.fromWei(balance_wei,"ether")
+#     st.sidebar.write(f"The balance of Ether held by the smart contract is {balance_eth:.2f} ETH")
+# st.sidebar.markdown("---")
+
+# # Check Token Balance
+# symbol_name=st.sidebar.text_input("Please input the symbol name to check balance")
+# if st.sidebar.button("Check Token Balance"):
+#     balance_token = contract.functions.getBalance(symbol_name).call({'from':user_wallet_address,'gas':1000000})
+
+#     st.sidebar.write(f"The balance of {symbol_name}  is {balance_token} ")
+#     st.markdown("---")
+
+###########################################################################################################################################
+
+                                            #OPTION "Fund Management" SELECTED
+
+###########################################################################################################################################
+
+if option == 'Fund Management':
+    st.subheader("Choose an account to get started")
+    accounts = w3.eth.accounts
+    user_wallet_address = st.selectbox("Select Token/Ether Owner's Wallet Address to manage the funds", options=accounts)
+    
+    st.header ("Fund Management")
+
+    col1, col2, col3 = st.columns(3)
+    with col1:        
+        st.subheader("Deposit Token")
+        deposit_symbol_name = st.text_input("Deposit Symbol Name eg.'FIXED'")
+        deposit_amount_token = st.number_input("Deposit Number of token")
+        deposit_amount_token=int(deposit_amount_token)
+
+        if st.button("Deposit Token"):
+            tx_hash = contract.functions.depositToken(deposit_symbol_name,deposit_amount_token).transact(
+                {'from': user_wallet_address, 'gas':1000000}
+                )
+
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+            st.markdown(f"{deposit_amount_token}  {deposit_symbol_name}  token deposited!")
+
+    with col2:
+        st.subheader("Withdraw Token")
+        withdraw_symbol_name = st.text_input("Withdraw Symbol Name eg.'FIXED'")
+        withdraw_amount_token = st.number_input("Withdraw Number of token")
+        withdraw_amount_token=int(withdraw_amount_token)
+
+        if st.button("Withdraw Token"):
+            tx_hash = contract.functions.withdrawToken(withdraw_symbol_name,withdraw_amount_token).transact(
+                {'from': user_wallet_address, 'gas':1000000 , 'to':contract.address}
+            )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+            st.markdown(f"{withdraw_amount_token} {withdraw_symbol_name} Token withdrawn!")
+    
+    with col3:
+        st.subheader("Check Token Balance")
+        symbol_name=st.text_input("Please input the symbol name to check balance")
+        if st.button("Check Token Balance"):
+            balance_token = contract.functions.getBalance(symbol_name).call({'from':user_wallet_address,'gas':1000000})
+            st.write(f"The balance of {symbol_name}  is {balance_token} ")
+
+    st.markdown("---")
+
+    col2_1, col2_2, col3_3 = st.columns(3)
+    with col2_1:       
+        st.subheader("Deposit ETH")
+        eth_deposit_amount = st.number_input("How many ETH do you want to deposit?")
+        wei_deposit_amount = w3.toWei(eth_deposit_amount, "ether")
+
+        if st.button("Deposit"):
+            tx_hash = contract.functions.depositEther().transact(
+                {'from': user_wallet_address, 'value':wei_deposit_amount,'gas': 1000000}
+                )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+            st.markdown(f"{eth_deposit_amount} ETH deposited")   
+
+    with col2_2:
+        st.subheader("Withdraw ETH")
+        eth_withdraw_amount = st.number_input("How many ETH do you want to withdraw?")
+        wei_withdraw_amount = w3.toWei(eth_withdraw_amount, "ether")
+
+        if st.button("Withdraw"):
+            tx_hash = contract.functions.withdrawEther(wei_withdraw_amount).transact(
+                {
+                # the transaction is initiated from the wallet address to the smart contract address
+                'from': user_wallet_address, 
+                'value':wei_withdraw_amount,
+                'gas': 1000000,
+                'to':contract.address
+                }
+            )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+            st.markdown(f"{eth_withdraw_amount} ETH withdrawn!")
+
+    with col3_3:           
+        # Check Ether Balance
+        st.subheader("Check Ether Balance")
+        if st.button("Check Ether Balance"):
+            balance_wei = contract.functions.getEthBalanceInWei().call({'from':user_wallet_address,'gas':1000000})
+            balance_eth = w3.fromWei(balance_wei,"ether")
+            st.write(f"The balance of Ether held by the smart contract is {balance_eth:.2f} ETH")
 
 
-# ################################################################################
-# # Appraise Art
-# ################################################################################
-# st.markdown("## Appraise Artwork")
-# tokens = contract.functions.totalSupply().call()
-# token_id = st.selectbox("Choose an Art Token ID", list(range(tokens)))
-# new_appraisal_value = st.text_input("Enter the new appraisal amount")
-# report_uri = st.text_area("Enter notes about the appraisal")
-# if st.button("Appraise Artwork"):
+###########################################################################################################################################
 
-#     # Use the token_id and the report_uri to record the appraisal
-#     tx_hash = contract.functions.newAppraisal(
-#         token_id,
-#         int(new_appraisal_value),
-#         report_uri
-#     ).transact({"from": w3.eth.accounts[0]})
-#     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-#     st.write(receipt)
-# st.markdown("---")
+                                            #OPTION "Token Trading" SELECTED
 
-# ################################################################################
-# # Get Appraisals
-# ################################################################################
-# st.markdown("## Get the appraisal report history")
-# art_token_id = st.number_input("Artwork ID", value=0, step=1)
-# if st.button("Get Appraisal Reports"):
-#     appraisal_filter = contract.events.Appraisal.createFilter(
-#         fromBlock=0,
-#         argument_filters={"tokenId": art_token_id}
-#     )
-#     appraisals = appraisal_filter.get_all_entries()
-#     if appraisals:
-#         for appraisal in appraisals:
-#             report_dictionary = dict(appraisal)
-#             st.markdown("### Appraisal Report Event Log")
-#             st.write(report_dictionary)
-#             st.markdown("### Appraisal Report Details")
-#             st.write(report_dictionary["args"])
-#     else:
-#         st.write("This artwork has no new appraisals")
+###########################################################################################################################################
+
+if option == 'Token Trading':
+    st.subheader("Choose an account to get started")
+    accounts = w3.eth.accounts
+    user_wallet_address = st.selectbox("Select Token Owner Wallet Address", options=accounts)
+    st.markdown("---")
+
+    st.header ("Token Trading Options")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        # new_title = '<p style="font-family:sans-serif; color:Green; font-size: 42px;">New image</p>'
+        # st.markdown(new_title, unsafe_allow_html=True)
+        
+        buy_title = '<p style="font-family:sans-serif; color:Green; font-size: 42px;">Buy Token</p>'
+        st.markdown(buy_title, unsafe_allow_html=True)
+        
+        #st.subheader("Buy Token")
+        buy_symbol_name = st.text_input("Buy Symbol Name eg.'FIXED'")
+        buy_amount_token = st.number_input("Buy Number of token")
+        buy_amount_token=int(buy_amount_token)
+        bid_price_wei = st.number_input("Bid Price in wei")
+        bid_price_wei=int(bid_price_wei)
+
+        if st.button("Buy Token"):
+                    
+            tx_hash = contract.functions.buyToken(buy_symbol_name, bid_price_wei,buy_amount_token).transact(
+                {
+                # the transaction is initiated from the wallet address to the smart contract address
+                'from': user_wallet_address, 
+                # 'value':wei_withdraw_amount,
+                'gas': 2100000
+                #'to':approve_address
+                }
+            )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+
+    with col2:
+        #st.subheader("Sell Token")
+        
+        sell_title = '<p style="font-family:sans-serif; color:Red; font-size: 42px;">Sell Token</p>'
+        st.markdown(sell_title, unsafe_allow_html=True)
+                
+        sell_symbol_name = st.text_input("Sell Symbol Name eg.'FIXED'")
+        sell_amount_token = st.number_input("Sell Number of token")
+        ask_price_wei = st.number_input("Ask Price in wei")
+        sell_amount_token=int(sell_amount_token)
+        ask_price_wei=int(ask_price_wei)
+
+        if st.button("Sell Token"):
+                    
+            tx_hash = contract.functions.sellToken(sell_symbol_name, ask_price_wei,sell_amount_token).transact(
+                {
+                # the transaction is initiated from the wallet address to the smart contract address
+                'from': user_wallet_address, 
+                'gas': 2100000
+                }
+            )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+
+    st.markdown("---")
+
+    st.header("Order Book")
+    orderbook_symbol_name = st.text_input("Order Book Symbol Name eg.'FIXED'")
+    col2_1, col2_2 = st.columns(2)
+    with col2_1:
+        st.subheader("Bid")
+        arrPricesBuy, arrVolumesBuy=contract.functions.getBuyOrderBook(orderbook_symbol_name).call()
+        st.write("Price to Buy\t\tVolumne to Buy")
+        for price, volumne in zip(arrPricesBuy, arrVolumesBuy):
+            st.write(f"{price:.2f}\t\t{volumne}")
+
+    with col2_2:
+        st.subheader("Ask")
+        arrPricesSell,arrVolumesSell=contract.functions.getSellOrderBook(orderbook_symbol_name).call()
+        st.write("Price to Sell\t\tVolumne to Sell")
+        for price, volumne in zip(arrPricesSell, arrVolumesSell):
+            st.write(f"{price:.2f}\t\t{volumne}")
+
+###########################################################################################################################################
+
+                                            #OPTION "Manage Token" SELECTED
+
+###########################################################################################################################################
+        
+if option == 'Manage Token':
+    # Only the exchange owner can add token, please choose the wallet address to deploy the exchange smart contract
+    st.subheader("Choose an account to get started")
+    accounts = w3.eth.accounts
+    token_owner_wallet_address = st.selectbox("Select Exchange owner's Wallet Address", options=accounts)
+
+    st.markdown("---")
+    st.header ("Manage Token Option")
+
+    col1, col2 = st.columns(2)
+    with col1:
+
+        st.subheader("Add Token")
+        token_symbol = st.text_input("Token Symbol eg. FIXED")
+        token_address = token_contract.address
+        
+
+        if st.button("Add Token"):
+            addToken_tx_hash = contract.functions.addToken(
+                token_symbol,
+                token_address
+            ).transact({'from': token_owner_wallet_address, 'gas': 1000000})
+            # st.sidebar.write("Add Token hash:", addToken_tx_hash)
+            st.write(f"{token_symbol} Token added!")
+
+    st.markdown("---")
+    with col2:
+        st.subheader("Approve Token Allowance") 
+        user_wallet_address_to_approve = st.selectbox("Select Token Onwer's Wallet Address to Approve the Token Allowance", options=accounts)
+        approve_token_amount = st.number_input("Approve token amount") 
+        approve_token_amount = int(approve_token_amount)
+
+        if st.button("Allow Token to be used"):
+            
+            tx_hash = token_contract.functions.approve(contract.address, approve_token_amount).transact(
+                {
+                # the transaction is initiated from the wallet address to the smart contract address
+                'from': user_wallet_address_to_approve, 
+                'gas': 1000000,
+                }
+            )
+            receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            st.sidebar.write(receipt)
+
+        st.write("Approve the address to be allowed to send a token from your address to another address. This is important for the Exchange. When you fund the token in the exchange then it will deduct in your name the token from your address to the exchange address.")
+
+
+

@@ -28,11 +28,8 @@ Our approach was try to understand the functionalities of the decentralized prje
 
 ### Successfull Transaction of in the Exchange 
 
-### Sucessfully added token
-<img src="./images/SuccessfullyAddedToken_MFS.jpg" width = "150"> <br>
 
-### Sucessfully approved token
-<img src="./images/SuccessfullyApprovedToken_MFS.jpg" width = "150"> <br>
+
 
 ### Successfully transferred Token
 <img src="./images/SuccessfullyTransferred100Token_MFS.jpg" width = "150"> <br>
@@ -43,28 +40,36 @@ Our approach was try to understand the functionalities of the decentralized prje
 ### Home Page Options
 Three tabs: Manage Token, Fund Management and Token Trading
 
-<img src="./images/homepage_options.png" > <br>
+<img src="./images/homepage_options.png" width = "150"> <br>
 
 ### Manage Token Page
 - Two main functions: Add Token and Approve Token Allowance
 
-<img src="./images/manage_token_page.png" > <br>
+<img src="./images/manage_token_page.png" width = "150"> <br>
 
 - Only the admin of the exchange can add token, so please choose the wallet address of the exchange
 - You can only add new tokens that the exchange hasn't added before
 - The token allowance should be approved by the token owner, so please choose the token owner's wallet address in the 'Approve Token Allowance' Section
 
-#### Add Token Successfully
-<img src="./images/add_token_successfully.png" > <br>
+### Add Token Successfully
+#### Add Token Front End
+<img src="./images/add_token_successfully.png" width = "150"> <br>
+#### Successful Transaction of added token
+<img src="./images/SuccessfullyAddedToken_MFS.jpg" width = "150"> <br>
 
-#### Approve Token Allowance Successfully
-<img src="./images/approve_token_allowance_successfully.png" > <br>
+### Approve Token Allowance Successfully
+#### Approve Token Allowance Front End
+<img src="./images/approve_token_allowance_successfully.png" width = "150"> <br>
+#### Sucessfully Approved Token Back End
+<img src="./images/SuccessfullyApprovedToken_MFS.jpg" width = "150"> <br>
+
 
 ### Fund Management
 The layout and functions for fund management page is as below:
 <img src="./images/fund_management_page.png" > <br>
 
-#### Deposit Token
+### Deposit Token
+#### Deposit Token Front End
 <img src="./images/deposit_token_successfully.png" > <br>
 
 #### Withdraw Token
@@ -80,14 +85,14 @@ wallet ether balance in Ganache before depositing ether to the DEX
 
 Deposit 10 ETH 
 
-<img src="./images/deposit_eth_successfully.png" > <br>
-<img src="./images/ether_balance_check_in_DEX.png" > <br>
-<img src="./images/ether_balance_check_in_ganache.png" > <br>
+<img src="./images/deposit_eth_successfully.png" width = "150"> <br>
+<img src="./images/ether_balance_check_in_DEX.png" width = "150"> <br>
+<img src="./images/ether_balance_check_in_ganache.png" width = "150"> <br>
 
 #### Withdraw ETH
 
-<img src="./images/withdraw_eth_successfully.png" > <br>
-<img src="./images/ether_balance_check_after_withdraw_in_DEX.png" > <br>
+<img src="./images/withdraw_eth_successfully.png" width = "150"> <br>
+<img src="./images/ether_balance_check_after_withdraw_in_DEX.png" width = "150"> <br>
 
 #### Check Ether Balance
 
@@ -96,31 +101,25 @@ as shown in the above
 ### Token Trading Page
 You can buy/sell tokens and you can check order books in this page.
 
-<img src="./images/token_trading_page.png" > <br>
+<img src="./images/token_trading_page.png" width = "150"> <br>
 
 #### Buy Token/Sell Token/Order Book
 
-<img src="./images/buy_token_1.png" > <br>
+<img src="./images/buy_token_1.png" width = "150"> <br>
 
-<img src="./images/buy_token_2.png" > <br>
+<img src="./images/buy_token_2.png" width = "150"> <br>
 
-<img src="./images/buy_token_3.png" > <br>
+<img src="./images/buy_token_3.png" width = "150"> <br>
 
+<img src="./images/sell_token_2.png" width = "150"> <br>
 
-
-
-
-
-
-<img src="./images/sell_token_2.png" > <br>
-
-<img src="./images/sell_token_3.png" > <br>
+<img src="./images/sell_token_3.png" width = "150"> <br>
 
 
-<img src="./images/price_meet_before.png" > <br>
+<img src="./images/price_meet_before.png" width = "150"> <br>
 
 
-<img src="./images/price_meet_after.png" > <br>
+<img src="./images/price_meet_after.png" width = "150"> <br>
 
 ## References 
 Imported SafeMath from 

@@ -74,12 +74,6 @@ st.markdown('<p class="font">Welcome to MSF Decentralized Token Exchange</p>', u
 
 st.markdown("---")
 
-# #   LOAD ACCOUNTS
-# st.subheader("Choose an account to get started")
-# accounts = w3.eth.accounts
-# user_wallet_address = st.selectbox("Select Account", options=accounts)
-# st.markdown("---")
-
 #   SETUP SIDEBAR
 
 option = st.sidebar.selectbox("Which Option?", ('Manage Token','Fund Management', 'Token Trading' ),2)

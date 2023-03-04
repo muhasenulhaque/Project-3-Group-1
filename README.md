@@ -55,7 +55,7 @@ Our approach was try to understand the functionalities of the decentralized prje
 
 
 ### Fund Management
-The layout and functions for fund management page is as below:
+#### The layout and functions for fund management page is as below:
 <img src="./images/fund_management_page.png" width = "300"> <br>
 
 ### Deposit Token

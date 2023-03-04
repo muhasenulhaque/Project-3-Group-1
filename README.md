@@ -106,25 +106,6 @@ We updated the code, compiled it with a newer version of pragma ^0.5.0 instead o
     <img src="./images/price_meet_after.png" >
 </p>
 
-<img src="./images/buy_token_2.png" > <br>
-
-<img src="./images/buy_token_3.png" > <br>
-
-
-
-
-
-
-
-<img src="./images/sell_token_2.png" > <br>
-
-<img src="./images/sell_token_3.png" > <br>
-
-
-<img src="./images/price_meet_before.png" > <br>
-
-
-<img src="./images/price_meet_after.png" > <br>
 
 ## __Difficulties Faced__ 
 - Understanding the different concepts of token address, user wallet address, exchange address etc. and call/choose the right address for the input of the front end.

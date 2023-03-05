@@ -3,12 +3,12 @@
 <img src="./images/iStock-1323542329.jpg" width = "500"> <br>
 
 
-## Executive summary: 
-The decentralized exchange can create non-fangible token using the etherium block chain technology. Through this exchange we can deposit ettherium in wallet, add token in the wallet through smart contract, then approve the added token in the wallet, can transfer from one address to another. Customer's loyalty programs can be done though the exchange where we issue token. Later this token can be applied to purchase different services. 
+## __Executive summary__
+The decentralized exchange can create non-fungible token using the etherium block chain technology. Through this exchange we can deposit or withdraw etherium in wallet, add token in the wallet through smart contract, then approve the added token allowance and then deposit the token to the DEX, buy or sell the token on the DEX and check the order books. 
 
 
 ## __Origin of the Project Concept__ 
-The idea of the project is to create a platform where people can trade coins and token within Etherium Technology. We thought of a decentralized trading platform for trading coins and tokens. After research, we found there was already a project created by Thomas Wiesner regarding this matter where the front end is developed with .js file. We thought of understanding the project and communicating with streamlit front end. 
+The idea of the project is to create a platform where people can trade coins and token within Etherium Technology. We thought of a decentralized trading platform for trading coins and tokens. After research, we found there was already a project created by Thomas Wiesner regarding this matter where the front end is developed with .js file. We thought of understanding the project and rebuilding with streamlit front end. 
 
 ## __Data Collection, Cleanup, and Exploration__
 We have reseached on available git hub libraries and found an wonderful work done by "Thomas Wiesne" on decentralized excahgne. The project files are in the following link. 
@@ -131,22 +131,12 @@ We updated the code, compiled it with a newer version of pragma ^0.5.0 instead o
 ## __References__
 
 <img src="./images/udemy_course.png" > <br>
-
 - https://github.com/tomw1808/distributed_exchange_truffle_class_3
 
-Creating mobile app to interact with the clients for the front end. 
-Going for Initial Coin Offerings for the new coins introduced in the exchange. 
-
-
-## Conclusion 
-We could make the decentralized exchange with the front end of steamlit which can transact any kind of ether and tokens using etherium techonology. The exchange can also create token, buy, sell and transfer token . 
-
-
-## References 
 Imported SafeMath from 
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/math/SafeMath.sol";
 
-- Imported ERC20.sol
+Imported ERC20.sol
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5.0/contracts/token/ERC20/ERC20.sol";
 
 ## __Team__
@@ -162,7 +152,9 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 ### Course Instructor 
 ### Adrian Rusli
 <img src="./images/Adrian Rusli - Instructor.png" width = "150"> <br>
+https://www.linkedin.com/in/adrianrusli/
 
 ### and Larry Hang
 <img src="./images/Larry Huang - TA.png" width = "150"> <br>
+https://www.linkedin.com/in/larry-huang/
 
